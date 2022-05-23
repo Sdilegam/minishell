@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/23 16:38:22 by sdi-lega         ###   ########.fr       */
+/*   Created: 2022/05/23 16:34:18 by sdi-lega          #+#    #+#             */
+/*   Updated: 2022/05/23 16:42:38 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <stdlib.h>
-# include <unistd.h>
+int	is_space(char chara)
+{
+	if (!chara)
+		return (0);
+	if (chara == ' ')
+		return (1);
+	return (0);
+}
 
-
-void	print_header(void);
-int		is_space(char chara);
-int		is_alpha(char chara);
-int		count_words(char *string);
-#endif
+int	is_alpha(char chara)
+{
+	if (!chara)
+		return (0);
+	if (('a' <= chara && chara <= 'z') || ('A' <= chara && chara <= 'Z'))
+		return (1);
+	return (0);
+}
