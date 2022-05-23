@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:29:33 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/05/23 16:59:23 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/05/23 20:30:47 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,34 @@ char	*duplicate_word(char *string)
 
 	letters = 0;
 	index = -1;
-	while (!is_space(string[letters]))
+	while (!is_space(string[letters]) && string[letters])
 			letters ++;
-	word = malloc(sizeof(char) * letters);
-	while (++index > letters)
-		word[letters] = string[letters];
+	word = malloc(sizeof(char) * (letters + 1));
+	while (++index < letters)
+		word[index] = string[index];
+	word[index] = 0;
 	return (word);
 }
 
 char	**read_line(char *string)
 {
-	int	i;
-	int	count;
+	int		i;
+	int		count;
 	char	**line;
-	int index; 
+	int		index;
 
 	index = -1;
 	count = count_words(string);
-	line = malloc(count * sizeof(char *));
+	line = malloc((count + 1) * sizeof(char *));
+	line[count] = 0;
 	while (++index < count)
 	{
 		while (is_space(string[i]) && string[i])
 			i ++;
-		line = 
+		line[index] = duplicate_word(string + i);
+		while (!is_space(string[i]))
+			i ++;
 	}
-	
+	free(string);
+	return (line);
 }

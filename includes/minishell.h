@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/23 16:38:22 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/05/23 19:24:03 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ void	print_header(void);
 int		is_space(char chara);
 int		is_alpha(char chara);
 int		count_words(char *string);
+char	**read_line(char *string);
 #endif
