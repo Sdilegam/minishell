@@ -3,26 +3,27 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
+#    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/05/23 14:30:24 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/05/23 15:56:13 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRCS = srcs/main.c
+SRCS = 	srcs/main.c\
+		srcs/header.c
 
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 
 %.o : %.c
-	cc -c $< -o $@
+	cc -Iincludes/ -c $< -o $@ -g
 
 $(NAME) : $(OBJS)
-		cc -Wall -Werror -Wextra $(OBJS) -o $(NAME) -lreadline
+		cc -Wall -Werror -Wextra $(OBJS) -o $(NAME) -lreadline -g
 
 clean :
 		rm -rf $(OBJS)

@@ -3,35 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/23 14:28:58 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/05/23 15:56:39 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
+
+void	function(char *rl)
+{
+	char	*test[3];
+
+	test[0] = rl;
+	test[1] = ".";
+	test[2] = 0;
+	if (fork() == 0)
+		execve(test[0], test, test);
+}
+
 
 int	main(void)
 {
 	char	*rl;
+	int		*test;
 
-	printf("/* ************************************************************************** */\n\
-/*                                                                            */\n\
-/*                                                        :::      ::::::::   */\n\
-/*    MINISHELL                                         :+:      :+:    :+:   */\n\
-/*                                                    +:+ +:+         +:+     */\n\
-/*                                                  +#+  +:+       +#+        */\n\
-/*                                                +#+#+#+#+#+   +#+           */\n\
-/*    By: abkasmi and sdi-lega                         #+#    #+#             */\n\
-/*                                                    ###   ########.fr       */\n\
-/*                                                                            */\n\
-/* ************************************************************************** */\
-\n\n");
+	print_header();
 	while (1)
 	{
 		rl = readline("minishell:$>");
-		printf("%s\n", rl);
+		function(rl);
+		wait(test);
 		free(rl);
 	}
 }
