@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:29:33 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/05/23 20:30:47 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/05/24 11:32:44 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	**read_line(char *string)
 		while (is_space(string[i]) && string[i])
 			i ++;
 		line[index] = duplicate_word(string + i);
-		while (!is_space(string[i]))
+		while (!is_space(string[i]) && string[i])	
 			i ++;
 	}
 	free(string);

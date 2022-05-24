@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
+#    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/05/23 16:38:56 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/05/24 14:51:37 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,10 @@ NAME = minishell
 SRCS = 	srcs/main.c\
 		srcs/header.c\
 		srcs/read_line.c\
-		srcs/minishell_utils.c
+		srcs/minishell_utils.c\
+		srcs/builtins/echo.c\
+		srcs/builtins/cd.c\
+		srcs/builtins/env.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -1,47 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_utils.c                                  :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 16:34:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/05/24 14:12:39 by abkasmi          ###   ########.fr       */
+/*   Created: 2022/05/24 11:44:52 by abkasmi           #+#    #+#             */
+/*   Updated: 2022/05/24 14:17:50 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_space(char chara)
+void	ft_cd(char **path)
 {
-	if (!chara)
-		return (0);
-	if (chara == ' ')
-		return (1);
-	return (0);
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	if (s1 == 0 || s2 == 0)
-		return (-1);
-	while (s1[i] != '\0' || s2[i] != '\0')
+	if (ft_strcmp(path[1], "") == -1)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
+		chdir(getenv("HOME"));
+		return ;
 	}
-	return (s1[i] - s2[i]);
-}
-
-void	ft_putstr(char *str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-		write(2, &str[i], 1);
+	if (chdir(path[1]) != 0)
+	{
+		ft_putstr("cd: ");
+		ft_putstr(path[1]);
+		ft_putstr(": ");
+		perror("");
+	}
 }
