@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/24 14:20:05 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/05/25 14:09:12 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,21 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+typedef struct s_env
+{
+	char			*var;
+	struct s_env	*next;
+}				t_env;
+
+t_env	*newnode(char *data);
+t_env	*set_env(char **envp);
 
 void	print_header(void);
 void	ft_cd(char **path);
 void	ft_putstr(char *str);
 void	ft_pwd(void);
+void	ft_env(t_env *env, char **command);
+void	insertnewnode(t_env *env, char *data);
 
 int		is_space(char chara);
 int		is_alpha(char chara);

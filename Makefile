@@ -6,7 +6,7 @@
 #    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/05/24 14:51:37 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/05/25 13:48:43 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCS = 	srcs/main.c\
 		srcs/header.c\
 		srcs/read_line.c\
 		srcs/minishell_utils.c\
+		srcs/builtins/set_env.c\
 		srcs/builtins/echo.c\
 		srcs/builtins/cd.c\
 		srcs/builtins/env.c
