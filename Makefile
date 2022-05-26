@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
+#    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/05/26 01:12:47 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/05/26 09:47:05 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,22 +26,23 @@ OBJS = $(SRCS:.c=.o)
 
 LIBRARY = ft_printf/libftprintf.a
 
-ft_printf/libftprintf.a :
-					make -C ft_printf
-
 all : $(NAME)
 
 %.o : %.c
 	cc -Iincludes/ -c $< -o $@ -g
 
-$(NAME) : $(OBJS)
-		cc -Wall -Werror -Wextra $(OBJS) -o $(NAME) -lreadline -g ${addprefix -L, ${dir ${LIBRARY}}} ${addprefix -l, ${patsubst lib%.a, %, ${notdir ${LIBRARY}}}}
+$(NAME) : $(OBJS) ${LIBRARY}
+		cc -Wall -Werror -Wextra $(OBJS) -o $(NAME) ${addprefix -L, ${dir ${LIBRARY}}} ${addprefix -l, ${patsubst lib%.a, %, ${notdir ${LIBRARY}}}} -lreadline -g
 
 clean :
 		rm -rf $(OBJS)
 
 fclean : clean
+			make fclean -C ft_printf 
 			rm -rf $(NAME)
+			
+ft_printf/libftprintf.a :
+					make -C ft_printf
 
 re : fclean all
 

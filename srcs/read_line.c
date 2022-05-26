@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:29:33 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/05/24 11:32:44 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/05/26 09:38:24 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ char	**read_line(char *string)
 	char	**line;
 	int		index;
 
+	i = 0;
 	index = -1;
 	count = count_words(string);
 	line = malloc((count + 1) * sizeof(char *));

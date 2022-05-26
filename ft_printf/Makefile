@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
+#    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/06 17:28:09 by abkasmi           #+#    #+#              #
-#    Updated: 2021/10/06 17:34:29 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/05/26 08:59:28 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 			ar rc $(NAME) $(OBJS)
+			ranlib $(NAME)
 
 .c.o:
 		gcc -Wall -Werror -Wextra -c $< -o $(<:.c=.o)
