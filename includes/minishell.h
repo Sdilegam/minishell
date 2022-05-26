@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/25 14:09:12 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/05/26 01:57:07 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <stdio.h>
+# include "../ft_printf/ft_printf.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdlib.h>
@@ -33,7 +34,9 @@ void	ft_cd(char **path);
 void	ft_putstr(char *str);
 void	ft_pwd(void);
 void	ft_env(t_env *env, char **command);
+void	print_env(t_env *env, int p);
 void	insertnewnode(t_env *env, char *data);
+void	ft_export(t_env *env, char **str);
 
 int		is_space(char chara);
 int		is_alpha(char chara);

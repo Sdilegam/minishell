@@ -5,44 +5,32 @@
 #                                                     +:+ +:+         +:+      #
 #    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/05/26 01:12:47 by abkasmi          ###   ########.fr        #
+#    Created: 2021/10/06 17:28:09 by abkasmi           #+#    #+#              #
+#    Updated: 2021/10/06 17:34:29 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minishell
-
-SRCS = 	srcs/main.c\
-		srcs/header.c\
-		srcs/read_line.c\
-		srcs/minishell_utils.c\
-		srcs/builtins/set_env.c\
-		srcs/builtins/echo.c\
-		srcs/builtins/cd.c\
-		srcs/builtins/env.c\
-		srcs/builtins/export.c
+SRCS = ft_printf.c \
+		ft_utils.c \
 
 OBJS = $(SRCS:.c=.o)
 
-LIBRARY = ft_printf/libftprintf.a
-
-ft_printf/libftprintf.a :
-					make -C ft_printf
+NAME = libftprintf.a
 
 all : $(NAME)
 
-%.o : %.c
-	cc -Iincludes/ -c $< -o $@ -g
-
 $(NAME) : $(OBJS)
-		cc -Wall -Werror -Wextra $(OBJS) -o $(NAME) -lreadline -g ${addprefix -L, ${dir ${LIBRARY}}} ${addprefix -l, ${patsubst lib%.a, %, ${notdir ${LIBRARY}}}}
+			ar rc $(NAME) $(OBJS)
 
-clean :
-		rm -rf $(OBJS)
+.c.o:
+		gcc -Wall -Werror -Wextra -c $< -o $(<:.c=.o)
 
-fclean : clean
-			rm -rf $(NAME)
+clean:
+		rm -f $(OBJS)
 
-re : fclean all
+fclean:	clean
+		rm -f $(NAME)
 
-.PHONY : all clean fclean re
+re:		fclean all
+
+.PHONY:		all clean fclean re

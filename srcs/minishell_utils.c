@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:34:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/05/24 14:12:39 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/05/25 19:50:09 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ void	ft_putstr(char *str)
 
 	i = -1;
 	while (str[++i])
-		write(2, &str[i], 1);
+		write(1, &str[i], 1);
 }

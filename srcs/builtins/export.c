@@ -1,58 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 14:14:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/25 23:48:19 by abkasmi          ###   ########.fr       */
+/*   Created: 2022/05/26 01:11:30 by abkasmi           #+#    #+#             */
+/*   Updated: 2022/05/26 04:11:40 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_env(t_env *env, int p)
+void	ft_export(t_env *env, char **str)
 {
 	t_env	*curr;
-
-	curr = env;
-	while (curr)
-	{
-		ft_printf("%s\n", curr->var);
-		curr = curr->next;
-	}
-	if (p)
-		free(curr);
-}
-
-void	ft_env(t_env *env, char **str)
-{
 	int		i;
-	int		p;
 
 	i = 0;
-	p = 0;
+	curr = env;
 	if (str[1])
 	{
 		while (str[1][i])
 		{
 			if (str[1][i] == '=')
-				break ;
-			i++;
-		}
-		if (str[1][i] != '=' || i == 0)
-		{
-			if (i == 0)
 			{
-				ft_printf("env : %s: Invalid argument\n", str[1]);
+				if (i == 0)
+				{
+					ft_printf("export : %s: not a valid identifier\n", str[1]);
+					return ;
+				}
+				insertnewnode(env, str[1]);
 				return ;
 			}
-			ft_printf("env : %s: No such file or directory\n", str[1]);
-			return ;
+			else if ((str[1][i] > 64 && str[1][i] < 91)
+				|| (str[1][i] > 96 && str[1][i] < 123))
+				
+			i++;
 		}
-		insertnewnode(env, str[1]);
-		p = 1;
+		if (str[1][i] != '=')
+			return ;
 	}
-	print_env(env, p);
+	while (curr)
+	{
+		ft_printf("declare -x %s\n", curr->var);
+		curr = curr->next;
+	}
 }
