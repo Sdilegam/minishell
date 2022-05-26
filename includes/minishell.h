@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/26 08:47:00 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/05/26 10:17:28 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	print_header(void);
 void	ft_cd(char **path);
 void	ft_putstr(char *str);
 void	ft_pwd(void);
-void	ft_env(t_env *env, char **command);
+void	ft_env(t_env *env);
 void	print_env(t_env *env, int p);
 void	insertnewnode(t_env *env, char *data);
 void	ft_export(t_env *env, char **str);
