@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:34:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/05/25 19:50:09 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/05/28 04:52:24 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,14 @@ void	ft_putstr(char *str)
 	i = -1;
 	while (str[++i])
 		write(1, &str[i], 1);
+}
+
+int	ft_strlen(char *str)
+{
+	int	i;
+	
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

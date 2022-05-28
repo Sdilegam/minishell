@@ -3,16 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:02:11 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/25 19:54:03 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/05/28 04:43:43 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_env	*newnode(char *data)
+char	*ft_cpy_name(char *str)
+{
+	char	*name;
+	int		i;
+	
+	i = 0;
+	while (str[i] != '=')
+		i++;
+	name = malloc(sizeof(char) * i + 1);
+	if (!name)
+		exit (1);
+	i = -1;
+	while (str[++i] != '=')
+		name[i] = str[i];
+	return (name);
+}
+
+char	*ft_cpy_content(char *str)
+{
+	char	*content;
+	int		i;
+	int		j;
+	int		temp;
+
+	i = 0;
+	j = 0;
+	while (str[i] != '=')
+		i++;
+	i++;
+	temp = i;
+	while (str[i])
+	{
+		j++;
+		i++;
+	}
+	content = malloc(sizeof(char) * j);
+	if (!content)
+		exit (1);
+	j = 0;
+	while (str[temp])
+	{
+		content[j] = str[temp];
+		temp++;
+		j++;
+	}
+	return (content);
+}
+
+t_env	*newnode(char *data, char *data2)
 {
 	t_env	*node;
 
@@ -20,16 +68,17 @@ t_env	*newnode(char *data)
 	if (!node)
 		exit(1);
 	node->var = data;
+	node->content = data2;
 	node->next = NULL;
 	return (node);
 }
 
-void	insertnewnode(t_env *env, char *data)
+void	insertnewnode(t_env *env, char *data, char *data2)
 {
 	t_env	*node;
 	t_env	*curr;
 
-	node = newnode(data);
+	node = newnode(data, data2);
 	if (env == NULL)
 		env = node;
 	else
@@ -45,14 +94,21 @@ t_env	*set_env(char **envp)
 {
 	int		i;
 	int		j;
+	t_var	var;
 	t_env	*env;
 
 	i = 0;
 	j = 0;
 	while (envp[j])
 		j++;
-	env = newnode(envp[i]);
+	var.name = ft_cpy_name(envp[i]);
+	var.content = ft_cpy_content(envp[i]);
+	env = newnode(var.name, var.content);
 	while (++i < j)
-		insertnewnode(env, envp[i]);
+	{
+		var.name = ft_cpy_name(envp[i]);
+		var.content = ft_cpy_content(envp[i]);
+		insertnewnode(env, var.name, var.content);
+	}
 	return (env);
 }

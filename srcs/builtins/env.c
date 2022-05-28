@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 14:14:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/26 11:12:06 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/05/28 04:00:42 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_env(t_env *env)
 	curr = env;
 	while (curr)
 	{
-		ft_printf("%s\n", curr->var);
+		ft_printf("%s=%s\n", curr->var, curr->content);
 		curr = curr->next;
 	}
 }

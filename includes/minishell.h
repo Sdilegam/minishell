@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/26 10:17:28 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/05/28 04:46:58 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,17 @@
 typedef struct s_env
 {
 	char			*var;
+	char			*content;
 	struct s_env	*next;
 }				t_env;
 
-t_env	*newnode(char *data);
+typedef struct s_var
+{
+	char	*name;
+	char	*content;
+}			t_var;
+
+t_env	*newnode(char *data, char *data2);
 t_env	*set_env(char **envp);
 
 void	print_header(void);
@@ -35,15 +42,21 @@ void	ft_putstr(char *str);
 void	ft_pwd(void);
 void	ft_env(t_env *env);
 void	print_env(t_env *env, int p);
-void	insertnewnode(t_env *env, char *data);
+void	insertnewnode(t_env *env, char *data, char *data2);
 void	ft_export(t_env *env, char **str);
+void	ft_name_varr(t_env *env);
+void	free_list(t_env *pHead);
 
 int		is_space(char chara);
 int		is_alpha(char chara);
 int		count_words(char *string);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_echo(char **str);
+int		ft_unset(t_env *env, char **str);
+int		ft_strlen(char *str);
 
 char	**read_line(char *string);
+char	*ft_cpy_content(char *str);
+char	*ft_cpy_name(char *str);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
+#    By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/05/26 09:47:05 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/05/28 02:55:10 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRCS = 	srcs/main.c\
 		srcs/builtins/echo.c\
 		srcs/builtins/cd.c\
 		srcs/builtins/env.c\
-		srcs/builtins/export.c
+		srcs/builtins/export.c\
+		srcs/builtins/unset.c
 
 OBJS = $(SRCS:.c=.o)
 
