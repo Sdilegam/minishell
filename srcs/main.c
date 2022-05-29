@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/28 02:43:13 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/05/29 09:17:56 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	function(char **command, t_env *env, char **envp)
 		ft_env(env);
 	else if (ft_strcmp(command[0], "export") == 0)
 		ft_export(env, command);
-	else if (ft_strcmp(command[0], "unset") == 0)
-		ft_unset(env, command);
+	// else if (ft_strcmp(command[0], "unset") == 0)
+	// 	ft_unset(env, command);
 	else if (ft_strcmp(command[0], "exit") == 0)
 		exit(0);
 	else
@@ -43,6 +43,7 @@ int	main(int ac, char *av[], char *envp[])
 {
 	char	*rl;
 	char	**test;
+	char	**env_str;
 	int		result;
 	t_env	*env;
 
@@ -54,7 +55,9 @@ int	main(int ac, char *av[], char *envp[])
 	{
 		rl = readline("minishell:$>");
 		test = read_line(rl);
-		function(test, env, envp);
+		env_str = list_to_array(env);
+		function(test, env, env_str);
+		free(env_str);
 		wait(&result);
 	}
 }
