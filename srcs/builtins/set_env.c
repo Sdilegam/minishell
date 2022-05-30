@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:02:11 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/31 00:29:48 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/05/31 00:54:45 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_cpy_name(char *str)
 	i = -1;
 	while (str[++i] != '=' && str[i])
 		name[i] = str[i];
-	name[i] = '\0';
+	//name[i] = '\0';
 	return (name);
 }
 

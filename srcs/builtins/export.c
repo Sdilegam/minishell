@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 01:11:30 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/31 00:31:38 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/05/31 01:50:52 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_export(t_env *env, char **str)
 		var.content = ft_cpy_content(str[j]);
 		if (export_error(str[j]))
 			return ;
-		while (curr->next && var.name)
+		while (curr && var.name)
 		{	
 			if (ft_strcmp(curr->var, var.name) == 0)
 			{
