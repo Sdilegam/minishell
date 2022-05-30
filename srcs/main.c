@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/29 09:17:56 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/05/30 12:12:06 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	function(char **command, t_env *env, char **envp)
 		ft_env(env);
 	else if (ft_strcmp(command[0], "export") == 0)
 		ft_export(env, command);
-	// else if (ft_strcmp(command[0], "unset") == 0)
-	// 	ft_unset(env, command);
+	else if (ft_strcmp(command[0], "unset") == 0)
+		ft_unset(env, command);
 	else if (ft_strcmp(command[0], "exit") == 0)
 		exit(0);
 	else

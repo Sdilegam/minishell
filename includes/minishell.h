@@ -6,14 +6,13 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/29 09:21:00 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/05/31 01:33:28 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <stdio.h>
 # include "../ft_printf/ft_printf.h"
 # include <readline/readline.h>
 # include <readline/history.h>
