@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 01:11:30 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/28 04:43:24 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/05/30 23:48:20 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,20 @@ void	ft_export(t_env *env, char **str)
 		var.content = ft_cpy_content(str[j]);
 		if (export_error(str[j]))
 			return ;
-		while (str[j][++i])
-			if (str[j][i] == '=')
+		while (curr->next)
+		{
+			//ft_printf("%s\n%s\n", curr->var, var.name);	
+			if (ft_strcmp(curr->var, var.name) == 0)
+			{
+				free(curr->content);
+				curr->content = var.content;
+				break ;
+			}
+			if (str[j][++i] == '=')
 				insertnewnode(env, var.name, var.content);
+			curr = curr->next;
+		}
+		curr = env;
 		i = -1;
 	}
 	if (!str[1])
