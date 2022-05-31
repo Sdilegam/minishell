@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 01:11:30 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/31 01:50:52 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/05/31 02:58:50 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_export(t_env *env, char **str)
 			}
 			curr = curr->next;
 		}
-		if (var.content && !exist)
+		if (var.name && !exist)
 				insertnewnode(env, var.name, var.content);
 		curr = env;
 	}

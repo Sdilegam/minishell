@@ -17,24 +17,35 @@ int	ft_unset(t_env *env, char **str)
 	t_env	*curr;
 	int		i;
 	int		j;
+	t_env	*temp;
 
 	curr = env;
 	i = 0;
 	j = 0;
 	while (str[++i])
 	{
+		if (ft_strcmp(str[i], curr->var) == 0)
+		{
+			free(curr->var);
+			if (curr->content)
+				free(curr->content);
+			temp = curr->next;
+			*curr = *temp;
+			free(temp);
+			continue ;
+		}
 		while (curr->next)
 		{
-			if (ft_strcmp(str[i], curr->var) == 0)
+			if (ft_strcmp(str[i], curr->next->var) == 0)
 			{
-				env = env->next;
-				free(curr->var);
-				if (curr->content)
-					free(curr->content);
-				free(curr);
+				free(curr->next->var);
+				if (curr->next->content)
+					free(curr->next->content);
+				temp = curr->next->next;
+				free(curr->next);
+				curr->next = temp;
 				break ;
 			}
-			env = env->next;
 			curr = curr->next;
 		}
 		curr = env;
