@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/31 01:33:28 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/05/31 12:17:41 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ int		ft_strcmp(char *s1, char *s2);
 int		ft_echo(char **str);
 int		ft_unset(t_env *env, char **str);
 int		ft_strlen(char *str);
+int		is_ok(char chara);
+int		export_error(char *str);
+int		unset_error(char *str);
 
 char	**read_line(char *string);
 char	*ft_cpy_content(char *str);

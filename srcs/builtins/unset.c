@@ -12,6 +12,22 @@
 
 #include "minishell.h"
 
+int	unset_error(char *str)
+{
+	int	index;
+
+	index = 0;
+	if (('0' <= str[0] && str[0] <= '9') || str[index] == '=')
+		return(ft_printf("unset : %s: not a valid identifier\n", str));
+	while (str[index])
+	{ 
+		if (!is_ok(str[index]) || str[index] == '=')
+			return (ft_printf("unset : %s: not a valid identifier\n", str));
+		index++;
+	}
+	return (0);
+}
+
 int	ft_unset(t_env *env, char **str)
 {
 	t_env	*curr;
@@ -24,6 +40,8 @@ int	ft_unset(t_env *env, char **str)
 	j = 0;
 	while (str[++i])
 	{
+		if (unset_error(str[i]))
+			return (1);
 		if (ft_strcmp(str[i], curr->var) == 0)
 		{
 			free(curr->var);
