@@ -4,13 +4,11 @@
             "type": "cppbuild",
             "label": "C/C++: gcc build active file",
             "command": "make",
-            "args": [
-            ],
+            "args": [],
             "options": {
-                "cwd": "${workspaceFolder}",
+                "cwd": "${workspaceFolder}"
             },
-            "problemMatcher": [
-            ],
+            "problemMatcher": [],
             "group": {
                 "kind": "build",
                 "isDefault": true
