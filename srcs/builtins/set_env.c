@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:02:11 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/31 01:44:22 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/05/31 02:57:57 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_cpy_name(char *str)
 	i = -1;
 	while (str[++i] != '=' && str[i])
 		name[i] = str[i];
-	name[i] = '\0';
+	//name[i] = '\0';
 	return (name);
 }
 
