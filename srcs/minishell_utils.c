@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:34:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/05/29 08:43:37 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/05/31 01:38:40 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	ft_strlen(char *str)
 {
 	int	i;
 
+	if (!str)
+	return (0);
 	i = 0;
 	while (str[i])
 		i++;

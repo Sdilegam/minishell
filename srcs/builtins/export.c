@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 01:11:30 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/31 00:28:04 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/05/31 02:01:50 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_export(t_env *env, char **str)
 		var.content = ft_cpy_content(str[j]);
 		if (export_error(str[j]))
 			return ;
-		while (curr->next && var.name)
+		while (curr && var.name)
 		{
 			//ft_printf("%s\n%s\n", curr->var, var.name);	
 			if (ft_strcmp(curr->var, var.name) == 0)
@@ -68,7 +68,7 @@ void	ft_export(t_env *env, char **str)
 			}
 			curr = curr->next;
 		}
-		if (var.content && !exist)
+		if (var.name && !exist)
 				insertnewnode(env, var.name, var.content);
 		curr = env;
 		i = -1;
