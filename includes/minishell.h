@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/31 12:17:41 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/02 16:43:25 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <readline/history.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <signal.h>
 
 typedef struct s_env
 {
@@ -45,6 +46,8 @@ void	insertnewnode(t_env *env, char *data, char *data2);
 void	ft_export(t_env *env, char **str);
 void	ft_name_varr(t_env *env);
 void	free_list(t_env *pHead);
+void	sig(void);
+void	sig_handler(int sig);
 
 int		is_space(char chara);
 int		is_alpha(char chara);

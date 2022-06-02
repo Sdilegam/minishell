@@ -6,7 +6,7 @@
 #    By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/05/30 12:11:57 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/06/02 16:43:12 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,13 @@ SRCS = 	srcs/main.c\
 		srcs/read_line.c\
 		srcs/list_to_array.c\
 		srcs/minishell_utils.c\
+		srcs/signal.c\
 		srcs/builtins/set_env.c\
 		srcs/builtins/echo.c\
 		srcs/builtins/cd.c\
 		srcs/builtins/env.c\
 		srcs/builtins/export.c\
-		srcs/builtins/unset.c
+		srcs/builtins/unset.c\
 
 OBJS = $(SRCS:.c=.o)
 
