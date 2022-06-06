@@ -18,14 +18,15 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 */
-#define READLINE_LIBRARY
-#include <stdio.h>
-#include "readline.h"
-#include "history.h"
+# define READLINE_LIBRARY
+#  include <stdio.h>
+#  include "readline.h"
+#  include "history.h"
 
 # include <stdlib.h>
 # include <unistd.h>
 # include <signal.h>
+# include <sys/wait.h>
 
 typedef struct s_env
 {
@@ -55,7 +56,6 @@ void	ft_name_varr(t_env *env);
 void	free_list(t_env *pHead);
 void	sig(void);
 void	sig_handler_c(int sig);
-void	sig_handler_d(int sig);
 void	sig_handler_backslash(int sig);
 
 int		is_space(char chara);

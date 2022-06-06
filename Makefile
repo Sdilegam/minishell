@@ -29,7 +29,7 @@ OBJS = $(SRCS:.c=.o)
 
 LIBRARY = ft_printf/libftprintf.a
 
-LDFLAGS = ./readline-lib/libreadline.a ./readline-lib/libhistory.a
+LDFLAGS = readline-lib/libreadline.a readline-lib/libhistory.a
 LDFLAGS += $(LIBRARY) 
 LDFLAGS += -ltermcap
 

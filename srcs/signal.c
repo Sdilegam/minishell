@@ -12,13 +12,6 @@
 
 #include "minishell.h"
 
-/*************************************************\
- * Ne fonctionne pas correctement quand on lance *
- * minishell dans minishell il faut surement     *
- * trouver un moyen de remttre le prompte sans   *
- * le reecrire manuellement                      *
- * ***********************************************/
-
 void	sig_handler_c(int sig)
 {
 	(void)sig;
@@ -32,6 +25,9 @@ void	sig_handler_c(int sig)
 void	sig_handler_backslash(int sig)
 {
 	(void)sig;
+	rl_replace_line("", 0);
+	rl_redisplay();
+	return ;
 }
 
 void	sig(void)

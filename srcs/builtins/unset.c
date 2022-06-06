@@ -32,12 +32,10 @@ int	ft_unset(t_env *env, char **str)
 {
 	t_env	*curr;
 	int		i;
-	int		j;
 	t_env	*temp;
 
 	curr = env;
 	i = 0;
-	j = 0;
 	while (str[++i])
 	{
 		if (unset_error(str[i]))
