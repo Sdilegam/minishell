@@ -47,7 +47,7 @@ all : $(LIBRARY) $(NAME)
 $(LIBRARY) : 
 	$(MAKE) -C $(dir $(LIBRARY))
 
-#bye bye	
+# bye bye	
 # $(OBJS) -o $(NAME) ${addprefix -L, ${dir ${LIBRARY}}} ${addprefix -l, ${patsubst lib%.a, %, ${notdir ${LIBRARY}}}}
 
 $(NAME) : $(OBJS)
