@@ -6,7 +6,7 @@
 #    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/06/06 15:01:02 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/06/06 18:12:11 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,24 +29,41 @@ OBJS = $(SRCS:.c=.o)
 
 LIBRARY = ft_printf/libftprintf.a
 
-all : $(NAME)
+LDFLAGS = ./readline-lib/libreadline.a ./readline-lib/libhistory.a
+LDFLAGS += $(LIBRARY) 
+LDFLAGS += -ltermcap
+
+# LDFLAGS = -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
+
+CFLAGS = -Wall -Werror -Wextra
+CFLAGS += -I ./includes/
+CFLAGS += -I ./readline-lib/
+
+all : $(LIBRARY) $(NAME) 
 
 %.o : %.c
-	cc -Iincludes/ -c $< -o $@ -g
+	cc $(CFLAGS) -c $< -o $@
 
-$(NAME) : $(OBJS) ${LIBRARY}
-		cc -Wall -Werror -Wextra $(OBJS) -o $(NAME) ${addprefix -L, ${dir ${LIBRARY}}} ${addprefix -l, ${patsubst lib%.a, %, ${notdir ${LIBRARY}}}} -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include -g
+$(LIBRARY) : 
+	$(MAKE) -C $(dir $(LIBRARY))
+
+#bye bye	
+# $(OBJS) -o $(NAME) ${addprefix -L, ${dir ${LIBRARY}}} ${addprefix -l, ${patsubst lib%.a, %, ${notdir ${LIBRARY}}}}
+
+$(NAME) : $(OBJS)
+	cc $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
 clean :
-		rm -rf $(OBJS)
+	$(MAKE) -C $(dir $(LIBRARY)) clean
+	rm -rf $(OBJS)
 
 fclean : clean
-			make fclean -C ft_printf 
-			rm -rf $(NAME)
-			
-ft_printf/libftprintf.a :
-					make -C ft_printf
+	$(MAKE) -C $(dir $(LIBRARY)) fclean
+	rm -rf $(NAME)
 
 re : fclean all
+
+debug: CFLAGS += -g -fsanitize=address 
+debug: re
 
 .PHONY : all clean fclean re

@@ -21,30 +21,22 @@
 
 void	sig_handler_c(int sig)
 {
-	// rl_replace_line("", 0);
-	// write(1, "\n", 1);
-	// rl_on_new_line();
-	// rl_redisplay();
-	write(1, "salut", 5);
+	(void)sig;
+	write(1, "\n", 1);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 	return ;
 }
 
 void	sig_handler_backslash(int sig)
 {
-	int	a;
-
-	a = 1;
-	a++;
-	return ;
+	(void)sig;
 }
 
 void	sig(void)
 {
-	int	eof;
-
-	eof = getc;
-	if (signal(SIGINT, sig_handler_c) == SIG_ERR)
-		exit (1);
+	signal(SIGINT, sig_handler_c);
 	signal(SIGQUIT, sig_handler_backslash);
 	return ;
 }
