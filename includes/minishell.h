@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/02 16:43:25 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/06 15:31:21 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ void	ft_export(t_env *env, char **str);
 void	ft_name_varr(t_env *env);
 void	free_list(t_env *pHead);
 void	sig(void);
-void	sig_handler(int sig);
+void	sig_handler_c(int sig);
+void	sig_handler_d(int sig);
+void	sig_handler_backslash(int sig);
 
 int		is_space(char chara);
 int		is_alpha(char chara);

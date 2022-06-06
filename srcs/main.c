@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/02 16:41:50 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/06 16:33:49 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	function(char **command, t_env *env, char **envp)
 	else if (ft_strcmp(command[0], "unset") == 0)
 		ft_unset(env, command);
 	else if (ft_strcmp(command[0], "exit") == 0)
-		exit(0);
+	{
+		write(1, "exit\n", 5);
+		exit(1);
+	}
 	else
 	{
 		if (fork() == 0)
@@ -51,10 +54,11 @@ int	main(int ac, char *av[], char *envp[])
 	(void)av;
 	print_header();
 	env = set_env(envp);
-	sig();
 	while (1)
 	{
+		sig();
 		rl = readline("minishell:$>");
+		add_history(rl);
 		test = read_line(rl);
 		env_str = list_to_array(env);
 		function(test, env, env_str);

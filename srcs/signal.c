@@ -16,17 +16,35 @@
  * Ne fonctionne pas correctement quand on lance *
  * minishell dans minishell il faut surement     *
  * trouver un moyen de remttre le prompte sans   *
- * le reecrire manuellement                      */
+ * le reecrire manuellement                      *
+ * ***********************************************/
 
-void	sig_handler(int sig)
+void	sig_handler_c(int sig)
 {
-	write(1, "\n", 1);
-	write(1, "minishell:$>", 12);
+	// rl_replace_line("", 0);
+	// write(1, "\n", 1);
+	// rl_on_new_line();
+	// rl_redisplay();
+	write(1, "salut", 5);
+	return ;
+}
+
+void	sig_handler_backslash(int sig)
+{
+	int	a;
+
+	a = 1;
+	a++;
 	return ;
 }
 
 void	sig(void)
 {
-	signal(SIGINT, sig_handler);
+	int	eof;
+
+	eof = getc;
+	if (signal(SIGINT, sig_handler_c) == SIG_ERR)
+		exit (1);
+	signal(SIGQUIT, sig_handler_backslash);
 	return ;
 }

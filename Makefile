@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+         #
+#    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/06/02 16:43:12 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/06/06 15:01:02 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ all : $(NAME)
 	cc -Iincludes/ -c $< -o $@ -g
 
 $(NAME) : $(OBJS) ${LIBRARY}
-		cc -Wall -Werror -Wextra $(OBJS) -o $(NAME) ${addprefix -L, ${dir ${LIBRARY}}} ${addprefix -l, ${patsubst lib%.a, %, ${notdir ${LIBRARY}}}} -lreadline -g
+		cc -Wall -Werror -Wextra $(OBJS) -o $(NAME) ${addprefix -L, ${dir ${LIBRARY}}} ${addprefix -l, ${patsubst lib%.a, %, ${notdir ${LIBRARY}}}} -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include -g
 
 clean :
 		rm -rf $(OBJS)

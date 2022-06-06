@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 01:11:30 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/05/31 02:58:50 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/06 10:57:27 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	export_error(char *str)
 
 	index = 0;
 	if (('0' <= str[0] && str[0] <= '9') || str[index] == '=')
-		return(ft_printf("export : %s: not a valid identifier\n", str));
+		return (ft_printf("export : %s: not a valid identifier\n", str));
 	while (str[index] && str[index] != '=')
-	{ 
+	{
 		if (!is_ok(str[index]))
 			return (ft_printf("export : %s: not a valid identifier\n", str));
 		index++;
@@ -65,7 +65,7 @@ void	ft_export(t_env *env, char **str)
 			curr = curr->next;
 		}
 		if (var.name && !exist)
-				insertnewnode(env, var.name, var.content);
+			insertnewnode(env, var.name, var.content);
 		curr = env;
 	}
 	if (!str[1])
