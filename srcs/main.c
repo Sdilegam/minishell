@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/07 13:36:59 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/07 14:16:29 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <errno.h>
 
 void	function(char **command, t_env *env, char **envp)
 {
@@ -37,7 +38,7 @@ void	function(char **command, t_env *env, char **envp)
 	else
 	{
 		if (fork() == 0)
-			if (!execve(command[0], command, envp))
+			if (execve(command[0], command, envp) == -1)
 				exit(1);
 	}
 }
