@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/06 16:33:49 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/07 13:36:59 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ int	main(int ac, char *av[], char *envp[])
 	{
 		sig();
 		rl = readline("minishell:$>");
+		if (!rl)
+		{
+			free(env);
+			exit(1);
+		}
 		add_history(rl);
 		test = read_line(rl);
 		env_str = list_to_array(env);
@@ -65,4 +70,5 @@ int	main(int ac, char *av[], char *envp[])
 		free(env_str);
 		wait(&result);
 	}
+	rl_clear_history();
 }

@@ -6,7 +6,7 @@
 #    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/06/06 18:12:11 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/06/07 10:37:44 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ fclean : clean
 
 re : fclean all
 
-debug: CFLAGS += -g -fsanitize=address 
+debug: CFLAGS += -g
 debug: re
 
 .PHONY : all clean fclean re
