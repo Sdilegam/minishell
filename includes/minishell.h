@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/06 17:53:07 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/10 11:05:28 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,16 @@
 # include <readline/history.h>
 */
 # define READLINE_LIBRARY
-#  include <stdio.h>
-#  include "readline.h"
-#  include "history.h"
+# include <stdio.h>
+# include "readline.h"
+# include "history.h"
 
 # include <stdlib.h>
 # include <unistd.h>
 # include <signal.h>
 # include <sys/wait.h>
 
-typedef struct s_env
-{
-	char			*var;
-	char			*content;
-	struct s_env	*next;
-}				t_env;
-
-typedef struct s_var
-{
-	char	*name;
-	char	*content;
-}			t_var;
+# include "type_definitions.h"
 
 t_env	*newnode(char *data, char *data2);
 t_env	*set_env(char **envp);

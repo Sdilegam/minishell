@@ -32,7 +32,7 @@ datadir = ${datarootdir}
 
 top_srcdir = ..
 #BUILD_DIR = .
-BUILD_DIR = /mnt/c/Users/kasmi/OneDrive/Documents/42cursus/minishell/readline-lib
+BUILD_DIR = /Users/sdi-lega/Documents/minishell/readline-lib
 installdir = $(datadir)/readline
 
 INSTALL = /usr/bin/install -c

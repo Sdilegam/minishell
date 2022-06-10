@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/07 14:16:29 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:47:10 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	function(char **command, t_env *env, char **envp)
 	else if (ft_strcmp(command[0], "exit") == 0)
 	{
 		write(1, "exit\n", 5);
-		exit(1);
+		exit(1); 
 	}
 	else
 	{
@@ -48,7 +48,7 @@ int	main(int ac, char *av[], char *envp[])
 	char	*rl;
 	char	**test;
 	char	**env_str;
-	int		result;
+	// int		result;
 	t_env	*env;
 
 	(void)ac;

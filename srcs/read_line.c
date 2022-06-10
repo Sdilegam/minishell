@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:29:33 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/06 15:10:59 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/10 15:39:55 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	count_words(char *string)
 
 	i = 0;
 	count = 0;
-	while (string[i])
+	while (string[i] && (string[i] != '&' || string[i + 1] != '&'))
 	{
 		if (!is_space(string[i]))
 			count++;
@@ -71,3 +71,9 @@ char	**read_line(char *string)
 	free(string);
 	return (line);
 }
+
+// t_comm*	parse_parameters(*string)
+// {
+	
+// 	return (0);
+// }

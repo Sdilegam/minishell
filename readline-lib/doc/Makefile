@@ -49,7 +49,7 @@ RM = rm -f
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 
-BUILD_DIR = /mnt/c/Users/kasmi/OneDrive/Documents/42cursus/minishell/readline-lib
+BUILD_DIR = /Users/sdi-lega/Documents/minishell/readline-lib
 TEXINPUTDIR = $(srcdir)
 
 MAKEINFO    = LANGUAGE= makeinfo
