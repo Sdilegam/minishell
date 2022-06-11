@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/10 11:05:28 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/11 16:26:14 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,15 @@
 # include <unistd.h>
 # include <signal.h>
 # include <sys/wait.h>
+# include <errno.h>
 
 # include "type_definitions.h"
 
 t_env	*newnode(char *data, char *data2);
 t_env	*set_env(char **envp);
+
+t_comm	*create_command(char **parameters);
+t_comm	*parse_parameters(char *string);
 
 void	print_header(void);
 void	ft_cd(char **path);
@@ -46,6 +50,7 @@ void	free_list(t_env *pHead);
 void	sig(void);
 void	sig_handler_c(int sig);
 void	sig_handler_backslash(int sig);
+void	add_command(t_comm *first, t_comm *command);
 
 int		is_space(char chara);
 int		is_alpha(char chara);
@@ -57,6 +62,12 @@ int		ft_strlen(char *str);
 int		is_ok(char chara);
 int		export_error(char *str);
 int		unset_error(char *str);
+int		ft_pipe(t_comm *command, t_env *env);
+int		is_pipe(char **str);
+int		function(t_comm *command, t_env *env);
+int		where_is_pipe(char *str);
+
+
 
 char	**read_line(char *string);
 char	*ft_cpy_content(char *str);

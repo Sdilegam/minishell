@@ -1,0 +1,18 @@
+{
+	"files.associations": {
+		"ostream": "c",
+		"__config": "c",
+		"__debug": "c",
+		"__functional_03": "c",
+		"__hash_table": "c",
+		"algorithm": "c",
+		"exception": "c",
+		"functional": "c",
+		"optional": "c",
+		"memory": "c",
+		"string": "c",
+		"tuple": "c",
+		"type_traits": "c",
+		"complex": "c"
+	}
+}

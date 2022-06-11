@@ -6,7 +6,7 @@
 #    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/06/07 10:37:44 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/06/10 17:40:25 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ SRCS = 	srcs/main.c\
 		srcs/list_to_array.c\
 		srcs/minishell_utils.c\
 		srcs/signal.c\
+		srcs/pipe.c\
+		srcs/command_list.c\
 		srcs/builtins/set_env.c\
 		srcs/builtins/echo.c\
 		srcs/builtins/cd.c\

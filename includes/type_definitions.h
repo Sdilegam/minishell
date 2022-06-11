@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   type_definitions.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:04:56 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/10 15:39:42 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/11 16:11:06 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ typedef struct s_var
 	char	*content;
 }			t_var;
 
-typedef struct s_commands
+typedef struct s_comm
 {
-	char				**parameters;
-	int					(*func)(struct s_commands *first, struct s_commands *second);
-	struct s_commands	*previous;
-	struct s_commands	*next;
+	char			**parameters;
+	int				(*func)(struct s_comm *first, struct s_env *env);
+	struct s_comm	*previous;
+	struct s_comm	*next; 
 }			t_comm;
 
 #endif /* TYPE_DEFINITIONS_H */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:29:33 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/10 15:39:55 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/11 16:47:43 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	count_words(char *string)
 
 	i = 0;
 	count = 0;
-	while (string[i] && (string[i] != '&' || string[i + 1] != '&'))
+	while (string[i] && string[i] != '|')
 	{
 		if (!is_space(string[i]))
 			count++;
@@ -68,12 +68,23 @@ char	**read_line(char *string)
 		while (!is_space(string[i]) && string[i])
 			i++;
 	}
-	free(string);
 	return (line);
 }
 
-// t_comm*	parse_parameters(*string)
-// {
-	
-// 	return (0);
-// }
+t_comm	*parse_parameters(char *string)
+{
+	t_comm	*command;
+	int		i;
+
+	command = create_command(read_line(string));
+	i = where_is_pipe(string);
+	command->func = &function;
+	while (i)
+	{
+		string += i + 1;
+		command->func = &ft_pipe;
+		add_command(command, create_command(read_line(string)));
+		i = where_is_pipe(string);
+	}
+	return (command);
+}
