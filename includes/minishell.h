@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/11 16:26:14 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/13 13:30:41 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int		ft_strlen(char *str);
 int		is_ok(char chara);
 int		export_error(char *str);
 int		unset_error(char *str);
-int		ft_pipe(t_comm *command, t_env *env);
-int		is_pipe(char **str);
-int		function(t_comm *command, t_env *env);
+int		ft_pipe(t_comm *command, t_env *env, int n_pipe);
+int		is_pipe(char *str);
+int		function(t_comm *command, t_env *env, int n);
 int		where_is_pipe(char *str);
 
 

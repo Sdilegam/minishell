@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:04:56 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/11 16:11:06 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/13 13:28:50 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ typedef struct s_var
 typedef struct s_comm
 {
 	char			**parameters;
-	int				(*func)(struct s_comm *first, struct s_env *env);
+	int				(*func)(struct s_comm *first, struct s_env *env, int n_p);
 	struct s_comm	*previous;
-	struct s_comm	*next; 
+	struct s_comm	*next;
 }			t_comm;
 
 #endif /* TYPE_DEFINITIONS_H */

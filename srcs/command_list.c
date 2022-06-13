@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:18:07 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/10 18:06:38 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/13 10:25:44 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ void	add_command(t_comm *first, t_comm *command)
 	cursor->next = command;
 	command->previous = cursor;
 }
-

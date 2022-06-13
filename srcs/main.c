@@ -6,14 +6,15 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/11 17:05:27 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/13 13:39:09 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	function(t_comm *command, t_env *env)
+int	function(t_comm *command, t_env *env, int n)
 {
+	(void)n;
 	if (ft_strcmp(command->parameters[0], "echo") == 0)
 		ft_echo(command->parameters);
 	else if (ft_strcmp(command->parameters[0], "cd") == 0)
@@ -48,6 +49,7 @@ int	main(int ac, char *av[], char *envp[])
 {
 	char	*rl;
 	int		result;
+	int		n_pipe;
 	t_comm	*comm;
 	t_env	*env;
 
@@ -65,8 +67,9 @@ int	main(int ac, char *av[], char *envp[])
 			exit(1);
 		}
 		add_history(rl);
+		n_pipe = is_pipe(rl);
 		comm = parse_parameters(rl);
-		comm->func(comm, env);
+		comm->func(comm, env, n_pipe);
 		wait(&result);
 	}
 	rl_clear_history();

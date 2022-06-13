@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:29:33 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/11 16:47:43 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/13 13:28:31 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,12 @@ t_comm	*parse_parameters(char *string)
 {
 	t_comm	*command;
 	int		i;
+	int		n_pipe;
 
 	command = create_command(read_line(string));
 	i = where_is_pipe(string);
 	command->func = &function;
+	n_pipe = is_pipe(string);
 	while (i)
 	{
 		string += i + 1;
