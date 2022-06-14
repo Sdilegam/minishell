@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:29:33 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/13 13:28:31 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/14 04:39:21 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,20 @@ char	**read_line(char *string)
 t_comm	*parse_parameters(char *string)
 {
 	t_comm	*command;
+	t_comm	*cursor;
 	int		i;
-	int		n_pipe;
 
 	command = create_command(read_line(string));
 	i = where_is_pipe(string);
 	command->func = &function;
-	n_pipe = is_pipe(string);
+	cursor = command;
 	while (i)
 	{
 		string += i + 1;
-		command->func = &ft_pipe;
+		cursor->func = &ft_pipe;
 		add_command(command, create_command(read_line(string)));
+		cursor = cursor->next;
+		cursor->func = &function;
 		i = where_is_pipe(string);
 	}
 	return (command);

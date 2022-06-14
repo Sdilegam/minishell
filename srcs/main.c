@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/13 13:39:09 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/14 04:46:11 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	function(t_comm *command, t_env *env, int n)
+int	function(t_comm *command, t_env *env)
 {
-	(void)n;
 	if (ft_strcmp(command->parameters[0], "echo") == 0)
 		ft_echo(command->parameters);
 	else if (ft_strcmp(command->parameters[0], "cd") == 0)
@@ -38,9 +37,13 @@ int	function(t_comm *command, t_env *env, int n)
 	else
 	{
 		if (fork() == 0)
+		{
 			if (execve(command->parameters[0], command->parameters,
 					list_to_array(env)) == -1)
 				exit(1);
+		}
+		else
+			wait(NULL);
 	}
 	return (0);
 }
@@ -48,8 +51,6 @@ int	function(t_comm *command, t_env *env, int n)
 int	main(int ac, char *av[], char *envp[])
 {
 	char	*rl;
-	int		result;
-	int		n_pipe;
 	t_comm	*comm;
 	t_env	*env;
 
@@ -67,10 +68,8 @@ int	main(int ac, char *av[], char *envp[])
 			exit(1);
 		}
 		add_history(rl);
-		n_pipe = is_pipe(rl);
 		comm = parse_parameters(rl);
-		comm->func(comm, env, n_pipe);
-		wait(&result);
+		comm->func(comm, env);
 	}
 	rl_clear_history();
 }
