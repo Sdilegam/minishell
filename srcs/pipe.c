@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:44:43 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/14 04:46:32 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/14 07:03:14 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,14 @@ int	where_is_pipe(char *str)
 int	ft_pipe(t_comm *command, t_env *env)
 {
 	int		fd[2];
-	pid_t	id;
-	pid_t	id2;
+	pid_t	pid[2];
 
 	if (pipe(fd) == -1)
 		return (1);
-	id = fork();
-	if (id == -1)
+	pid[0] = fork();
+	if (pid[0] == -1)
 		return (1);
-	if (id == 0)
+	if (pid[0] == 0)
 	{
 		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
@@ -57,11 +56,10 @@ int	ft_pipe(t_comm *command, t_env *env)
 		function(command, env);
 		exit (0);
 	}
-	waitpid(id, NULL, 0);
-	id2 = fork();
-	if (id2 == -1)
+	pid[1] = fork();
+	if (pid[1] == -1)
 		return (1);
-	if (id2 == 0)
+	if (pid[1] == 0)
 	{
 		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
@@ -71,6 +69,7 @@ int	ft_pipe(t_comm *command, t_env *env)
 	}
 	close(fd[1]);
 	close(fd[0]);
-	waitpid(id2, NULL, 0);
+	waitppid(pid[0], NULL, 0);
+	waitppid(pid[1], NULL, 0);
 	return (0);
 }
