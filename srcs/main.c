@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/14 04:46:11 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/14 06:02:18 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	function(t_comm *command, t_env *env)
 				exit(1);
 		}
 		else
-			wait(NULL);
+			waitpid(0, NULL, 0);
 	}
 	return (0);
 }
