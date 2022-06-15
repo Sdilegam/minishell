@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:02:11 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/14 14:28:37 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/15 12:04:11 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_cpy_name(char *str)
 	int		i;
 
 	i = 0;
+	if (!str)
+		return (NULL);
 	while (str[i] != '=' && str[i])
 		i++;
 	if (str[i] != '=')
@@ -41,6 +43,8 @@ char	*ft_cpy_content(char *str)
 
 	i = 0;
 	j = 0;
+	if (!str)
+		return (NULL);
 	while (str[i] != '=' && str[i])
 		i++;
 	i++;

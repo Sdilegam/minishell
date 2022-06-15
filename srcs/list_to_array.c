@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_to_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:44:16 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/05/31 01:51:59 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:21:12 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ char	*copy_node(t_env node)
 	char	*string;
 
 	index = -1;
-	// if (!node.var)
-	// 	return (0);
+	if (!node.var)
+		return (0);
 	length = ft_strlen(node.content) + ft_strlen(node.var);
 	string = malloc((length + 2) * sizeof(char));
 	length = -1;

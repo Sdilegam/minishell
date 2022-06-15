@@ -6,13 +6,13 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/14 15:30:56 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/15 11:25:31 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	function(t_comm *command, t_env *env)
+int	builtins_commands(t_comm *command, t_env *env)
 {
 	if (ft_strcmp(command->parameters[0], "echo") == 0)
 		ft_echo(command->parameters);
@@ -35,6 +35,13 @@ int	function(t_comm *command, t_env *env)
 		exit(1);
 	}
 	else
+		return (1);
+	return (0);
+}
+
+int	function(t_comm *command, t_env *env)
+{
+	if (builtins_commands(command, env) == 1)
 	{
 		if (fork() == 0)
 		{

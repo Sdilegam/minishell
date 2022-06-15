@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 01:11:30 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/06 10:57:27 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/15 12:04:05 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,34 +38,40 @@ int	export_error(char *str)
 	return (0);
 }
 
+void	export2(t_env *env, t_env *curr, t_var var)
+{
+	int	exist;
+
+	exist = 0;
+	while (curr && var.name)
+	{	
+		if (ft_strcmp(curr->var, var.name) == 0)
+		{	
+			curr->content = var.content;
+			exist = 1;
+			break ;
+		}
+		curr = curr->next;
+	}
+	if (var.name && !exist)
+		insertnewnode(env, var.name, var.content);
+}
+
 void	ft_export(t_env *env, char **str)
 {
 	t_env	*curr;
 	int		j;
-	int		exist;
 	t_var	var;
 
 	j = 0;
 	curr = env;
 	while (str[++j])
 	{
-		exist = 0;
 		var.name = ft_cpy_name(str[j]);
 		var.content = ft_cpy_content(str[j]);
 		if (export_error(str[j]))
 			return ;
-		while (curr && var.name)
-		{	
-			if (ft_strcmp(curr->var, var.name) == 0)
-			{
-				curr->content = var.content;
-				exist = 1;
-				break ;
-			}
-			curr = curr->next;
-		}
-		if (var.name && !exist)
-			insertnewnode(env, var.name, var.content);
+		export2(env, curr, var);
 		curr = env;
 	}
 	if (!str[1])

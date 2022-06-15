@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/14 15:34:03 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/15 11:26:04 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MINISHELL_H
 
 # include "../ft_printf/ft_printf.h"
- 
 // # include <readline/readline.h>
 // # include <readline/history.h>
 
@@ -66,8 +65,7 @@ int		ft_pipe(t_comm *command, t_env *env);
 int		is_pipe(char *str);
 int		function(t_comm *command, t_env *env);
 int		where_is_pipe(char *str);
-
-
+int		builtins_commands(t_comm *command, t_env *env);
 
 char	**read_line(char *string);
 char	*ft_cpy_content(char *str);
