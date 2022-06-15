@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:02:11 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/10 17:09:09 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/14 14:28:37 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_cpy_name(char *str)
 	i = -1;
 	while (str[++i] != '=' && str[i])
 		name[i] = str[i];
-	//name[i] = '\0';
+	name[i] = '\0';
 	return (name);
 }
 
@@ -45,22 +45,15 @@ char	*ft_cpy_content(char *str)
 		i++;
 	i++;
 	temp = i;
-	while (str[i])
-	{
+	while (str[i++])
 		j++;
-		i++;
-	}
 	content = malloc(sizeof(char) * j + 1);
 	if (!content)
 		exit (1);
 	j = 0;
 	while (str[temp])
-	{
-		content[j] = str[temp];
-		temp++;
-		j++;
-	}
-	//content[j] = '\0';
+		content[j++] = str[temp++];
+	content[j] = '\0';
 	return (content);
 }
 

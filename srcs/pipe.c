@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:44:43 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/14 07:03:14 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/14 13:08:43 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,30 @@ int	where_is_pipe(char *str)
 	return (0);
 }
 
+static void	pipe2(int fd[2], pid_t pid, t_comm *comm, t_env *env)
+{
+	if (pid == 0)
+	{
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		close(fd[1]);
+		function(comm, env);
+		exit (0);
+	}
+}
+
+static void	pipe3(int fd[2], pid_t pid, t_comm *comm, t_env *env)
+{
+	if (pid == 0)
+	{
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+		close(fd[0]);
+		comm->next->func(comm->next, env);
+		exit(0);
+	}
+}
+
 int	ft_pipe(t_comm *command, t_env *env)
 {
 	int		fd[2];
@@ -48,28 +72,14 @@ int	ft_pipe(t_comm *command, t_env *env)
 	pid[0] = fork();
 	if (pid[0] == -1)
 		return (1);
-	if (pid[0] == 0)
-	{
-		close(fd[0]);
-		dup2(fd[1], STDOUT_FILENO);
-		close(fd[1]);
-		function(command, env);
-		exit (0);
-	}
+	pipe2(fd, pid[0], command, env);
 	pid[1] = fork();
 	if (pid[1] == -1)
 		return (1);
-	if (pid[1] == 0)
-	{
-		close(fd[1]);
-		dup2(fd[0], STDIN_FILENO);
-		close(fd[0]);
-		command->next->func(command->next, env);
-		exit(0);
-	}
+	pipe3(fd, pid[1], command, env);
 	close(fd[1]);
 	close(fd[0]);
-	waitppid(pid[0], NULL, 0);
-	waitppid(pid[1], NULL, 0);
+	waitpid(pid[0], NULL, 0);
+	waitpid(pid[1], NULL, 0);
 	return (0);
 }

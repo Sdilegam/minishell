@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/14 04:43:09 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/14 15:34:03 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define MINISHELL_H
 
 # include "../ft_printf/ft_printf.h"
-/* 
-# include <readline/readline.h>
-# include <readline/history.h>
-*/
+ 
+// # include <readline/readline.h>
+// # include <readline/history.h>
+
 # define READLINE_LIBRARY
 # include <stdio.h>
 # include "readline.h"
