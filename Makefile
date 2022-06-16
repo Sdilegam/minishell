@@ -6,19 +6,13 @@
 #    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/06/14 15:33:26 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/06/16 13:22:00 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRCS = 	srcs/main.c\
-		srcs/header.c\
-		srcs/read_line.c\
-		srcs/list_to_array.c\
-		srcs/minishell_utils.c\
-		srcs/signal.c\
-		srcs/pipe.c\
 		srcs/command_list.c\
 		srcs/builtins/set_env.c\
 		srcs/builtins/echo.c\
@@ -26,6 +20,15 @@ SRCS = 	srcs/main.c\
 		srcs/builtins/env.c\
 		srcs/builtins/export.c\
 		srcs/builtins/unset.c\
+		srcs/header.c\
+		srcs/read_line.c\
+		srcs/list_to_array.c\
+		srcs/minishell_utils.c\
+		srcs/signal.c\
+		srcs/pipe.c\
+		srcs/heardoc.c\
+		srcs/outp_redir.c\
+		#srcs/inpt_redir.c\
 
 OBJS = $(SRCS:.c=.o)
 

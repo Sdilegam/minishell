@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/15 11:26:04 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/16 11:06:09 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <signal.h>
 # include <sys/wait.h>
 # include <errno.h>
+# include <fcntl.h>
 
 # include "type_definitions.h"
 
