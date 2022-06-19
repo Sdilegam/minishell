@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:02:11 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/10 17:09:09 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/15 15:04:35 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ char	*ft_cpy_name(char *str)
 		i++;
 	if (str[i] != '=')
 		return (NULL);
-	name = malloc(sizeof(char) * i + 1);
+	name = malloc(sizeof(char) * (i + 1));
 	if (!name)
 		exit (1);
 	i = -1;
 	while (str[++i] != '=' && str[i])
 		name[i] = str[i];
-	//name[i] = '\0';
+	name[i] = '\0';
 	return (name);
 }
 
@@ -60,7 +60,7 @@ char	*ft_cpy_content(char *str)
 		temp++;
 		j++;
 	}
-	//content[j] = '\0';
+	content[j] = '\0';
 	return (content);
 }
 

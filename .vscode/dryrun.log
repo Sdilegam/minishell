@@ -1,0 +1,28 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/sdi-lega/Documents/minishell'
+make -C ft_printf/
+make[1]: Entering directory '/home/sdi-lega/Documents/minishell/ft_printf'
+gcc -Wall -Werror -Wextra -c ft_printf.c -o ft_printf.o
+gcc -Wall -Werror -Wextra -c ft_utils.c -o ft_utils.o
+ar rc libftprintf.a ft_printf.o ft_utils.o
+ranlib libftprintf.a
+make[1]: Leaving directory '/home/sdi-lega/Documents/minishell/ft_printf'
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ -c srcs/main.c -o srcs/main.o
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ -c srcs/header.c -o srcs/header.o
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ -c srcs/read_line.c -o srcs/read_line.o
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ -c srcs/list_to_array.c -o srcs/list_to_array.o
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ -c srcs/minishell_utils.c -o srcs/minishell_utils.o
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ -c srcs/signal.c -o srcs/signal.o
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ -c srcs/pipe.c -o srcs/pipe.o
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ -c srcs/here_doc.c -o srcs/here_doc.o
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ -c srcs/parsing.c -o srcs/parsing.o
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ -c srcs/command_list.c -o srcs/command_list.o
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ -c srcs/builtins/set_env.c -o srcs/builtins/set_env.o
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ -c srcs/builtins/echo.c -o srcs/builtins/echo.o
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ -c srcs/builtins/cd.c -o srcs/builtins/cd.o
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ -c srcs/builtins/env.c -o srcs/builtins/env.o
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ -c srcs/builtins/export.c -o srcs/builtins/export.o
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ -c srcs/builtins/unset.c -o srcs/builtins/unset.o
+cc -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/ srcs/main.o srcs/header.o srcs/read_line.o srcs/list_to_array.o srcs/minishell_utils.o srcs/signal.o srcs/pipe.o srcs/here_doc.o srcs/parsing.o srcs/command_list.o srcs/builtins/set_env.o srcs/builtins/echo.o srcs/builtins/cd.o srcs/builtins/env.o srcs/builtins/export.o srcs/builtins/unset.o readline-lib/libreadline.a readline-lib/libhistory.a ft_printf/libftprintf.a  -ltermcap -o minishell
+make: Leaving directory '/home/sdi-lega/Documents/minishell'
+ 

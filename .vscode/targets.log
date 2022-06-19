@@ -1,0 +1,524 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Sun Jun 19 14:59:56 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+WSLENV = VSCODE_WSL_EXT_LOCATION/up
+# default
+.SHELLFLAGS := -c
+# environment
+VSCODE_LOG_NATIVE = false
+# makefile (from 'Makefile', line 34)
+LIBRARY = ft_printf/libftprintf.a
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /home/sdi-lega/Documents/minishell
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{}}
+# environment
+_ = /home/sdi-lega/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/node
+# makefile (from 'Makefile', line 44)
+CFLAGS = -Wall -Werror -Wextra -I ./includes/ -I ./readline-lib/
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+XDG_DATA_DIRS = /usr/local/share:/usr/share:/var/lib/snapd/desktop
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from 'Makefile', line 32)
+OBJS = $(SRCS:.c=.o)
+# environment
+VSCODE_CWD = /mnt/c/Users/DLSal/AppData/Local/Programs/Microsoft VS Code
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /home/sdi-lega/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/bin/remote-cli:/home/sdi-lega/.local/bin:/home/sdi-lega/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/Razer Chroma SDK/bin:/mnt/c/Program Files/Razer Chroma SDK/bin:/mnt/c/Program Files (x86)/Razer/ChromaBroadcast/bin:/mnt/c/Program Files/Razer/ChromaBroadcast/bin:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Users/DLSal/AppData/Local/Microsoft/WindowsApps:/mnt/a/Program Files/Microsoft VS Code/bin:/mnt/c/WINDOWS/system32/config/systemprofile/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/DLSal/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/DLSal/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/DLSal/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin
+# environment
+VSCODE_LOG_STACK = false
+# environment
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-7faa77fd-f7c6-47e7-847a-afeafd98bf68.sock
+# makefile (from 'Makefile', line 38)
+LDFLAGS = readline-lib/libreadline.a readline-lib/libhistory.a $(LIBRARY)  -ltermcap
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /home/sdi-lega/Documents/minishell
+# default
+.LOADED := 
+# environment
+WSL_INTEROP = /run/WSL/12_interop
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /home/sdi-lega
+# environment
+LOGNAME = sdi-lega
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# makefile (from 'Makefile', line 15)
+SRCS = srcs/main.c srcs/header.c srcs/read_line.c srcs/list_to_array.c srcs/minishell_utils.c srcs/signal.c srcs/pipe.c srcs/here_doc.c srcs/parsing.c srcs/command_list.c srcs/builtins/set_env.c srcs/builtins/echo.c srcs/builtins/cd.c srcs/builtins/env.c srcs/builtins/export.c srcs/builtins/unset.c 
+# environment
+SHLVL = 0
+# default
+MAKE_VERSION := 4.2.1
+# environment
+USER = sdi-lega
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from 'Makefile', line 13)
+NAME = minishell
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/DLSal/.vscode/extensions/ms-vscode-remote.remote-wsl-0.66.3
+# default
+MAKE_COMMAND := make
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
+# environment
+VSCODE_HANDLES_SIGPIPE = true
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+LC_ALL = C
+# environment
+HOSTTYPE = x86_64
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# default
+.RECIPEPREFIX := 
+# environment
+LANG = C
+# environment
+TERM = xterm-256color
+# environment
+VSCODE_EXTHOST_WILL_SEND_SOCKET = true
+# environment
+WSL_DISTRO_NAME = Ubuntu
+# variable set hash-table stats:
+# Load=69/1024=7%, Rehash=0, Collisions=6/110=5%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# srcs/builtins (device 2064, inode 81603): 12 files, no impossibilities so far.
+# . (device 2064, inode 11116): 10 files, no impossibilities.
+# srcs (device 2064, inode 81602): 24 files, no impossibilities so far.
+
+# 46 files, no impossibilities in 3 directories.
+
+# Implicit Rules
+
+%.o: %.c
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+# 1 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+srcs/parsing.o: srcs/parsing.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/parsing'
+#  Last modified 2022-06-15 15:02:52.822954805
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+srcs/builtins/unset.o: srcs/builtins/unset.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/builtins/unset'
+#  Last modified 2022-06-15 15:02:53.072954802
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+srcs/list_to_array.o: srcs/list_to_array.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/list_to_array'
+#  Last modified 2022-06-15 15:02:52.652954807
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+all: ft_printf/libftprintf.a minishell
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Successfully updated.
+
+srcs/read_line.o: srcs/read_line.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/read_line'
+#  Last modified 2022-06-15 15:02:52.612954808
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+.PHONY: all clean fclean re
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+srcs/command_list.o: srcs/command_list.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/command_list'
+#  Last modified 2022-06-15 15:02:52.852954805
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+srcs/minishell_utils.o: srcs/minishell_utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/minishell_utils'
+#  Last modified 2022-06-15 15:02:52.682954807
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+# Not a target:
+srcs/builtins/env.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-14 00:43:49.300643584
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+srcs/pipe.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-15 14:36:49.862972784
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+srcs/builtins/set_env.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-15 15:04:35.492953624
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-15 01:37:39.948942522
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+srcs/main.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-15 14:53:21.672961375
+#  File has been updated.
+#  Successfully updated.
+
+# makefile (from 'Makefile', line 70)
+ 
+debug: CFLAGS += -g
+debug: re
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+# variable set hash-table stats:
+# Load=1/32=3%, Rehash=0, Collisions=0/2=0%
+
+# Not a target:
+srcs/parsing.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-15 14:50:06.902963616
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+srcs/builtins/unset.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-14 00:43:49.300643584
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+srcs/list_to_array.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-14 00:43:49.300643584
+#  File has been updated.
+#  Successfully updated.
+
+minishell: srcs/main.o srcs/header.o srcs/read_line.o srcs/list_to_array.o srcs/minishell_utils.o srcs/signal.o srcs/pipe.o srcs/here_doc.o srcs/parsing.o srcs/command_list.o srcs/builtins/set_env.o srcs/builtins/echo.o srcs/builtins/cd.o srcs/builtins/env.o srcs/builtins/export.o srcs/builtins/unset.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-06-15 15:04:43.162953536
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 58):
+	cc $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+
+srcs/signal.o: srcs/signal.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/signal'
+#  Last modified 2022-06-15 15:02:52.712954807
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+srcs/header.o: srcs/header.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/header'
+#  Last modified 2022-06-15 15:02:52.582954808
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+# Not a target:
+srcs/read_line.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-15 13:38:57.553012727
+#  File has been updated.
+#  Successfully updated.
+
+fclean: clean
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 65):
+	$(MAKE) -C $(dir $(LIBRARY)) fclean
+	rm -rf $(NAME)
+
+# Not a target:
+srcs/command_list.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-15 01:03:11.318966318
+#  File has been updated.
+#  Successfully updated.
+
+srcs/builtins/echo.o: srcs/builtins/echo.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/builtins/echo'
+#  Last modified 2022-06-15 15:02:52.932954804
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+srcs/here_doc.o: srcs/here_doc.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/here_doc'
+#  Last modified 2022-06-15 15:02:52.782954806
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+srcs/builtins/export.o: srcs/builtins/export.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/builtins/export'
+#  Last modified 2022-06-15 15:02:53.032954803
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+# Not a target:
+srcs/minishell_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-15 01:03:11.318966318
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+re: fclean all
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 61):
+	$(MAKE) -C $(dir $(LIBRARY)) clean
+	rm -rf $(OBJS)
+
+# Not a target:
+srcs/builtins/cd.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-14 00:43:49.300643584
+#  File has been updated.
+#  Successfully updated.
+
+srcs/builtins/cd.o: srcs/builtins/cd.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/builtins/cd'
+#  Last modified 2022-06-15 15:02:52.962954804
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+# Not a target:
+srcs/signal.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-14 00:43:49.300643584
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+srcs/header.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-14 00:43:49.300643584
+#  File has been updated.
+#  Successfully updated.
+
+srcs/builtins/env.o: srcs/builtins/env.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/builtins/env'
+#  Last modified 2022-06-15 15:02:53.002954803
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+srcs/pipe.o: srcs/pipe.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/pipe'
+#  Last modified 2022-06-15 15:02:52.752954806
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+# Not a target:
+srcs/here_doc.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-15 12:24:23.313064196
+#  File has been updated.
+#  Successfully updated.
+
+srcs/builtins/set_env.o: srcs/builtins/set_env.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/builtins/set_env'
+#  Last modified 2022-06-15 15:04:43.072953537
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+# Not a target:
+srcs/builtins/export.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-14 00:43:49.300643584
+#  File has been updated.
+#  Successfully updated.
+
+ft_printf/libftprintf.a:
+#  Implicit rule search has not been done.
+#  Last modified 2022-06-15 15:02:52.512954809
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 52):
+	$(MAKE) -C $(dir $(LIBRARY))
+
+# Not a target:
+srcs/builtins/echo.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-14 00:43:49.300643584
+#  File has been updated.
+#  Successfully updated.
+
+srcs/main.o: srcs/main.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/main'
+#  Last modified 2022-06-15 15:02:52.552954808
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	cc $(CFLAGS) -c $< -o $@
+
+# files hash-table stats:
+# Load=43/1024=4%, Rehash=0, Collisions=11/132=8%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 106 / storage = 1384 B / avg = 13 B
+# current buf: size = 8162 B / used = 1384 B / count = 106 / avg = 13 B
+
+# strcache performance: lookups = 151 / hit rate = 29%
+# hash-table stats:
+# Load=106/8192=1%, Rehash=0, Collisions=3/151=2%
+# Finished Make data base on Sun Jun 19 14:59:56 2022
+
+ 

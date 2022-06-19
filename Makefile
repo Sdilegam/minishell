@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
+#    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/06/10 17:40:25 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/06/15 01:37:39 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ SRCS = 	srcs/main.c\
 		srcs/minishell_utils.c\
 		srcs/signal.c\
 		srcs/pipe.c\
+		srcs/here_doc.c\
+		srcs/parsing.c\
 		srcs/command_list.c\
 		srcs/builtins/set_env.c\
 		srcs/builtins/echo.c\

@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/14 04:43:09 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/15 14:37:15 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ int		is_pipe(char *str);
 int		function(t_comm *command, t_env *env);
 int		where_is_pipe(char *str);
 
-
-
+int		get_quote_len(char *string);
 char	**read_line(char *string);
 char	*ft_cpy_content(char *str);
 char	*ft_cpy_name(char *str);

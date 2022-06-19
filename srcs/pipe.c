@@ -6,26 +6,11 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:44:43 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/14 07:03:14 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/15 14:36:49 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	is_pipe(char *str)
-{
-	int	i;
-	int	count;
-
-	i = -1;
-	count = 0;
-	while (str[++i])
-	{
-		if (str[i] == '|')
-			count++;
-	}
-	return (count);
-}
 
 int	where_is_pipe(char *str)
 {
@@ -33,8 +18,12 @@ int	where_is_pipe(char *str)
 
 	i = -1;
 	while (str[++i])
+	{
+		if (str[i] == '\'' || str[i] == '"')
+			i += get_quote_len(str + i);
 		if (str[i] == '|')
 			return (i);
+	}
 	return (0);
 }
 
@@ -69,7 +58,7 @@ int	ft_pipe(t_comm *command, t_env *env)
 	}
 	close(fd[1]);
 	close(fd[0]);
-	waitppid(pid[0], NULL, 0);
-	waitppid(pid[1], NULL, 0);
+	waitpid(pid[0], NULL, 0);
+	waitpid(pid[1], NULL, 0);
 	return (0);
 }
