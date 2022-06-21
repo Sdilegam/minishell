@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/19 16:27:57 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/20 18:43:20 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	count_quotes(char *string, int len)
 		if (string [index] == '\'' || string [index] == '"')
 		{
 			count += 1;
-			index += get_quote_len(string);
+			index += get_quote_len(string + index);
 		}
 	}
 	return (count);
@@ -58,11 +58,11 @@ void	duplicate_quotes(char *str_to, char *str_from)
 	}
 }
 
-
 char	*duplicate_word(char *string, int len)
 {
 	int		index_to;
 	int		index_from;
+	int		temp;
 	char	*word;
 
 	index_to = 0;
@@ -70,19 +70,16 @@ char	*duplicate_word(char *string, int len)
 	word = malloc(sizeof(char) * (len + 1 - count_quotes(string, len)));
 	while (index_from != len)
 	{
-		if ((string [index] == '\'' || string [index] == '"'))
+		if ((string [index_from] == '\'' || string [index_from] == '"'))
 		{
-			temp = get_quote_len(string + index) - 1;
-			string ++;
+			temp = get_quote_len(string + index_from) - 1;
+			duplicate_quotes(word + index_to, string + index_from);
+			index_from += temp;
+			index_to += temp - 2;
 		}
-		if ((string [index] != '\'' && string [index] != '"') || temp > 0)
-		{
-			temp --;
-			word[index] = string[index];
-			index ++;
-		}
+		word[index_to++] = string[index_from++];
 	}
-	word[index] = 0;
+	word[index_to] = 0;
 	return (word);
 }
 
