@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 01:11:30 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/15 12:04:05 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/21 11:51:26 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,15 @@ void	export2(t_env *env, t_env *curr, t_var var)
 		insertnewnode(env, var.name, var.content);
 }
 
+void	ft_print(t_env *curr)
+{
+	while (curr)
+	{
+		ft_printf("declare -x %s=%s\n", curr->var, curr->content);
+		curr = curr->next;
+	}
+}
+
 void	ft_export(t_env *env, char **str)
 {
 	t_env	*curr;
@@ -70,16 +79,16 @@ void	ft_export(t_env *env, char **str)
 		var.name = ft_cpy_name(str[j]);
 		var.content = ft_cpy_content(str[j]);
 		if (export_error(str[j]))
+		{
+			g_status = 1;
 			return ;
+		}
 		export2(env, curr, var);
 		curr = env;
 	}
 	if (!str[1])
 	{
-		while (curr)
-		{
-			ft_printf("declare -x %s\n", curr->var);
-			curr = curr->next;
-		}
+		ft_print(curr);
 	}
+	g_status = 0;
 }

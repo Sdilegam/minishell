@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/16 11:06:09 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/21 11:37:42 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	print_header(void);
 void	ft_cd(char **path);
 void	ft_putstr(char *str);
 void	ft_pwd(void);
-void	ft_env(t_env *env);
+void	ft_env(t_env *env, char **str);
 void	print_env(t_env *env, int p);
 void	insertnewnode(t_env *env, char *data, char *data2);
 void	ft_export(t_env *env, char **str);

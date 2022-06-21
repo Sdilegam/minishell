@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/15 11:25:31 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/21 11:37:11 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	builtins_commands(t_comm *command, t_env *env)
 		ft_putstr("\n");
 	}
 	else if (ft_strcmp(command->parameters[0], "env") == 0)
-		ft_env(env);
+		ft_env(env, command->parameters);
 	else if (ft_strcmp(command->parameters[0], "export") == 0)
 		ft_export(env, command->parameters);
 	else if (ft_strcmp(command->parameters[0], "unset") == 0)
@@ -32,7 +32,7 @@ int	builtins_commands(t_comm *command, t_env *env)
 	else if (ft_strcmp(command->parameters[0], "exit") == 0)
 	{
 		write(1, "exit\n", 5);
-		exit(1);
+		exit(0);
 	}
 	else
 		return (1);
