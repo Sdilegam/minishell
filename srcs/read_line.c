@@ -78,6 +78,8 @@ t_comm	*parse_parameters(char *string)
 	int		i;
 
 	command = create_command(read_line(string));
+	if (!*(command->parameters))
+		return (0);
 	i = where_is_pipe(string);
 	command->func = &function;
 	cursor = command;
@@ -86,6 +88,8 @@ t_comm	*parse_parameters(char *string)
 		string += i + 1;
 		cursor->func = &ft_pipe;
 		add_command(command, create_command(read_line(string)));
+		if (!*(cursor->next->parameters))
+			return (0);
 		cursor = cursor->next;
 		cursor->func = &function;
 		i = where_is_pipe(string);

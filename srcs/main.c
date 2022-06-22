@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/15 14:53:21 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/22 09:39:14 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ int	main(int ac, char *av[], char *envp[])
 		// ft_printf("Number of words: %d.\n", count_words(rl));
 		add_history(rl);
 		comm = parse_parameters(rl);
-		comm->func(comm, env);
+		if (comm)
+			comm->func(comm, env);
 	}
 	rl_clear_history();
 }

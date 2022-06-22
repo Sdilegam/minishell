@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/20 18:43:20 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/22 09:25:01 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int	count_quotes(char *string, int len)
 
 	count = 0;
 	index = -1;
-	while (++index < len)
+	while (++index <= len)
 	{
 		if (string [index] == '\'' || string [index] == '"')
 		{
-			count += 1;
+			count += 2;
 			index += get_quote_len(string + index);
 		}
 	}
@@ -54,7 +54,7 @@ void	duplicate_quotes(char *str_to, char *str_from)
 	quote = str_from[0];
 	while (str_from[++index] != quote)
 	{
-		str_to[index] = str_from[index];
+		str_to[index - 1] = str_from[index];
 	}
 }
 
@@ -72,12 +72,13 @@ char	*duplicate_word(char *string, int len)
 	{
 		if ((string [index_from] == '\'' || string [index_from] == '"'))
 		{
-			temp = get_quote_len(string + index_from) - 1;
+			temp = get_quote_len(string + index_from);
 			duplicate_quotes(word + index_to, string + index_from);
-			index_from += temp;
-			index_to += temp - 2;
+			index_from += temp + 1;
+			index_to += temp - 1;
 		}
-		word[index_to++] = string[index_from++];
+		else
+			word[index_to++] = string[index_from++];
 	}
 	word[index_to] = 0;
 	return (word);

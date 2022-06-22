@@ -13,7 +13,7 @@
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
-			"linux": {"MIMode": "gdb", "stopAtEntry": true,},
+			"linux": {"MIMode": "gdb", "stopAtEntry": false,},
 			"osx": {"MIMode": "lldb", "externalConsole": true,},
 			"preLaunchTask": "C/C++: gcc build active file"
 		}
