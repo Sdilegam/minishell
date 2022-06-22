@@ -6,59 +6,13 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/22 09:25:01 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:09:40 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	get_quote_len(char *string)
-{
-	int		index;
-	char	quote;
-
-	index = 0;
-	quote = string[0];
-	while (string[++index])
-	{
-		if (string[index] == quote)
-			return (index);
-	}
-	return (-1);
-}
-
-int	count_quotes(char *string, int len)
-{
-	int	index;
-	int	count;
-
-	count = 0;
-	index = -1;
-	while (++index <= len)
-	{
-		if (string [index] == '\'' || string [index] == '"')
-		{
-			count += 2;
-			index += get_quote_len(string + index);
-		}
-	}
-	return (count);
-}
-
-void	duplicate_quotes(char *str_to, char *str_from)
-{
-	int		index;
-	char	quote;
-
-	index = 0;
-	quote = str_from[0];
-	while (str_from[++index] != quote)
-	{
-		str_to[index - 1] = str_from[index];
-	}
-}
-
-char	*duplicate_word(char *string, int len)
+char	*duplicate_word(char *string, int len, t_env *env)
 {
 	int		index_to;
 	int		index_from;
@@ -67,15 +21,23 @@ char	*duplicate_word(char *string, int len)
 
 	index_to = 0;
 	index_from = 0;
-	word = malloc(sizeof(char) * (len + 1 - count_quotes(string, len)));
-	while (index_from != len)
+	word = malloc(sizeof(char) * get_final_len(string, env, len));
+	while (index_from < len)
 	{
 		if ((string [index_from] == '\'' || string [index_from] == '"'))
 		{
 			temp = get_quote_len(string + index_from);
-			duplicate_quotes(word + index_to, string + index_from);
-			index_from += temp + 1;
+			duplicate_quotes(word + index_to, string + index_from, env);
+			while (!is_space(string[++index_from]) && string[index_from] && string [index_from] != '\'' && string [index_from] != '"')
+				index_from++;
+			index_from++;
 			index_to += temp - 1;
+		}
+		if (string [index_from] == '$')
+		{
+			index_to += duplicate_var(word + index_to, string + index_from + 1, env);
+			while (!is_space(string[index_from]) && string[index_from])
+				index_from++;
 		}
 		else
 			word[index_to++] = string[index_from++];
@@ -113,7 +75,7 @@ int	count_words(char *string)
 	return (count);
 }
 
-char	**read_line(char *string)
+char	**read_line(char *string, t_env *env)
 {
 	int		i;
 	int		temp;
@@ -139,28 +101,35 @@ char	**read_line(char *string)
 			}
 			temp++;
 		}
-		line[index] = duplicate_word(string + i, temp);
+		line[index] = duplicate_word(string + i, temp, env);
 		i += temp;
 		temp = 0;
 	}
 	return (line);
 }
 
-/*
-char	*parse_string(char *string, t_env *env)
+t_comm	*parse_parameters(char *string, t_env *env)
 {
-	int	index;
+	t_comm	*command;
+	t_comm	*cursor;
+	int		i;
 
-	index = 0;
-	while (string[index] && string[index] != '|')
+	command = create_command(read_line(string, env));
+	if (!*(command->parameters))
+		return (0);
+	i = where_is_pipe(string);
+	command->func = &function;
+	cursor = command;
+	while (i)
 	{
-		while (is_space(string[index]) && string[index])
-			index++;
-		while (!is_space(string[index]))
-			
+		string += i + 1;
+		cursor->func = &ft_pipe;
+		add_command(command, create_command(read_line(string, env)));
+		if (!*(cursor->next->parameters))
+			return (0);
+		cursor = cursor->next;
+		cursor->func = &function;
+		i = where_is_pipe(string);
 	}
-	return (0);
-	
+	return (command);
 }
-
-*/

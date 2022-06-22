@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 01:11:30 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/06 10:57:27 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/22 13:07:18 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,29 +42,23 @@ void	ft_export(t_env *env, char **str)
 {
 	t_env	*curr;
 	int		j;
-	int		exist;
 	t_var	var;
 
 	j = 0;
 	curr = env;
 	while (str[++j])
 	{
-		exist = 0;
 		var.name = ft_cpy_name(str[j]);
 		var.content = ft_cpy_content(str[j]);
 		if (export_error(str[j]))
 			return ;
-		while (curr && var.name)
-		{	
-			if (ft_strcmp(curr->var, var.name) == 0)
-			{
-				curr->content = var.content;
-				exist = 1;
-				break ;
-			}
-			curr = curr->next;
+		curr = search_variable(env, var.name, ft_strlen(var.name));
+		if (curr && var.name)
+		{
+			free(curr->content);
+			curr->content = var.content;
 		}
-		if (var.name && !exist)
+		else if (var.name)
 			insertnewnode(env, var.name, var.content);
 		curr = env;
 	}

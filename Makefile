@@ -6,7 +6,7 @@
 #    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/06/15 01:37:39 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/06/22 10:28:04 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,12 @@ NAME = minishell
 
 SRCS = 	srcs/main.c\
 		srcs/header.c\
-		srcs/read_line.c\
+		srcs/parse_variables.c\
 		srcs/list_to_array.c\
 		srcs/minishell_utils.c\
 		srcs/signal.c\
 		srcs/pipe.c\
+		srcs/quotes_handling.c\
 		srcs/here_doc.c\
 		srcs/parsing.c\
 		srcs/command_list.c\
