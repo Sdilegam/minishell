@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/21 11:37:42 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/27 13:21:45 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,13 @@
 # include <stdio.h>
 # include "readline.h"
 # include "history.h"
-
+# include <termios.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <signal.h>
 # include <sys/wait.h>
 # include <errno.h>
 # include <fcntl.h>
-
 # include "type_definitions.h"
 
 t_env	*newnode(char *data, char *data2);

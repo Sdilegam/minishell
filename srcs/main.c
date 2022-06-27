@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/21 11:37:11 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/27 14:05:48 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ int	main(int ac, char *av[], char *envp[])
 	(void)av;
 	print_header();
 	env = set_env(envp);
-	sig();
 	while (1)
 	{
+		sig();
 		rl = readline("minishell:$>");
 		if (!rl)
 		{

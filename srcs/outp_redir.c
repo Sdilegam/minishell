@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:48:08 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/16 13:21:24 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/23 11:22:05 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	outp_redir(t_comm *comm, t_env *env)
 	{
 		close(fd[1]);
 		// if (>>)
-		// 	dup2(fd[0], open(comm->parameters[1], O_CREAT, O_RDWR, O_APPEND));
+		// 	dup2(fd[0], open(comm->parameters[1], O_CREAT | O_RDWR | O_APPEND));
 		// else
-			dup2(fd[0], open(comm->parameters[1], O_CREAT, O_RDWR));
+			dup2(fd[0], open(comm->parameters[1], O_CREAT | O_RDWR));
 		//ft_putstr_fd(fd[0], comm->parameters[])
 		close(fd[0]);
 	}
