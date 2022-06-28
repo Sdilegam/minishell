@@ -27,14 +27,7 @@ void	sig_handler_c(int sig)
 
 void	sig(void)
 {
-	// struct termios	info;
-	// struct termios	save;
-
-	// tcgetattr(0, &info);
-	// save = info;
-	// info.c_lflag &= ~ECHO;
 	signal(SIGINT, sig_handler_c);
 	signal(SIGQUIT, SIG_IGN);
-	// tcsetattr(0, TCSANOW, &save);
 	return ;
 }

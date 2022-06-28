@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/27 13:21:45 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/28 11:31:19 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	sig(void);
 void	sig_handler_c(int sig);
 void	sig_handler_backslash(int sig);
 void	add_command(t_comm *first, t_comm *command);
+void	ft_exit(t_comm *comm);
 
 int		is_space(char chara);
 int		is_alpha(char chara);

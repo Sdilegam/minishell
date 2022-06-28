@@ -6,7 +6,7 @@
 #    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/06/16 13:22:00 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/06/28 11:31:50 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS = 	srcs/main.c\
 		srcs/builtins/env.c\
 		srcs/builtins/export.c\
 		srcs/builtins/unset.c\
+		srcs/builtins/exit.c\
 		srcs/header.c\
 		srcs/read_line.c\
 		srcs/list_to_array.c\
