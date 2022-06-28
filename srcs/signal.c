@@ -14,25 +14,20 @@
 
 void	sig_handler_c(int sig)
 {
-	(void)sig;
-	write(1, "\n", 1);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-	return ;
-}
-
-void	sig_handler_backslash(int sig)
-{
-	(void)sig;
-	rl_on_new_line();
-	rl_redisplay();
+	if (sig == SIGINT)
+	{
+		write(1, "\n", 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+		g_status = 1;
+	}
 	return ;
 }
 
 void	sig(void)
 {
 	signal(SIGINT, sig_handler_c);
-	signal(SIGQUIT, sig_handler_backslash);
+	signal(SIGQUIT, SIG_IGN);
 	return ;
 }

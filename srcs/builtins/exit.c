@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 10:59:47 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/21 11:42:11 by abkasmi          ###   ########.fr       */
+/*   Created: 2022/06/28 11:12:25 by abkasmi           #+#    #+#             */
+/*   Updated: 2022/06/28 11:40:33 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_echo(char **str)
+void	ft_exit(t_comm *comm)
 {
 	int	i;
 
-	if (ft_strcmp(str[1], "-n") == 0)
-		i = 1;
-	else
-		i = 0;
-	while (str[++i])
+	i = -1;
+	if (comm->parameters[1])
 	{
-		printf("%s", str[i]);
-		if (str[i + 1])
-			printf(" ");
+		write(1, "exit\n", 6);
+		ft_printf("export : %s: numeric argument required\n",
+			comm->parameters[1]);
+		g_status = 255;
+		exit(g_status);
 	}
-	if (ft_strcmp(str[1], "-n"))
-		printf("\n");
-	g_status = 0;
-	return (0);
+	else
+	{
+		write(1, "exit\n", 6);
+		g_status = 0;
+		exit(g_status);
+	}
 }

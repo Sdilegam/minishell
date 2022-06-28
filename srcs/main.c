@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/28 03:37:22 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/28 14:15:52 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	function(t_comm *command, t_env *env)
+int	builtins_commands(t_comm *command, t_env *env)
 {
 	if (ft_strcmp(command->parameters[0], "echo") == 0)
 		ft_echo(command->parameters);
@@ -24,17 +24,21 @@ int	function(t_comm *command, t_env *env)
 		ft_putstr("\n");
 	}
 	else if (ft_strcmp(command->parameters[0], "env") == 0)
-		ft_env(env);
+		ft_env(env, command->parameters);
 	else if (ft_strcmp(command->parameters[0], "export") == 0)
 		ft_export(env, command->parameters);
 	else if (ft_strcmp(command->parameters[0], "unset") == 0)
 		ft_unset(env, command->parameters);
 	else if (ft_strcmp(command->parameters[0], "exit") == 0)
-	{
-		write(1, "exit\n", 5);
-		exit(1);
-	}
+		ft_exit(command);
 	else
+		return (1);
+	return (0);
+}
+
+int	function(t_comm *command, t_env *env)
+{
+	if (builtins_commands(command, env) == 1)
 	{
 		if (fork() == 0)
 		{
@@ -58,9 +62,9 @@ int	main(int ac, char *av[], char *envp[])
 	(void)av;
 	print_header();
 	env = set_env(envp);
-	sig();
 	while (1)
 	{
+		sig();
 		rl = readline("minishell:$>");
 		if (!rl)
 		{

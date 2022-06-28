@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/22 15:09:40 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/28 14:15:43 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,20 @@
 # define MINISHELL_H
 
 # include "../ft_printf/ft_printf.h"
-/* 
-# include <readline/readline.h>
-# include <readline/history.h>
-*/
+// # include <readline/readline.h>
+// # include <readline/history.h>
+
 # define READLINE_LIBRARY
 # include <stdio.h>
 # include "readline.h"
 # include "history.h"
-
+# include <termios.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <signal.h>
 # include <sys/wait.h>
 # include <errno.h>
-
+# include <fcntl.h>
 # include "type_definitions.h"
 
 t_env	*newnode(char *data, char *data2);
@@ -41,7 +40,7 @@ void	print_header(void);
 void	ft_cd(char **path);
 void	ft_putstr(char *str);
 void	ft_pwd(void);
-void	ft_env(t_env *env);
+void	ft_env(t_env *env, char **str);
 void	print_env(t_env *env, int p);
 void	insertnewnode(t_env *env, char *data, char *data2);
 void	ft_export(t_env *env, char **str);
@@ -51,6 +50,7 @@ void	sig(void);
 void	sig_handler_c(int sig);
 void	sig_handler_backslash(int sig);
 void	add_command(t_comm *first, t_comm *command);
+void	ft_exit(t_comm *comm);
 
 int		is_space(char chara);
 int		is_alpha(char chara);
@@ -69,6 +69,8 @@ int		where_is_pipe(char *str);
 
 int		get_quote_len(char *string);
 char	**read_line(char *string, t_env *env);
+int		builtins_commands(t_comm *command, t_env *env);
+
 char	*ft_cpy_content(char *str);
 char	*ft_cpy_name(char *str);
 

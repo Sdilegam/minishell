@@ -18,14 +18,42 @@ int	unset_error(char *str)
 
 	index = 0;
 	if (('0' <= str[0] && str[0] <= '9') || str[index] == '=')
-		return(ft_printf("unset : %s: not a valid identifier\n", str));
+	{
+		g_status = 1;
+		return (ft_printf("unset : %s: not a valid identifier\n", str));
+	}
 	while (str[index])
-	{ 
+	{
 		if (!is_ok(str[index]) || str[index] == '=')
+		{
+			g_status = 1;
 			return (ft_printf("unset : %s: not a valid identifier\n", str));
+		}
 		index++;
 	}
 	return (0);
+}
+
+void	unset2(char **str, t_env *env, int i)
+{
+	t_env	*temp;
+	t_env	*curr;
+
+	curr = env;
+	while (curr->next)
+	{
+		if (ft_strcmp(str[i], curr->next->var) == 0)
+		{
+			free(curr->next->var);
+			if (curr->next->content)
+				free(curr->next->content);
+			temp = curr->next->next;
+			free(curr->next);
+			curr->next = temp;
+			break ;
+		}
+		curr = curr->next;
+	}
 }
 
 int	ft_unset(t_env *env, char **str)
@@ -50,21 +78,9 @@ int	ft_unset(t_env *env, char **str)
 			free(temp);
 			continue ;
 		}
-		while (curr->next)
-		{
-			if (ft_strcmp(str[i], curr->next->var) == 0)
-			{
-				free(curr->next->var);
-				if (curr->next->content)
-					free(curr->next->content);
-				temp = curr->next->next;
-				free(curr->next);
-				curr->next = temp;
-				break ;
-			}
-			curr = curr->next;
-		}
+		unset2(str, env, i);
 		curr = env;
 	}
+	g_status = 0;
 	return (0);
 }

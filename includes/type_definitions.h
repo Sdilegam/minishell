@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   type_definitions.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:04:56 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/14 04:42:09 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/20 12:35:44 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPE_DEFINITIONS_H
 # define TYPE_DEFINITIONS_H
+
+int	g_status;
 
 typedef struct s_env
 {
