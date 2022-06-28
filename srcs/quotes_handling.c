@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:00:12 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/22 15:09:00 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/28 03:30:32 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	get_quote_len(char *string)
 {
 	int		index;
 	char	quote;
-	
+
 	index = 0;
 	quote = string[0];
 	while (string[++index])

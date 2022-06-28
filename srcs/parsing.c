@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/22 15:09:40 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/28 03:56:01 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,16 @@ char	*duplicate_word(char *string, int len, t_env *env)
 
 	index_to = 0;
 	index_from = 0;
-	word = malloc(sizeof(char) * get_final_len(string, env, len));
+	word = calloc(sizeof(char), get_final_len(string, env, len));
 	while (index_from < len)
 	{
 		if ((string [index_from] == '\'' || string [index_from] == '"'))
 		{
 			temp = get_quote_len(string + index_from);
 			duplicate_quotes(word + index_to, string + index_from, env);
-			while (!is_space(string[++index_from]) && string[index_from] && string [index_from] != '\'' && string [index_from] != '"')
-				index_from++;
-			index_from++;
-			index_to += temp - 1;
+			index_from +=temp + 1;
+			while (word[index_to])
+				index_to ++;
 		}
 		if (string [index_from] == '$')
 		{
@@ -39,7 +38,7 @@ char	*duplicate_word(char *string, int len, t_env *env)
 			while (!is_space(string[index_from]) && string[index_from])
 				index_from++;
 		}
-		else
+		else if (index_from < len)
 			word[index_to++] = string[index_from++];
 	}
 	word[index_to] = 0;
