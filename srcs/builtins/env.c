@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 14:14:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/21 11:42:58 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/29 13:34:55 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_env(t_env *env, char **str)
 		ft_putstr("env: ");
 		ft_putstr(str[1]);
 		ft_putstr(": No such file or directory\n");
-		g_status = 127;
+		g_status.status = 127;
 		return ;
 	}
 	curr = env;
@@ -31,5 +31,5 @@ void	ft_env(t_env *env, char **str)
 			ft_printf("%s=%s\n", curr->var, curr->content);
 		curr = curr->next;
 	}
-	g_status = 0;
+	g_status.status = 0;
 }

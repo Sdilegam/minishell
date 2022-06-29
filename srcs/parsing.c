@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/28 03:56:01 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/28 14:27:21 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*duplicate_word(char *string, int len, t_env *env)
 		{
 			temp = get_quote_len(string + index_from);
 			duplicate_quotes(word + index_to, string + index_from, env);
-			index_from +=temp + 1;
+			index_from += temp + 1;
 			while (word[index_to])
 				index_to ++;
 		}

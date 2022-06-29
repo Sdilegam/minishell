@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/28 14:15:52 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/29 14:49:03 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,15 @@ int	builtins_commands(t_comm *command, t_env *env)
 
 int	function(t_comm *command, t_env *env)
 {
+	pid_t	pid;
+
 	if (builtins_commands(command, env) == 1)
 	{
-		if (fork() == 0)
+		pid = fork();
+		g_status.pid = pid;
+		signal(SIGINT, sig_handler_2);
+		signal(SIGQUIT, sig_handler_2);
+		if (pid == 0)
 		{
 			if (execve(command->parameters[0], command->parameters,
 					list_to_array(env)) == -1)

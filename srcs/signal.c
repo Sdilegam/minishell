@@ -20,7 +20,25 @@ void	sig_handler_c(int sig)
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
-		g_status = 1;
+		g_status.status = 1;
+	}
+	return ;
+}
+
+void	sig_handler_2(int sig)
+{
+	if (sig == SIGINT)
+	{
+		write(1, "\n", 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		g_status.status = 130;
+	}
+	else if (sig == SIGQUIT)
+	{
+		ft_printf("Quit: 3\n");
+		g_status.status = 131;
+		kill(g_status.pid, SIGKILL);
 	}
 	return ;
 }
