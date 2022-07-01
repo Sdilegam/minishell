@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/01 03:50:11 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/01 04:04:29 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*duplicate_word(char *string, int len)
 
 	index_to = 0;
 	index_from = 0;
-	word = calloc(sizeof(char), where_is_pipe(string) - count_quotes(string, len));
+	word = calloc(sizeof(char), len - count_quotes(string, len));
 	while (index_from < len)
 	{
 		if ((string [index_from] == '\'' || string [index_from] == '"'))
