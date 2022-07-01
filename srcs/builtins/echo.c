@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 10:59:47 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/21 11:42:11 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/29 13:34:47 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ int	ft_echo(char **str)
 	}
 	if (ft_strcmp(str[1], "-n"))
 		printf("\n");
-	g_status = 0;
+	g_status.status = 0;
 	return (0);
 }

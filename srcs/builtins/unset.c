@@ -19,14 +19,14 @@ int	unset_error(char *str)
 	index = 0;
 	if (('0' <= str[0] && str[0] <= '9') || str[index] == '=')
 	{
-		g_status = 1;
+		g_status.status = 1;
 		return (ft_printf("unset : %s: not a valid identifier\n", str));
 	}
 	while (str[index])
 	{
 		if (!is_ok(str[index]) || str[index] == '=')
 		{
-			g_status = 1;
+			g_status.status = 1;
 			return (ft_printf("unset : %s: not a valid identifier\n", str));
 		}
 		index++;
@@ -81,6 +81,6 @@ int	ft_unset(t_env *env, char **str)
 		unset2(str, env, i);
 		curr = env;
 	}
-	g_status = 0;
+	g_status.status = 0;
 	return (0);
 }

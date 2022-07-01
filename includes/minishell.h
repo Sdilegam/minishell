@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/28 16:33:30 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/01 03:49:41 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	sig_handler_c(int sig);
 void	sig_handler_backslash(int sig);
 void	add_command(t_comm *first, t_comm *command);
 void	ft_exit(t_comm *comm);
+void	sig_handler_2(int sig);
 
 int		is_space(char chara);
 int		is_alpha(char chara);

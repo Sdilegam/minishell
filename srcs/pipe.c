@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:44:43 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/28 14:16:24 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/29 14:44:14 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ int	ft_pipe(t_comm *command, t_env *env)
 	pipe3(fd, pid[1], command, env);
 	close(fd[1]);
 	close(fd[0]);
-	signal(SIGINT, sig_handler_c);
-	signal(SIGQUIT, SIG_IGN);
 	waitpid(pid[0], NULL, 0);
 	waitpid(pid[1], NULL, 0);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 11:12:25 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/28 16:24:09 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/01 03:50:22 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	ft_exit(t_comm *comm)
 		write(1, "exit\n", 6);
 		ft_printf("export : %s: numeric argument required\n",
 			comm->parameters[1]);
-		g_status = 255;
-		exit(g_status);
+		g_status.status = 255;
+		exit(g_status.status);
 	}
 	else
 	{
 		write(1, "exit\n", 6);
-		g_status = 0;
-		exit(g_status);
+		g_status.status = 0;
+		exit(g_status.status);
 	}
 }
