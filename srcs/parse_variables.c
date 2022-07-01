@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:04:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/22 15:08:35 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:42:47 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	get_final_len(char *string, t_env *env, int len)
 	int		final_len;
 	int		temp;
 	t_env	*var;
-	
+
 	index = -1;
 	final_len = 0;
 	while (++index < len)
@@ -82,5 +82,28 @@ int	get_final_len(char *string, t_env *env, int len)
 				final_len -= temp;
 		}
 	}
-	return (index - count_quotes(string, len) + final_len);
+	return (index + final_len);
+}
+
+char	*replace_dollars(char *base_str, t_env *env)
+{
+	int		index_to;
+	int		index_from;
+	char	*str_to;
+
+	index_to = -1;
+	index_from = -1;
+	str_to = calloc(get_final_len(base_str, env, where_is_pipe(base_str)), sizeof(char));
+	while (base_str[++index_from] && base_str[index_from] != '|')
+	{
+		if (base_str [index_from] == '$')
+		{
+			index_to += duplicate_var(str_to + index_to + 1, base_str + index_from + 1, env);
+			while (!is_space(base_str[index_from]) && base_str[index_from])
+				index_from++;
+		}
+		else
+			str_to [++index_to] = base_str[index_from];
+	}
+	return (str_to);
 }

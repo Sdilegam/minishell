@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/28 14:15:43 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/28 16:33:30 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		function(t_comm *command, t_env *env);
 int		where_is_pipe(char *str);
 
 int		get_quote_len(char *string);
-char	**read_line(char *string, t_env *env);
+char	**read_line(char *string);
 int		builtins_commands(t_comm *command, t_env *env);
 
 char	*ft_cpy_content(char *str);
@@ -76,10 +76,11 @@ char	*ft_cpy_name(char *str);
 
 int		count_quotes(char *string, int len);
 t_env	*search_variable(t_env *env, char *string, int len);
-void	duplicate_quotes(char *str_to, char *str_from, t_env *env);
+void	duplicate_quotes(char *str_to, char *str_from);
 int		get_final_len(char *string, t_env *env, int len);
 int		ft_strncmp(char *s1, char *s2, int len);
 int		duplicate_var(char *str_to, char *str_from, t_env *env);
 char	**list_to_array(t_env *list);
+char	*replace_dollars(char *base_str, t_env *env);
 int		get_variable_len(t_env var);
 #endif

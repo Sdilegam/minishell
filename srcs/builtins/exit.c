@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 11:12:25 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/28 11:40:33 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/28 16:24:09 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_exit(t_comm *comm)
 {
-	int	i;
+// 	int	i;
 
-	i = -1;
+// 	i = -1;
 	if (comm->parameters[1])
 	{
 		write(1, "exit\n", 6);

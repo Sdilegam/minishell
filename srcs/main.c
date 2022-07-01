@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/28 14:15:52 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/06/28 15:52:33 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	main(int ac, char *av[], char *envp[])
 			free(env);
 			exit(1);
 		}
-		// ft_printf("Number of words: %d.\n", count_words(rl));
 		add_history(rl);
 		comm = parse_parameters(rl, env);
 		if (comm)

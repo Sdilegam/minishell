@@ -6,13 +6,13 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/28 03:56:01 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:35:34 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*duplicate_word(char *string, int len, t_env *env)
+char	*duplicate_word(char *string, int len)
 {
 	int		index_to;
 	int		index_from;
@@ -21,22 +21,16 @@ char	*duplicate_word(char *string, int len, t_env *env)
 
 	index_to = 0;
 	index_from = 0;
-	word = calloc(sizeof(char), get_final_len(string, env, len));
+	word = calloc(sizeof(char), where_is_pipe(string) - count_quotes(string, len));
 	while (index_from < len)
 	{
 		if ((string [index_from] == '\'' || string [index_from] == '"'))
 		{
 			temp = get_quote_len(string + index_from);
-			duplicate_quotes(word + index_to, string + index_from, env);
+			duplicate_quotes(word + index_to, string + index_from);
 			index_from +=temp + 1;
 			while (word[index_to])
 				index_to ++;
-		}
-		if (string [index_from] == '$')
-		{
-			index_to += duplicate_var(word + index_to, string + index_from + 1, env);
-			while (!is_space(string[index_from]) && string[index_from])
-				index_from++;
 		}
 		else if (index_from < len)
 			word[index_to++] = string[index_from++];
@@ -74,7 +68,7 @@ int	count_words(char *string)
 	return (count);
 }
 
-char	**read_line(char *string, t_env *env)
+char	**read_line(char *string)
 {
 	int		i;
 	int		temp;
@@ -100,7 +94,7 @@ char	**read_line(char *string, t_env *env)
 			}
 			temp++;
 		}
-		line[index] = duplicate_word(string + i, temp, env);
+		line[index] = duplicate_word(string + i, temp);
 		i += temp;
 		temp = 0;
 	}
@@ -113,7 +107,7 @@ t_comm	*parse_parameters(char *string, t_env *env)
 	t_comm	*cursor;
 	int		i;
 
-	command = create_command(read_line(string, env));
+	command = create_command(read_line(replace_dollars(string, env)));
 	if (!*(command->parameters))
 		return (0);
 	i = where_is_pipe(string);
@@ -123,7 +117,7 @@ t_comm	*parse_parameters(char *string, t_env *env)
 	{
 		string += i + 1;
 		cursor->func = &ft_pipe;
-		add_command(command, create_command(read_line(string, env)));
+		add_command(command, create_command(read_line(string)));
 		if (!*(cursor->next->parameters))
 			return (0);
 		cursor = cursor->next;
