@@ -6,7 +6,7 @@
 #    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/07/01 03:49:31 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/07/02 02:49:06 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS = 	srcs/main.c\
 		srcs/builtins/unset.c\
 		srcs/builtins/exit.c\
 		srcs/outp_redir.c\
+		srcs/path.c\
 		#srcs/inpt_redir.c\
 
 OBJS = $(SRCS:.c=.o)

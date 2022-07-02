@@ -6,13 +6,11 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/01 04:42:48 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/02 03:29:05 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <sys/types.h>
-#include <dirent.h>
 
 char	*duplicate_word(char *string, int len)
 {
@@ -103,49 +101,6 @@ char	**read_line(char *string)
 	return (line);
 }
 
-void	replace_comm(t_comm *comm, t_env *env)
-{
-	char			*path;
-	char			*dirpath;
-	int				i;
-	int				i2;
-	DIR				*file_des;
-	struct dirent	*directory;
-
-	i = -1;
-	i2 = -1;
-	path = search_variable(env, "PATH", 4)->content;
-	while (*path)
-	{
-		while (path [++i] && path[i] != ':')
-		{
-		}	
-		dirpath = calloc(i, sizeof(char));
-		while (++i2 != i)
-			dirpath [i2] = path[i2];
-		file_des = opendir(dirpath);
-		if (file_des)
-		{
-			directory = readdir(file_des);
-			while (directory)
-			{
-				if (ft_strcmp(comm->parameters[0], directory->d_name) == 0)
-				{
-					ft_printf("path: %s/%s\n", dirpath, directory->d_name);
-					closedir(file_des);
-					return ;
-				}
-				directory = readdir(file_des);
-			}
-		}
-		path += i + 1;
-		i = -1;
-		i2 = -1;
-		// ft_printf("%s\n", path);
-		closedir(file_des);
-	}
-}
-
 t_comm	*parse_parameters(char *string, t_env *env)
 {
 	t_comm	*command;
@@ -155,7 +110,7 @@ t_comm	*parse_parameters(char *string, t_env *env)
 	command = create_command(read_line(replace_dollars(string, env)));
 	if (!*(command->parameters))
 		return (0);
-	// replace_comm(co
+	replace_comm(command, env);
 	i = where_is_pipe(string);
 	command->func = &function;
 	cursor = command;
@@ -167,6 +122,7 @@ t_comm	*parse_parameters(char *string, t_env *env)
 		if (!*(cursor->next->parameters))
 			return (0);
 		cursor = cursor->next;
+		replace_comm(cursor, env);
 		cursor->func = &function;
 		i = where_is_pipe(string);
 	}
