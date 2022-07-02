@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 02:28:33 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/02 03:25:28 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/02 03:44:56 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,26 @@ void	parse_path(t_comm *comm, char *path)
 	}
 }
 
+int	check_builtins(char *comm)
+{
+	if (ft_strcmp(comm, "echo") == 0 \
+	|| ft_strcmp(comm, "cd") == 0 \
+	|| ft_strcmp(comm, "pwd") == 0 \
+	|| ft_strcmp(comm, "env") == 0 \
+	|| ft_strcmp(comm, "export") == 0 \
+	|| ft_strcmp(comm, "unset") == 0 \
+	|| ft_strcmp(comm, "exit") == 0)
+		return (1);
+	return (0);
+}
+
 void	replace_comm(t_comm *comm, t_env *env)
 {
-	char			*path;
+	char	*path;
 
-	path = search_variable(env, "PATH", 4)->content;
-	parse_path(comm, path);
+	if (check_builtins(comm->parameters[0]) == 0)
+	{
+		path = search_variable(env, "PATH", 4)->content;
+		parse_path(comm, path);
+	}
 }
