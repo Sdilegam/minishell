@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/02 02:48:53 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/04 10:42:27 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	sig_handler_backslash(int sig);
 void	add_command(t_comm *first, t_comm *command);
 void	ft_exit(t_comm *comm);
 void	sig_handler_2(int sig);
+char	*ft_itoa(int n);
 
 int		is_space(char chara);
 int		is_alpha(char chara);

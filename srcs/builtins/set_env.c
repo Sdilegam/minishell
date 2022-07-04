@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:02:11 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/28 14:17:40 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/04 10:55:16 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ t_env	*set_env(char **envp)
 		var.content = ft_cpy_content(envp[i]);
 		insertnewnode(env, var.name, var.content);
 	}
+	insertnewnode(env, "?", ft_itoa(g_status.status));
 	return (env);
 }

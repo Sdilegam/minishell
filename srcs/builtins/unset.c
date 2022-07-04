@@ -64,6 +64,11 @@ int	ft_unset(t_env *env, char **str)
 
 	curr = env;
 	i = 0;
+	if (ft_strcmp("PWD", str[1]) == 0)
+	{
+		g_status.status = 0;
+		return (0);
+	}
 	while (str[++i])
 	{
 		if (unset_error(str[i]))

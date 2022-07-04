@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_variables.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:04:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/01 03:50:01 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/04 10:48:45 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ t_env	*search_variable(t_env *env, char *string, int len)
 	{	
 		if (ft_strncmp(curr->var, string, len) == 0)
 			return (curr);
+		if (ft_strncmp("?", string, len) == 0)
+		{
+			while (ft_strcmp("?", string) != 0)
+				curr = curr->next;
+			if (ft_strcmp("?", string) == 0)	
+				curr->content = ft_itoa(g_status.status);
+			return (curr);
+		}
 		curr = curr->next;
 	}
 	return (0);

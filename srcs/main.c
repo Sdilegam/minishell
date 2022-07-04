@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/01 03:49:53 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/04 11:23:28 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ int	function(t_comm *command, t_env *env)
 		{
 			if (execve(command->parameters[0], command->parameters,
 					list_to_array(env)) == -1)
-				exit(1);
+			{
+				ft_printf("bash: %s: command not found\n", command->parameters[0]);
+				exit(0);
+			}
 		}
 		else
 			wait(NULL);
@@ -67,6 +70,7 @@ int	main(int ac, char *av[], char *envp[])
 	(void)ac;
 	(void)av;
 	print_header();
+	g_status.status = 0;
 	env = set_env(envp);
 	while (1)
 	{
