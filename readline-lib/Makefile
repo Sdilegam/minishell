@@ -31,7 +31,7 @@ PACKAGE_TARNAME = readline
 srcdir = .
 
 top_srcdir = .
-BUILD_DIR = /home/sdi-lega/Documents/minishell/readline-lib
+BUILD_DIR = /Users/sdi-lega/Documents/minishell/readline-lib
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = ${INSTALL}

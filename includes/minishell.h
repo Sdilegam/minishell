@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/04 10:42:27 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/04 13:15:37 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ char	**list_to_array(t_env *list);
 char	*replace_dollars(char *base_str, t_env *env);
 int		get_variable_len(t_env var);
 void	replace_comm(t_comm *comm, t_env *env);
+int		is_p_redi(char *c);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_variables.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:04:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/04 10:48:45 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/04 16:02:44 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,13 @@ char	*replace_dollars(char *base_str, t_env *env)
 	int		index_to;
 	int		index_from;
 	char	*str_to;
+	int		len;
 
 	index_to = -1;
+	len = get_final_len(base_str, env, ft_strlen(base_str)) + 1;
 	index_from = -1;
-	str_to = calloc(get_final_len(base_str, env, where_is_pipe(base_str)), sizeof(char));
-	while (base_str[++index_from] && base_str[index_from] != '|')
+	str_to = calloc(len, sizeof(char));
+	while (base_str[++index_from])
 	{
 		if (base_str [index_from] == '$')
 		{
@@ -113,5 +115,6 @@ char	*replace_dollars(char *base_str, t_env *env)
 		else
 			str_to [++index_to] = base_str[index_from];
 	}
+	str_to[++index_to] = '\0';
 	return (str_to);
 }

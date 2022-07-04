@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/04 11:23:28 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/04 13:54:18 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	main(int ac, char *av[], char *envp[])
 		comm = parse_parameters(rl, env);
 		if (comm)
 			comm->func(comm, env);
-		free (rl);
 	}
 	rl_clear_history();
 }

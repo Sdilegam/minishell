@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 02:28:33 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/02 03:44:56 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/04 13:27:18 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ void	parse_path(t_comm *comm, char *path)
 				return ;
 		}
 		path += len + 1;
-		closedir(file_des);
+		if (file_des)
+			closedir(file_des);
 	}
 }
 

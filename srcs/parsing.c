@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/02 03:29:05 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:12:57 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ int	count_words(char *string)
 
 	i = 0;
 	count = 0;
-	while (string[i] && string[i] != '|')
+	while (string[i] && is_p_redi(string + i) == 0)
 	{
 		if (!is_space(string[i]))
 			count++;
-		while (!is_space(string[i]) && string[i])
+		while (!is_space(string[i]) && string[i] && is_p_redi(string + i) == 0)
 		{
 			if (string[i] == '\'' || string[i] == '"')
 			{
@@ -66,6 +66,7 @@ int	count_words(char *string)
 			i++;
 	}
 	return (count);
+	
 }
 
 char	**read_line(char *string)
@@ -84,9 +85,9 @@ char	**read_line(char *string)
 	line[count] = 0;
 	while (++index < count)
 	{	
-		while (is_space(string[i]) && string[i])
+		while (is_space(string[i]) && string[i] && is_p_redi(string + i) == 0)
 			i++;
-		while (!is_space(string[i + temp]) && string[i + temp])
+		while (!is_space(string[i + temp]) && string[i + temp] && is_p_redi(string + i) == 0)
 		{
 			if (string[i + temp] == '\'' || string[i + temp] == '"')
 			{
@@ -105,9 +106,13 @@ t_comm	*parse_parameters(char *string, t_env *env)
 {
 	t_comm	*command;
 	t_comm	*cursor;
+	char *temp;
 	int		i;
 
-	command = create_command(read_line(replace_dollars(string, env)));
+	temp = replace_dollars(string, env);
+	free(string);
+	string = temp;
+	command = create_command(read_line(string));
 	if (!*(command->parameters))
 		return (0);
 	replace_comm(command, env);
