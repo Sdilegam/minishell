@@ -36,7 +36,6 @@ void	sig_handler_2(int sig)
 	{
 		ft_printf("Quit: 3\n");
 		g_status.status = 131;
-		kill(g_status.pid, SIGKILL);
 	}
 	return ;
 }
