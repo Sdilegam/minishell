@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:04:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/04 16:02:44 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:13:52 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_env	*search_variable(t_env *env, char *string, int len)
 		}
 		curr = curr->next;
 	}
-	return (0);
+	return (NULL);
 }
 
 int	get_variable_len(t_env var)

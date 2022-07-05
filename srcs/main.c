@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/04 13:54:18 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:13:47 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	function(t_comm *command, t_env *env)
 			if (execve(command->parameters[0], command->parameters,
 					list_to_array(env)) == -1)
 			{
-				ft_printf("bash: %s: command not found\n", command->parameters[0]);
+				ft_printf("minishell: %s: command not found\n", command->parameters[0]);
 				exit(0);
 			}
 		}
