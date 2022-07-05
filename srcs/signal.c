@@ -29,9 +29,7 @@ void	sig_handler_2(int sig)
 {
 	if (sig == SIGINT)
 	{
-		write(1, "\n", 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
+		ft_printf("\n");
 		g_status.status = 130;
 	}
 	else if (sig == SIGQUIT)
