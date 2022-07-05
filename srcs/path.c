@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 02:28:33 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/02 03:44:56 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:28:26 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ char	*ft_strncpy(char *source, int len)
 	int		index;
 	char	*copy;
 
+	if (!source)
+		return (NULL);
 	index = -1;
 	copy = calloc(len, sizeof(char));
 	while (++index != len)
@@ -108,7 +110,7 @@ int	check_builtins(char *comm)
 	if (ft_strcmp(comm, "echo") == 0 \
 	|| ft_strcmp(comm, "cd") == 0 \
 	|| ft_strcmp(comm, "pwd") == 0 \
-	|| ft_strcmp(comm, "env") == 0 \
+//	|| ft_strcmp(comm, "env") == 0
 	|| ft_strcmp(comm, "export") == 0 \
 	|| ft_strcmp(comm, "unset") == 0 \
 	|| ft_strcmp(comm, "exit") == 0)
@@ -118,11 +120,13 @@ int	check_builtins(char *comm)
 
 void	replace_comm(t_comm *comm, t_env *env)
 {
-	char	*path;
+	t_env	*path;
 
 	if (check_builtins(comm->parameters[0]) == 0)
 	{
-		path = search_variable(env, "PATH", 4)->content;
-		parse_path(comm, path);
+		path = search_variable(env, "PATH", 4);
+		if (!path)
+			return ;
+		parse_path(comm, path->content);
 	}
 }

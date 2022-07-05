@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:04:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/04 10:48:45 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/05 12:12:09 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_env	*search_variable(t_env *env, char *string, int len)
 		}
 		curr = curr->next;
 	}
-	return (0);
+	return (NULL);
 }
 
 int	get_variable_len(t_env var)

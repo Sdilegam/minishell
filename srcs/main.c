@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/04 11:23:28 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/05 12:31:00 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	function(t_comm *command, t_env *env)
 			if (execve(command->parameters[0], command->parameters,
 					list_to_array(env)) == -1)
 			{
-				ft_printf("bash: %s: command not found\n", command->parameters[0]);
+				ft_printf("minishell: %s: command not found\n", command->parameters[0]);
 				exit(0);
 			}
 		}
