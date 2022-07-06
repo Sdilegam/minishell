@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:02:11 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/04 10:55:16 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/06 15:27:11 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,5 @@ t_env	*set_env(char **envp)
 		var.content = ft_cpy_content(envp[i]);
 		insertnewnode(env, var.name, var.content);
 	}
-	insertnewnode(env, "?", ft_itoa(g_status.status));
 	return (env);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 14:14:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/04 10:47:14 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/06 15:27:34 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	ft_env(t_env *env, char **str)
 	curr = env;
 	while (curr)
 	{
-		if (ft_strcmp(curr->var, "?") != 0)
-			ft_printf("%s=%s\n", curr->var, curr->content);
+		ft_printf("%s=%s\n", curr->var, curr->content);
 		curr = curr->next;
 	}
 	g_status.status = 0;

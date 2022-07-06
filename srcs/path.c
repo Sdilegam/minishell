@@ -112,7 +112,7 @@ int	check_builtins(char *comm)
 	if (ft_strcmp(comm, "echo") == 0 \
 	|| ft_strcmp(comm, "cd") == 0 \
 	|| ft_strcmp(comm, "pwd") == 0 \
-//	|| ft_strcmp(comm, "env") == 0
+	|| ft_strcmp(comm, "env") == 0 \
 	|| ft_strcmp(comm, "export") == 0 \
 	|| ft_strcmp(comm, "unset") == 0 \
 	|| ft_strcmp(comm, "exit") == 0)
