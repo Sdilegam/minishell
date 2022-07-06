@@ -6,19 +6,11 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/05 18:24:14 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:22:13 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	empty_handler(int sig)
-{
-	(void) sig;
-	if (wait(0) != -1)
-		ft_printf("\n");
-	return ;
-}
 
 int	builtins_commands(t_comm *command, t_env *env)
 {
@@ -50,8 +42,6 @@ int	function(t_comm *command, t_env *env)
 
 	if (builtins_commands(command, env) == 1)
 	{
-		signal(SIGINT, empty_handler);
-		signal(SIGQUIT, empty_handler);
 		pid = fork();
 		g_status.pid = pid;
 		if (pid == 0)
@@ -91,6 +81,8 @@ int	main(int ac, char *av[], char *envp[])
 		}
 		add_history(rl);
 		comm = parse_parameters(rl, env);
+		signal(SIGINT, sig_handler_2);
+		signal(SIGQUIT, sig_handler_2);
 		if (comm)
 			comm->func(comm, env);
 		wait(NULL);

@@ -29,12 +29,14 @@ void	sig_handler_2(int sig)
 {
 	if (sig == SIGINT)
 	{
-		ft_printf("\n");
+		if (wait(NULL) != -1)
+			ft_printf("\n");
 		g_status.status = 130;
 	}
-	else if (sig == SIGQUIT)
+	if (sig == SIGQUIT)
 	{
-		ft_printf("Quit: 3\n");
+		if (wait(NULL) != -1)
+			ft_printf("Quit: 3\n");
 		g_status.status = 131;
 	}
 	return ;

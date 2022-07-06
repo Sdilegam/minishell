@@ -6,11 +6,18 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:44:43 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/05 17:26:05 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:24:04 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	empty(int sig)
+{
+	(void) sig;
+	return;
+}
+
 
 int	where_is_pipe(char *str)
 {
@@ -31,6 +38,8 @@ static void	pipe2(int fd[2], pid_t pid, t_comm *comm, t_env *env)
 {
 	if (pid == 0)
 	{
+		signal(SIGINT, empty);
+		signal(SIGQUIT, empty);
 		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[1]);
@@ -44,6 +53,8 @@ static void	pipe3(int fd[2], pid_t pid, t_comm *comm, t_env *env)
 {
 	if (pid == 0)
 	{
+		signal(SIGINT, empty);
+		signal(SIGQUIT, empty);
 		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
 		close(fd[0]);
@@ -58,8 +69,6 @@ int	ft_pipe(t_comm *command, t_env *env)
 	int		fd[2];
 	pid_t	pid[2];
 
-	signal(SIGQUIT, sig_handler_2);
-	signal(SIGINT, SIG_IGN);
 	if (pipe(fd) == -1)
 		return (1);
 	pid[0] = fork();
