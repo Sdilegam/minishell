@@ -53,6 +53,7 @@ void	add_command(t_comm *first, t_comm *command);
 void	ft_exit(t_comm *comm);
 void	sig_handler_2(int sig);
 char	*ft_itoa(int n);
+void	here_doc(char *string);
 
 int		is_space(char chara);
 int		is_alpha(char chara);

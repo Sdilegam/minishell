@@ -12,15 +12,14 @@
 
 #include "minishell.h"
 
-char	*here_doc(char *string)
+void	here_doc(char *string)
 {
-	char	*temp_test = malloc (5);
+	char	*temp;
+	int		cmd;
 
-	(void)string;
-	temp_test[0] = 't';
-	temp_test[1] = 'e';
-	temp_test[2] = 's';
-	temp_test[3] = 't';
-	temp_test[4] = 0;
-	return (temp_test);
+	temp = readline(">");
+	cmd = ft_strncmp(string, temp, ft_strlen(string));
+	free(temp);
+	if (cmd)
+		here_doc(string);
 }
