@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/06 15:22:13 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/07 04:26:33 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	function(t_comm *command, t_env *env)
 	if (builtins_commands(command, env) == 1)
 	{
 		pid = fork();
-		g_status.pid = pid;
 		if (pid == 0)
 		{
 			if (execve(command->parameters[0], command->parameters,
@@ -54,7 +53,14 @@ int	function(t_comm *command, t_env *env)
 			}
 		}
 		else
+		{
+			if (ft_strcmp(command->parameters[0], "./minishell") == 0 || ft_strcmp(command->parameters[0], "bash") == 0)
+			{
+				signal(SIGQUIT, empty);
+				signal(SIGINT, empty);
+			}
 			wait(NULL);
+		}
 	}
 	return (0);
 }
