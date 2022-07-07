@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/04 14:12:57 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/07 06:00:21 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ t_comm	*parse_parameters(char *string, t_env *env)
 	command = create_command(read_line(string));
 	if (!*(command->parameters))
 		return (0);
-	replace_comm(command, env);
 	i = where_is_pipe(string);
 	command->func = &function;
 	cursor = command;
@@ -127,7 +126,6 @@ t_comm	*parse_parameters(char *string, t_env *env)
 		if (!*(cursor->next->parameters))
 			return (0);
 		cursor = cursor->next;
-		replace_comm(cursor, env);
 		cursor->func = &function;
 		i = where_is_pipe(string);
 	}

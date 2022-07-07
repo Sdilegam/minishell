@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/07 04:26:33 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/07 06:29:24 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	function(t_comm *command, t_env *env)
 	{
 		pid = fork();
 		if (pid == 0)
-		{
+		{	
+			replace_comm(command, env);
 			if (execve(command->parameters[0], command->parameters,
 					list_to_array(env)) == -1)
 			{

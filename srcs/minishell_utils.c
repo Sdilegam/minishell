@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:34:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/22 13:49:34 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/07 05:07:35 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	ft_strncmp(char *s1, char *s2, int n)
 	int	index;
 
 	index = 0;
-	if (n == 0)
-		return (0);
+	if (s1[n])
+		return (1);
 	while (s1[index] && s2[index])
 	{
 		if ((unsigned char) s1[index] != (unsigned char) s2[index])

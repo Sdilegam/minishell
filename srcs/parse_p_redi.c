@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:09:20 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/04 13:14:57 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/07 05:39:56 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	is_p_redi(char *c)
 	if (*c == '|')
 		return (1);
 	if (*c == '>')
-		return (1);
+		return (2);
 	if (*c == '<')
-		return (1);
+		return (3);
 	if (*c == '<' && *(c + 1) == '<')
-		return (1);
+		return (4);
 	if (*c == '>' && *(c + 1) == '>')
-		return (1);
+		return (5);
 	return (0);
 }
 
