@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/07 06:29:24 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:01:22 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int	function(t_comm *command, t_env *env)
 					list_to_array(env)) == -1)
 			{
 				ft_printf("minishell: %s: command not found\n", command->parameters[0]);
-				exit(0);
+				// ft_printf("%d", errno);
+				exit (127);
 			}
 		}
 		else
@@ -60,10 +61,10 @@ int	function(t_comm *command, t_env *env)
 				signal(SIGQUIT, empty);
 				signal(SIGINT, empty);
 			}
-			wait(NULL);
+			wait(&g_status.status);
 		}
 	}
-	return (0);
+	return (g_status.status);
 }
 
 int	main(int ac, char *av[], char *envp[])
@@ -80,7 +81,13 @@ int	main(int ac, char *av[], char *envp[])
 	while (1)
 	{
 		sig();
-		rl = readline("\033[1;92mminishell\033[0m$> ");
+		// ft_printf("%d ", g_status.status);
+		// ft_printf("%d\n", WEXITSTATUS(g_status.status));
+		if (WEXITSTATUS(g_status.status) == 0 || WEXITSTATUS(g_status.status) == 130)
+			ft_printf("\033[1;92m");
+		else
+			ft_printf("\033[1;91m");
+		rl = readline("minishell\033[0m$> ");
 		if (!rl)
 		{
 			free(env);
