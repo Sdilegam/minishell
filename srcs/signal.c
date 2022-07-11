@@ -16,11 +16,15 @@ void	sig_handler_c(int sig)
 {
 	if (sig == SIGINT)
 	{
+		g_status.status = 130;
 		write(1, "\n", 1);
+		if (g_status.status == 0 || g_status.status == 130)
+			ft_printf("\033[1;92m");
+		else
+			ft_printf("\033[1;91m");
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
-		g_status.status = 1;
 	}
 	return ;
 }
@@ -31,14 +35,13 @@ void	sig_handler_2(int sig)
 	{
 		if (wait(NULL) != -1)
 			ft_printf("\n");
-		g_status.status = 130;
 	}
 	if (sig == SIGQUIT)
 	{
 		if (wait(NULL) != -1)
 			ft_printf("Quit: 3\n");
-		g_status.status = 131;
 	}
+	g_status.status = (128 + sig) << 8;
 	return ;
 }
 
