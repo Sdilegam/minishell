@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/11 14:53:08 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:31:03 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	set_comm(char *chara, t_comm *comm)
 	if (which_function == 4)
 		comm->func = &here_doc;
 	if (which_function == 5)
-		comm->func = &outp_redir;
+		comm->func = &outp_redir_append;
 	return ;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/11 14:30:35 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:29:45 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int		ft_pipe(t_comm *command, t_env *env);
 int		is_pipe(char *str);
 int		function(t_comm *command, t_env *env);
 int		where_is_pipe(char *str);
+int		outp_redir_append(t_comm *comm, t_env *env);
 
 int		get_quote_len(char *string);
 char	**read_line(char *string);
