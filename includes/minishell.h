@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/07 04:23:32 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/11 14:30:35 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	add_command(t_comm *first, t_comm *command);
 void	ft_exit(t_comm *comm);
 void	sig_handler_2(int sig);
 char	*ft_itoa(int n);
-void	here_doc(char *string);
 
 int		is_space(char chara);
 int		is_alpha(char chara);
@@ -84,10 +83,11 @@ int		get_final_len(char *string, t_env *env, int len);
 int		ft_strncmp(char *s1, char *s2, int len);
 int		duplicate_var(char *str_to, char *str_from, t_env *env);
 char	**list_to_array(t_env *list);
-char	*replace_dollars(char *base_str, t_env *env);
+char	*replace_dollars(char *base_str, t_env *env, int len);
 int		get_variable_len(t_env var);
 void	replace_comm(t_comm *comm, t_env *env);
 int		is_p_redi(char *c);
 void	empty(int sig);
-
+int		outp_redir(t_comm *comm, t_env *env);
+int	here_doc(t_comm *comm, t_env *env);
 #endif

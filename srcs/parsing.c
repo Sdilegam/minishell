@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/07 06:00:21 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/11 14:53:08 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*duplicate_word(char *string, int len)
 		{
 			temp = get_quote_len(string + index_from);
 			duplicate_quotes(word + index_to, string + index_from);
-			index_from +=temp + 1;
+			index_from += temp + 1;
 			while (word[index_to])
 				index_to ++;
 		}
@@ -102,6 +102,27 @@ char	**read_line(char *string)
 	return (line);
 }
 
+void	set_comm(char *chara, t_comm *comm)
+{
+	char	which_function;
+
+	which_function = is_p_redi(chara);
+	if (which_function == 0)
+		comm->func = &function;
+	if (which_function == 1)
+		comm->func = &ft_pipe;
+	if (which_function == 2)
+		comm->func = &outp_redir;
+	// if (which_function == 3)
+	// 	comm->func = &pipe;
+	if (which_function == 4)
+		comm->func = &here_doc;
+	if (which_function == 5)
+		comm->func = &outp_redir;
+	return ;
+}
+
+
 t_comm	*parse_parameters(char *string, t_env *env)
 {
 	t_comm	*command;
@@ -109,19 +130,17 @@ t_comm	*parse_parameters(char *string, t_env *env)
 	char *temp;
 	int		i;
 
-	temp = replace_dollars(string, env);
-	free(string);
-	string = temp;
-	command = create_command(read_line(string));
+	i = where_is_pipe(string);
+	temp = replace_dollars(string, env, i);
+	command = create_command(read_line(temp));
+	free (temp);
 	if (!*(command->parameters))
 		return (0);
-	i = where_is_pipe(string);
-	command->func = &function;
+	set_comm(string + i, command);
 	cursor = command;
-	while (i)
+	while (string[i])
 	{
-		string += i + 1;
-		cursor->func = &ft_pipe;
+		string += i + 2;
 		add_command(command, create_command(read_line(string)));
 		if (!*(cursor->next->parameters))
 			return (0);

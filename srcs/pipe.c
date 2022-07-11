@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:44:43 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/06 15:24:04 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/11 14:35:21 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	where_is_pipe(char *str)
 	{
 		if (str[i] == '\'' || str[i] == '"')
 			i += get_quote_len(str + i);
-		if (str[i] == '|')
+		if (is_p_redi(str + i) != 0)
 			return (i);
 	}
-	return (0);
+	return (ft_strlen(str));
 }
 
 static void	pipe2(int fd[2], pid_t pid, t_comm *comm, t_env *env)
