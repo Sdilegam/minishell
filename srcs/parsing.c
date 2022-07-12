@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/12 16:03:19 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/12 16:05:34 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ t_comm	*parse_parameters(char *string, t_env *env)
 {
 	t_comm	*command;
 	t_comm	*cursor;
-	char *temp;
+	char	*temp;
 	int		i;
 
 	i = where_is_pipe(string);

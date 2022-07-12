@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/12 16:26:12 by abkasmi           #+#    #+#             */
+/*   Updated: 2022/07/12 16:26:23 by abkasmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	handle_var(char *string, char *var)
@@ -32,7 +44,6 @@ int	handle_var(char *string, char *var)
 	}
 	return (count);
 }
-
 
 int	main(int argc, char *argv[])
 {
@@ -76,4 +87,3 @@ int	main(int argc, char *argv[])
 	printf ("count: %d\n", count);
 	return (0);
 }
-

@@ -6,7 +6,7 @@
 #    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/07/12 15:53:48 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/07/12 16:27:55 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,15 +40,14 @@ OBJS = $(SRCS:.c=.o)
 
 LIBRARY = ft_printf/libftprintf.a
 
-LDFLAGS = readline-lib/libreadline.a readline-lib/libhistory.a
+#LDFLAGS = readline-lib/libreadline.a readline-lib/libhistory.a
+#LDFLAGS += -ltermcap
+LDFLAGS = -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
 LDFLAGS += $(LIBRARY) 
-LDFLAGS += -ltermcap
 
-# LDFLAGS = -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
 
 CFLAGS = -Wall -Werror -Wextra
-CFLAGS += -I ./includes/
-CFLAGS += -I ./readline-lib/
+CFLAGS += -I ./includes/ -I ~/.brew/opt/readline/include
 
 all : $(LIBRARY) $(NAME) 
 
