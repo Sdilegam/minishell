@@ -6,7 +6,7 @@
 #    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/06 17:28:09 by abkasmi           #+#    #+#              #
-#    Updated: 2022/05/26 08:59:28 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/07/12 17:52:00 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,18 +20,18 @@ NAME = libftprintf.a
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-			ar rc $(NAME) $(OBJS)
-			ranlib $(NAME)
+			@ ar rc $(NAME) $(OBJS)
+			@ ranlib $(NAME)
 
 .c.o:
-		gcc -Wall -Werror -Wextra -c $< -o $(<:.c=.o)
+		@ gcc -Wall -Werror -Wextra -c $< -o $(<:.c=.o)
 
 clean:
-		rm -f $(OBJS)
+		@ rm -f $(OBJS)
 
 fclean:	clean
-		rm -f $(NAME)
+		@ rm -f $(NAME)
 
-re:		fclean all
+re:		@ fclean all
 
 .PHONY:		all clean fclean re
