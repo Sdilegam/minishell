@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 01:11:30 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/29 13:35:16 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/07 10:56:30 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_ok(char chara)
 	if (('a' <= chara && chara <= 'z') || \
 	('A' <= chara && chara <= 'Z') || \
 	('0' <= chara && chara <= '9') || \
-	(chara == '_'))
+	(chara == '_') || chara == '=')
 		return (1);
 	return (0);
 }

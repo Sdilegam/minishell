@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/11 17:31:03 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/12 16:03:19 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	count_words(char *string)
 			i++;
 	}
 	return (count);
-	
 }
 
 char	**read_line(char *string)
@@ -87,7 +86,8 @@ char	**read_line(char *string)
 	{	
 		while (is_space(string[i]) && string[i] && is_p_redi(string + i) == 0)
 			i++;
-		while (!is_space(string[i + temp]) && string[i + temp] && is_p_redi(string + i) == 0)
+		while (!is_space(string[i + temp]) && string[i + temp]
+			&& is_p_redi(string + i) == 0)
 		{
 			if (string[i + temp] == '\'' || string[i + temp] == '"')
 			{
@@ -113,15 +113,14 @@ void	set_comm(char *chara, t_comm *comm)
 		comm->func = &ft_pipe;
 	if (which_function == 2)
 		comm->func = &outp_redir;
-	// if (which_function == 3)
-	// 	comm->func = &pipe;
+	if (which_function == 3)
+		comm->func = &input_redir;
 	if (which_function == 4)
-		comm->func = &here_doc;
+		comm->func = &ft_delimiter_redir;
 	if (which_function == 5)
 		comm->func = &outp_redir_append;
 	return ;
 }
-
 
 t_comm	*parse_parameters(char *string, t_env *env)
 {

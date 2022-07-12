@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
+#    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/07/04 13:21:36 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/07/12 15:53:48 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCS = 	srcs/main.c\
 		srcs/path.c\
 		srcs/ft_itoa.c\
 		srcs/parse_p_redi.c\
-		#srcs/inpt_redir.c\
+		srcs/input_redir.c\
 
 OBJS = $(SRCS:.c=.o)
 

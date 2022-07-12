@@ -45,6 +45,15 @@ void	sig_handler_2(int sig)
 	return ;
 }
 
+void	sig_exit(int sig)
+{
+	if (sig == SIGINT)
+	{
+		g_status.status = 130;
+		exit(g_status.status);
+	}
+}
+
 void	sig(void)
 {
 	signal(SIGINT, sig_handler_c);

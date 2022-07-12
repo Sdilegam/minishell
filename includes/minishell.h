@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/11 17:29:45 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/12 15:57:12 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	add_command(t_comm *first, t_comm *command);
 void	ft_exit(t_comm *comm);
 void	sig_handler_2(int sig);
 char	*ft_itoa(int n);
+void	sig_exit(int sig);
 
 int		is_space(char chara);
 int		is_alpha(char chara);
@@ -69,6 +70,9 @@ int		is_pipe(char *str);
 int		function(t_comm *command, t_env *env);
 int		where_is_pipe(char *str);
 int		outp_redir_append(t_comm *comm, t_env *env);
+int		input_redir(t_comm *comm, t_env *env);
+int		input_delimiter(t_comm *comm, t_env *env);
+int		ft_delimiter_redir(t_comm *command, t_env *env);
 
 int		get_quote_len(char *string);
 char	**read_line(char *string);
@@ -90,5 +94,5 @@ void	replace_comm(t_comm *comm, t_env *env);
 int		is_p_redi(char *c);
 void	empty(int sig);
 int		outp_redir(t_comm *comm, t_env *env);
-int	here_doc(t_comm *comm, t_env *env);
+int		here_doc(t_comm *comm, t_env *env, int fd[2]);
 #endif
