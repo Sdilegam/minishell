@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 15:52:06 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 16:14:10 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/13 17:39:31 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	input_redir(t_comm *comm, t_env *env)
 		if (file == -1)
 		{
 			write(2, "Bash: ", 7);
-			ft_putstr(comm->next->parameters[0], 2);
+			ft_putstr(comm->next->parameters[1], 2);
 			write(2, ": No such file or directory\n", 29);
 			return (1);
 		}

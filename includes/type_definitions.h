@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:04:56 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/06/29 13:38:17 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/13 17:59:34 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ struct s_global	g_status;
 typedef struct s_global
 {
 	int		status;
+	int		file;
 	pid_t	pid;
 }				t_global;
 

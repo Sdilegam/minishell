@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 15:10:09 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/13 18:10:49 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ char	*ft_itoa(int n);
 void	sig_exit(int sig);
 int		ft_atoi(const char *str);
 int		check_shlvl(t_env *env);
+int		ft_output_redir(t_comm *comm, t_env *env);
+int		ft_output_redir_append(t_comm *comm, t_env *env);
 
 int		is_space(char chara);
 int		is_alpha(char chara);

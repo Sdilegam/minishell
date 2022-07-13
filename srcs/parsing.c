@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/13 13:53:42 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/13 18:11:21 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,13 +110,13 @@ int	(*set_comm(char *chara))(t_comm *comm, t_env *env)
 	if (which_function == 1)
 		return (&ft_pipe);
 	if (which_function == 2)
-		return (&outp_redir);
+		return (&ft_output_redir);
 	if (which_function == 3)
 		return (&input_redir);
 	if (which_function == 4)
 		return (&ft_delimiter_redir);
 	if (which_function == 5)
-		return (&outp_redir_append);
+		return (&ft_output_redir_append);
 	else
 		return (&function);
 }

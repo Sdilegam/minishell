@@ -6,7 +6,7 @@
 #    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/07/13 15:15:49 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/07/13 18:11:57 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = 	srcs/main.c\
 		srcs/parsing.c\
 		srcs/command_list.c\
 		srcs/outp_redir.c\
+		srcs/outp_redir_append.c\
 		srcs/path.c\
 		srcs/ft_itoa.c\
 		srcs/parse_p_redi.c\

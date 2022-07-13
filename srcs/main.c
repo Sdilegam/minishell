@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 16:26:21 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/13 18:11:08 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	main(int ac, char *av[], char *envp[])
 	(void)av;
 	print_header();
 	g_status.status = 0;
+	g_status.file = -1;
 	env = set_env(envp);
 	check_shlvl(env);
 	while (1)
