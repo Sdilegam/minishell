@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 16:08:52 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/13 16:21:09 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,20 @@ int	builtins_commands(t_comm *command, t_env *env)
 	return (0);
 }
 
+void	exec(t_comm *command, t_env *env)
+{
+	if (execve(command->parameters[0], command->parameters,
+			list_to_array(env)) == -1)
+	{
+		ft_putstr("minishell: ", 2);
+		ft_putstr(command->parameters[0], 2);
+		perror(": ");
+		if (errno != 2)
+			exit(126);
+		exit (127);
+	}
+}
+
 int	function(t_comm *command, t_env *env)
 {
 	pid_t	pid;
@@ -46,16 +60,7 @@ int	function(t_comm *command, t_env *env)
 		if (pid == 0)
 		{	
 			replace_comm(command, env);
-			if (execve(command->parameters[0], command->parameters,
-					list_to_array(env)) == -1)
-			{
-				ft_putstr("minishell: ", 2);
-				ft_putstr(command->parameters[0], 2);
-				perror(": ");
-				if (errno != 2)
-					exit(126);
-				exit (127);
-			}
+			exec(command, env);
 		}
 		else
 		{
