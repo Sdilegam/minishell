@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/12 16:05:34 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/13 13:53:42 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,24 +102,23 @@ char	**read_line(char *string)
 	return (line);
 }
 
-void	set_comm(char *chara, t_comm *comm)
+int	(*set_comm(char *chara))(t_comm *comm, t_env *env)
 {
 	char	which_function;
 
 	which_function = is_p_redi(chara);
-	if (which_function == 0)
-		comm->func = &function;
 	if (which_function == 1)
-		comm->func = &ft_pipe;
+		return (&ft_pipe);
 	if (which_function == 2)
-		comm->func = &outp_redir;
+		return (&outp_redir);
 	if (which_function == 3)
-		comm->func = &input_redir;
+		return (&input_redir);
 	if (which_function == 4)
-		comm->func = &ft_delimiter_redir;
+		return (&ft_delimiter_redir);
 	if (which_function == 5)
-		comm->func = &outp_redir_append;
-	return ;
+		return (&outp_redir_append);
+	else
+		return (&function);
 }
 
 t_comm	*parse_parameters(char *string, t_env *env)
@@ -127,6 +126,7 @@ t_comm	*parse_parameters(char *string, t_env *env)
 	t_comm	*command;
 	t_comm	*cursor;
 	char	*temp;
+	int		(*temp_func)(struct s_comm *first, struct s_env *env);
 	int		i;
 
 	i = where_is_pipe(string);
@@ -135,7 +135,7 @@ t_comm	*parse_parameters(char *string, t_env *env)
 	free (temp);
 	if (!*(command->parameters))
 		return (0);
-	set_comm(string + i, command);
+	temp_func = set_comm(string + i);
 	cursor = command;
 	while (string[i])
 	{
@@ -144,8 +144,9 @@ t_comm	*parse_parameters(char *string, t_env *env)
 		if (!*(cursor->next->parameters))
 			return (0);
 		cursor = cursor->next;
-		cursor->func = &function;
+		cursor->func = temp_func;
 		i = where_is_pipe(string);
+		temp_func = set_comm(string + i);
 	}
 	return (command);
 }

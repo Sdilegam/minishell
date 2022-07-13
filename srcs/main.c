@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 16:21:09 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/13 16:26:21 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,11 @@ int	main(int ac, char *av[], char *envp[])
 		signal(SIGINT, sig_handler_2);
 		signal(SIGQUIT, sig_handler_2);
 		if (comm)
+		{
+			while (comm->next)
+				comm = comm->next;
 			comm->func(comm, env);
+		}
 		wait(NULL);
 	}
 	rl_clear_history();

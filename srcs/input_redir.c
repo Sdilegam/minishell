@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 15:52:06 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 12:12:42 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/13 16:14:10 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	input_redir(t_comm *comm, t_env *env)
 		return (1);
 	if (pid == 0)
 	{
-		file = open(comm->next->parameters[0], O_RDONLY);
+		file = open(comm->parameters[0], O_RDONLY);
 		if (file == -1)
 		{
 			write(2, "Bash: ", 7);
@@ -32,7 +32,7 @@ int	input_redir(t_comm *comm, t_env *env)
 		}
 		dup2(file, STDIN_FILENO);
 		close(file);
-		function(comm, env);
+		comm->previous->func(comm->previous, env);
 		exit(0);
 	}
 	return (0);
