@@ -6,7 +6,7 @@
 #    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/07/12 18:15:11 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/07/12 18:17:53 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,14 +70,15 @@ $(LIBRARY) :
 
 $(NAME) : ${OBJS_DIR} $(OBJS)
 	@ echo "\r\033[KSuccessfully found objects files. (\033[1;32m${notdir ${OBJS}}\033[m)"
-	@cc $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+	@ cc $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+	@ sleep 0.3
 	@ echo "Executable successfully created: \"\033[1;32m${NAME}\033[m\"."
 
 clean :
 	@ make -C $(dir $(LIBRARY)) clean
 	@ echo "\rRemoving objects files (${notdir ${OBJS}}).\033[K\c"
 	@ rm -rf ${OBJS} 
-	@ sleep 1
+	@ sleep 0.3
 	@ echo "\r\033[KRemoved objects files. (\033[1;31m${notdir ${OBJS}}\033[m)"
 
 fclean : clean
