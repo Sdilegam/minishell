@@ -6,9 +6,10 @@
 #    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/07/13 15:11:03 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/07/13 15:15:49 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = minishell
 OBJS_DIR = objects/
@@ -72,14 +73,15 @@ $(LIBRARY) :
 
 $(NAME) : ${OBJS_DIR} $(OBJS)
 	@ echo "\r\033[KSuccessfully found objects files. (\033[1;32m${notdir ${OBJS}}\033[m)"
-	@cc $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+	@ cc $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+	@ sleep 0.3
 	@ echo "Executable successfully created: \"\033[1;32m${NAME}\033[m\"."
 
 clean :
 	@ make -C $(dir $(LIBRARY)) clean
 	@ echo "\rRemoving objects files (${notdir ${OBJS}}).\033[K\c"
 	@ rm -rf ${OBJS} 
-	@ sleep 1
+	@ sleep 0.3
 	@ echo "\r\033[KRemoved objects files. (\033[1;31m${notdir ${OBJS}}\033[m)"
 
 fclean : clean

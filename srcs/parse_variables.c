@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:04:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/11 14:15:58 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:19:42 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,29 @@ int	get_variable_len(t_env var)
 
 int	duplicate_var(char *str_to, char *str_from, t_env *env)
 {
-	int		index_to;
 	int		index_from;
 	int		temp;
 	t_env	*var;
+	char	*errcode;
 
-	index_to = 0;
-	index_from = 0;
+	index_from = -1;
 	temp = 0;
 	while (str_from[temp] && !is_space(str_from[temp]) && str_from[temp] != '"'  && str_from[temp] != '\'')
 		temp++;
 	var = search_variable(env, str_from, temp);
+	if (ft_strncmp(str_from, "?", temp) == 0)
+	{
+		errcode = ft_itoa(g_status.status >> 8);
+		while (errcode[++index_from])
+			str_to [index_from] = errcode [index_from];
+		free(errcode);
+	}
 	if (var)
 	{
-		while (var->content[index_from])
-		{
-			str_to[index_to] = var->content[index_from];
-			index_to ++;
-			index_from ++;
-		
-		}
+		while (var->content[++index_from])
+			str_to[index_from] = var->content[index_from];
 	}
-	return (index_to);
+	return (index_from);
 }
 int	count_p_redi(char *string)
 {
@@ -68,6 +69,20 @@ int	count_p_redi(char *string)
 			count++;
 	return (count * 2);
 }
+
+int	get_errcode(char *string)
+{
+	int		index;
+	char	*errcode;
+
+	index = -1;
+	errcode = ft_itoa(g_status.status << 8);
+	while (errcode[++index])
+		string [index] = errcode [index];
+	free(errcode);
+	return (index);
+}
+
 
 int	get_final_len(char *string, t_env *env, int len)
 {
@@ -94,13 +109,13 @@ int	get_final_len(char *string, t_env *env, int len)
 			string[index + temp] != '"' && string[index + temp] != '\'')
 				temp++;
 			var = search_variable(env, string + index + 1, temp - 1);
-			if (var)
-			{
-				index += ft_strlen(var->var) + 1;
+			if (ft_strncmp(string + index + 1, "?", temp - 1) == 0)
+				final_len += ft_strlen(ft_itoa(g_status.status)) - 2;
+			else if (var)
 				final_len += get_variable_len(*var) - 1 + count_p_redi(var->content);
-			}
 			else
 				final_len -= temp;
+			index += temp;
 		}
 	}
 	return (index + final_len);
@@ -140,6 +155,6 @@ char	*replace_dollars(char *base_str, t_env *env, int len)
 		if (base_str[index_from])
 			str_to [++index_to] = base_str[index_from];
 	}
-	str_to[len] = '\0';
+	str_to[++index_to] = '\0';
 	return (str_to);
 }
