@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:30:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/12 15:58:47 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/13 15:10:11 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	here_doc(t_comm *comm, t_env *env, int fd[2])
 		signal(SIGINT, sig_exit);
 		signal(SIGQUIT, SIG_IGN);
 		fd_temp = dup(STDOUT_FILENO);
-		string = comm->next->parameters[0];
+		string = comm->parameters[0];
 		temp = NULL;
 		if (rd_line_here_doc(string, fd_temp, fd, temp) == 1)
 			return (1);
@@ -70,12 +70,11 @@ static void	pipe3(int fd[2], pid_t pid, t_comm *comm, t_env *env)
 	if (pid == 0)
 	{
 		(void)env;
-		signal(SIGINT, empty);
 		signal(SIGQUIT, empty);
 		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
 		close(fd[0]);
-		function(comm, env);
+		comm->previous->func(comm->previous, env);
 		wait(&g_status.status);
 		exit(WEXITSTATUS(g_status.status));
 	}
@@ -104,6 +103,7 @@ int	ft_delimiter_redir(t_comm *command, t_env *env)
 	if (pid[0] == -1)
 		return (1);
 	pipe2(fd, pid[0], command, env);
+	signal(SIGINT, sig_exit);
 	wait(0);
 	pid[1] = fork();
 	if (pid[1] == -1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:44:43 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/12 16:03:40 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/13 14:18:28 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	pipe2(int fd[2], pid_t pid, t_comm *comm, t_env *env)
 		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[1]);
-		function(comm, env);
+		comm->previous->func(comm->previous, env);
 		wait(&g_status.status);
 		exit (WEXITSTATUS(g_status.status));
 	}
@@ -57,7 +57,7 @@ static void	pipe3(int fd[2], pid_t pid, t_comm *comm, t_env *env)
 		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
 		close(fd[0]);
-		comm->next->func(comm->next, env);
+		function(comm, env);
 		wait(&g_status.status);
 		exit(WEXITSTATUS(g_status.status));
 	}

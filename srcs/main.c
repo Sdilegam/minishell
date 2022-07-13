@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/12 16:02:13 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/13 16:12:06 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	function(t_comm *command, t_env *env)
 		if (pid == 0)
 		{	
 			replace_comm(command, env);
-			if (execve(command->parameters[0], command->parameters,
+			if (execve("command->parameters[0]", command->parameters,
 					list_to_array(env)) == -1)
 			{
 				ft_printf("minishell: %s: command not found\n",
@@ -100,7 +100,11 @@ int	main(int ac, char *av[], char *envp[])
 		signal(SIGINT, sig_handler_2);
 		signal(SIGQUIT, sig_handler_2);
 		if (comm)
+		{
+			while (comm->next)
+				comm = comm->next;
 			comm->func(comm, env);
+		}
 		wait(NULL);
 	}
 	rl_clear_history();
