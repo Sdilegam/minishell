@@ -6,12 +6,12 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:48:08 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 13:19:33 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/13 15:46:27 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <sys/errno.h>
+
 int	outp_redir(t_comm *comm, t_env *env)
 {
 	int		file;

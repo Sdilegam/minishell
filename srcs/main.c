@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 15:03:05 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/13 16:08:52 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,11 @@ int	function(t_comm *command, t_env *env)
 			if (execve(command->parameters[0], command->parameters,
 					list_to_array(env)) == -1)
 			{
-				ft_printf("minishell: %s: command not found\n",
-					command->parameters[0]);
+				ft_putstr("minishell: ", 2);
+				ft_putstr(command->parameters[0], 2);
+				perror(": ");
+				if (errno != 2)
+					exit(126);
 				exit (127);
 			}
 		}
@@ -94,10 +97,12 @@ int	main(int ac, char *av[], char *envp[])
 		if (!rl)
 		{
 			free(env);
+			//system("leaks minishell");
 			exit(0);
 		}
 		add_history(rl);
 		comm = parse_parameters(rl, env);
+		free(rl);
 		signal(SIGINT, sig_handler_2);
 		signal(SIGQUIT, sig_handler_2);
 		if (comm)
