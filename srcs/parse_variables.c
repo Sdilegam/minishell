@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_variables.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:04:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/13 12:19:42 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/13 19:06:16 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	duplicate_var(char *str_to, char *str_from, t_env *env)
 
 	index_from = -1;
 	temp = 0;
-	while (str_from[temp] && !is_space(str_from[temp]) && str_from[temp] != '"'  && str_from[temp] != '\'')
+	while (str_from[temp] && !is_space(str_from[temp])
+		&& str_from[temp] != '"' && str_from[temp] != '\'')
 		temp++;
 	var = search_variable(env, str_from, temp);
 	if (ft_strncmp(str_from, "?", temp) == 0)
@@ -57,6 +58,7 @@ int	duplicate_var(char *str_to, char *str_from, t_env *env)
 	}
 	return (index_from);
 }
+
 int	count_p_redi(char *string)
 {
 	int	index;
@@ -83,44 +85,6 @@ int	get_errcode(char *string)
 	return (index);
 }
 
-
-int	get_final_len(char *string, t_env *env, int len)
-{
-	int		index;
-	int		final_len;
-	int		temp;
-	t_env	*var;
-	char	quote;
-
-	index = -1;
-	final_len = 0;
-	quote = 0;
-	while (++index < len)
-	{
-		if (string[index] == '\'' && quote % 2 == 0)
-			if (get_quote_len(string + index) != -1)
-				index += get_quote_len(string + index);
-		if (string[index] == '"')
-			quote ++;
-		if (string[index] == '$')
-		{
-			temp = 0;
-			while (string[index + temp] && !is_space(string[index + temp]) && \
-			string[index + temp] != '"' && string[index + temp] != '\'')
-				temp++;
-			var = search_variable(env, string + index + 1, temp - 1);
-			if (ft_strncmp(string + index + 1, "?", temp - 1) == 0)
-				final_len += ft_strlen(ft_itoa(g_status.status)) - 2;
-			else if (var)
-				final_len += get_variable_len(*var) - 1 + count_p_redi(var->content);
-			else
-				final_len -= temp;
-			index += temp;
-		}
-	}
-	return (index + final_len);
-}
-
 char	*replace_dollars(char *base_str, t_env *env, int len)
 {
 	int		index_to;
@@ -139,17 +103,19 @@ char	*replace_dollars(char *base_str, t_env *env, int len)
 		if (base_str[index_from] == '\'' && quote % 2 == 0)
 		{
 			str_to[++index_to] = '\'';
-			duplicate_quotes(str_to + index_to +1, base_str+index_from);
-			index_to += get_quote_len(base_str+index_from) -1;
+			duplicate_quotes(str_to + index_to +1, base_str + index_from);
+			index_to += get_quote_len(base_str + index_from) - 1;
 			str_to[++index_to] = '\'';
-			index_from += get_quote_len(base_str+index_from) + 1;
+			index_from += get_quote_len(base_str + index_from) + 1;
 		}
 		if (base_str[index_from] == '"')
 			quote ++;
 		if (base_str [index_from] == '$')
 		{
-			index_to += duplicate_var(str_to + index_to + 1, base_str + index_from + 1, env);
-			while (!is_space(base_str[index_from]) && base_str[index_from] && base_str[index_from] != '"' && base_str[index_from] != '\'')
+			index_to += duplicate_var(str_to + index_to + 1,
+					base_str + index_from + 1, env);
+			while (!is_space(base_str[index_from]) && base_str[index_from]
+				&& base_str[index_from] != '"' && base_str[index_from] != '\'')
 				index_from++;
 		}
 		if (base_str[index_from])

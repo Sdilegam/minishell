@@ -6,7 +6,7 @@
 #    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/07/13 18:11:57 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/07/13 19:43:16 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,9 @@ SRCS = 	srcs/main.c\
 		srcs/builtins/exit.c\
 		srcs/check_shlvl.c\
 		srcs/atoi.c\
+		srcs/path2.c\
+		srcs/get_final_len.c\
+		srcs/ft_calloc.c\
 
 OBJS = ${addprefix ${OBJS_DIR}, ${notdir ${SRCS:.c=.o}}}
 

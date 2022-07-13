@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 18:10:49 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/13 19:32:50 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int		ft_atoi(const char *str);
 int		check_shlvl(t_env *env);
 int		ft_output_redir(t_comm *comm, t_env *env);
 int		ft_output_redir_append(t_comm *comm, t_env *env);
+char	*ft_strncpy(char *source, int len);
+void	change_comm(char *path, t_comm *comm);
 
 int		is_space(char chara);
 int		is_alpha(char chara);
@@ -74,6 +76,8 @@ int		outp_redir_append(t_comm *comm, t_env *env);
 int		input_redir(t_comm *comm, t_env *env);
 int		input_delimiter(t_comm *comm, t_env *env);
 int		ft_delimiter_redir(t_comm *command, t_env *env);
+int		count_p_redi(char *string);
+void	*ft_calloc(size_t nmemb, size_t size);
 
 int		get_quote_len(char *string);
 char	**read_line(char *string);
