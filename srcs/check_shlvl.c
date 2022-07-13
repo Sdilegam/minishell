@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_redir.c                                      :+:      :+:    :+:   */
+/*   check_shlvl.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 15:52:06 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 12:12:42 by abkasmi          ###   ########.fr       */
+/*   Created: 2022/07/13 14:25:14 by abkasmi           #+#    #+#             */
+/*   Updated: 2022/07/13 15:10:50 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	input_redir(t_comm *comm, t_env *env)
+int	check_shlvl(t_env *env)
 {
-	int		file;
-	pid_t	pid;
+	int		lvl;
+	char	*lvl2;
 
-	pid = fork();
-	if (pid == -1)
+	if (!env)
 		return (1);
-	if (pid == 0)
+	while (env)
 	{
-		file = open(comm->next->parameters[0], O_RDONLY);
-		if (file == -1)
+		if (ft_strcmp("SHLVL", env->var) == 0 && env->var)
 		{
-			write(2, "Bash: ", 7);
-			ft_putstr(comm->next->parameters[0], 2);
-			write(2, ": No such file or directory\n", 29);
-			return (1);
+			lvl = ft_atoi(env->content);
+			lvl += 1;
+			free(env->content);
+			lvl2 = ft_itoa(lvl);
+			env->content = malloc(sizeof(char) * ft_strlen(lvl2) + 1);
+			if (!env->content)
+			{
+				free(env->var);
+				return (1);
+			}
+			env->content = lvl2;
+			return (0);
 		}
-		dup2(file, STDIN_FILENO);
-		close(file);
-		function(comm, env);
-		exit(0);
+		env = env->next;
 	}
 	return (0);
 }

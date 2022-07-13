@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:02:11 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/06 15:27:11 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/13 14:23:02 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,7 @@ char	*ft_cpy_content(char *str)
 		exit (1);
 	j = 0;
 	while (str[temp])
-	{
-		content[j] = str[temp];
-		temp++;
-		j++;
-	}
+		content[j++] = str[temp++];
 	content[j] = '\0';
 	return (content);
 }
@@ -104,6 +100,8 @@ t_env	*set_env(char **envp)
 
 	i = 0;
 	j = 0;
+	if (!*envp)
+		return (newnode(NULL, NULL));
 	while (envp[j])
 		j++;
 	var.name = ft_cpy_name(envp[i]);

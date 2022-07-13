@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:34:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/07 05:07:35 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:07:59 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ int	ft_strncmp(char *s1, char *s2, int n)
 	return ((unsigned char) s1[index] - (unsigned char) s2[index]);
 }
 
-void	ft_putstr(char *str)
+void	ft_putstr(char *str, int fd)
 {
 	int	i;
 
 	i = -1;
 	while (str[++i])
-		write(1, &str[i], 1);
+		write(fd, &str[i], 1);
 }
 
 int	ft_strlen(char *str)
