@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
+#    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/07/12 18:17:53 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/07/13 15:15:49 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = minishell
 OBJS_DIR = objects/
@@ -35,6 +36,8 @@ SRCS = 	srcs/main.c\
 		srcs/builtins/export.c\
 		srcs/builtins/unset.c\
 		srcs/builtins/exit.c\
+		srcs/check_shlvl.c\
+		srcs/atoi.c\
 
 OBJS = ${addprefix ${OBJS_DIR}, ${notdir ${SRCS:.c=.o}}}
 

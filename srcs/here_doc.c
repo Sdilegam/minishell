@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:30:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/13 15:10:11 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/13 16:13:35 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,10 @@ int	ft_delimiter_redir(t_comm *command, t_env *env)
 	if (pid[0] == -1)
 		return (1);
 	pipe2(fd, pid[0], command, env);
-	signal(SIGINT, sig_exit);
+	g_status.status = 0;
 	wait(0);
+	if (g_status.status == 130 << 8)
+		return (1);
 	pid[1] = fork();
 	if (pid[1] == -1)
 		return (1);

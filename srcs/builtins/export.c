@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 01:11:30 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/07 10:56:30 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/13 13:31:54 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,21 @@ int	export_error(char *str)
 
 	index = 0;
 	if (('0' <= str[0] && str[0] <= '9') || str[index] == '=')
-		return (ft_printf("export : %s: not a valid identifier\n", str));
+	{
+		ft_putstr("export: ", 2);
+		ft_putstr(str, 2);
+		ft_putstr(": not a valid identifier\n", 2);
+		return (1);
+	}
 	while (str[index] && str[index] != '=')
 	{
 		if (!is_ok(str[index]))
-			return (ft_printf("export : %s: not a valid identifier\n", str));
+		{
+			ft_putstr("export: ", 2);
+			ft_putstr(str, 2);
+			ft_putstr(": not a valid identifier\n", 2);
+			return (1);
+		}
 		index++;
 	}
 	return (0);

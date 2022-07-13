@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 14:14:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 13:33:46 by abkasmi          ###   ########.fr       */
+/*   Created: 2022/07/13 15:04:38 by abkasmi           #+#    #+#             */
+/*   Updated: 2022/07/13 15:05:31 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env(t_env *env, char **str)
+int	ft_atoi(const char *str)
 {
-	t_env	*curr;
+	int	i;
+	int	num;
+	int	signe;
 
-	if (str[1])
+	i = 0;
+	signe = 1;
+	num = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		ft_putstr("env: ", 2);
-		ft_putstr(str[1], 2);
-		ft_putstr(": No such file or directory\n", 2);
-		g_status.status = 127;
-		return ;
+		if (str[i] == '-')
+			signe = -signe;
+		i++;
 	}
-	curr = env;
-	while (curr)
-	{
-		if (curr->var != NULL)
-			ft_printf("%s=%s\n", curr->var, curr->content);
-		curr = curr->next;
-	}
-	g_status.status = 0;
+	num = (num * 10) + (str[i] - 48);
+	return (num * signe);
 }

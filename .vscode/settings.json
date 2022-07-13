@@ -19,6 +19,7 @@
 		"*.tcc": "c",
 		"istream": "c",
 		"utility": "c",
+		"sstream": "c",
 		"iosfwd": "c"
 	}
 }

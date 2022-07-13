@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/12 16:41:26 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/13 15:10:09 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ t_comm	*create_command(char **parameters);
 t_comm	*parse_parameters(char *string, t_env *env);
 
 void	print_header(void);
-void	ft_cd(char **path);
-void	ft_putstr(char *str);
+t_env	*ft_cd(char **path, t_env *env);
+void	ft_putstr(char *str, int fd);
 void	ft_pwd(void);
 void	ft_env(t_env *env, char **str);
 void	print_env(t_env *env, int p);
@@ -51,6 +51,8 @@ void	ft_exit(t_comm *comm);
 void	sig_handler_2(int sig);
 char	*ft_itoa(int n);
 void	sig_exit(int sig);
+int		ft_atoi(const char *str);
+int		check_shlvl(t_env *env);
 
 int		is_space(char chara);
 int		is_alpha(char chara);

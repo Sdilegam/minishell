@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 11:12:25 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/11 16:43:07 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/13 13:34:41 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 void	ft_exit(t_comm *comm)
 {
-// 	int	i;
-
-// 	i = -1;
 	if (comm->parameters[1])
 	{
 		write(1, "exit\n", 6);
-		ft_printf("export : %s: numeric argument required\n",
-			comm->parameters[1]);
+		ft_putstr("exit: ", 2);
+		ft_putstr(comm->parameters[1], 2);
+		ft_putstr(": numeric argument required\n", 2);
 		g_status.status = 2;
 		exit(g_status.status);
 	}

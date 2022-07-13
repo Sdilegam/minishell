@@ -49,7 +49,7 @@ void	sig_exit(int sig)
 {
 	if (sig == SIGINT)
 	{
-		g_status.status = 130;
+		g_status.status = 130 << 8;
 		exit(g_status.status);
 	}
 }

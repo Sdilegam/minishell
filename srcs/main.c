@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 16:12:06 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/13 16:14:24 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	builtins_commands(t_comm *command, t_env *env)
 	if (ft_strcmp(command->parameters[0], "echo") == 0)
 		ft_echo(command->parameters);
 	else if (ft_strcmp(command->parameters[0], "cd") == 0)
-		ft_cd(command->parameters);
+		env = ft_cd(command->parameters, env);
 	else if (ft_strcmp(command->parameters[0], "pwd") == 0)
 	{
-		ft_putstr(getcwd(NULL, 0));
-		ft_putstr("\n");
+		ft_putstr(getcwd(NULL, 0), 1);
+		ft_putstr("\n", 1);
 	}
 	else if (ft_strcmp(command->parameters[0], "env") == 0)
 		ft_env(env, command->parameters);
@@ -49,8 +49,11 @@ int	function(t_comm *command, t_env *env)
 			if (execve("command->parameters[0]", command->parameters,
 					list_to_array(env)) == -1)
 			{
-				ft_printf("minishell: %s: command not found\n",
-					command->parameters[0]);
+				ft_putstr("minishell: ", 2);
+				ft_putstr(command->parameters[0], 2);
+				perror(": ");
+				if (errno != 2)
+					exit(126);
 				exit (127);
 			}
 		}
@@ -79,6 +82,7 @@ int	main(int ac, char *av[], char *envp[])
 	print_header();
 	g_status.status = 0;
 	env = set_env(envp);
+	check_shlvl(env);
 	while (1)
 	{
 		sig();
@@ -93,10 +97,12 @@ int	main(int ac, char *av[], char *envp[])
 		if (!rl)
 		{
 			free(env);
+			//system("leaks minishell");
 			exit(0);
 		}
 		add_history(rl);
 		comm = parse_parameters(rl, env);
+		free(rl);
 		signal(SIGINT, sig_handler_2);
 		signal(SIGQUIT, sig_handler_2);
 		if (comm)
