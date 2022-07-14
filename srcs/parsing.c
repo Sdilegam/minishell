@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 13:07:46 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:47:47 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*duplicate_word(char *string, int len)
 
 	index_to = 0;
 	index_from = 0;
-	word = calloc(sizeof(char), len - count_quotes(string, len) + 1);
+	word = ft_calloc(sizeof(char), len - count_quotes(string, len) + 1);
 	while (index_from < len)
 	{
 		if ((string [index_from] == '\'' || string [index_from] == '"'))
@@ -122,11 +122,11 @@ int	(*set_comm(char *chara))(t_comm *comm, t_env *env)
 
 int	get_redi_len(int (*temp_func)(struct s_comm *first, struct s_env *env))
 {
-	if (temp_func == &ft_pipe || temp_func == &ft_output_redir || temp_func == &input_redir)
+	if (temp_func == &ft_pipe || temp_func == &ft_output_redir
+		|| temp_func == &input_redir)
 		return (1);
 	return (2);
 }
-
 
 t_comm	*parse_parameters(char *string, t_env *env)
 {

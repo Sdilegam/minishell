@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:31:33 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 01:37:53 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:44:10 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strncpy(char *source, int len)
 	if (!source)
 		return (NULL);
 	index = -1;
-	copy = calloc(len + 1, sizeof(char));
+	copy = ft_calloc(len + 1, sizeof(char));
 	while (++index != len)
 	{
 		copy[index] = source[index];
@@ -38,7 +38,7 @@ void	change_comm(char *path, t_comm *comm)
 	index = -1;
 	path_len = ft_strlen(path);
 	comm_len = ft_strlen(comm->parameters[0]);
-	temp = calloc (path_len + 1 + comm_len + 1, sizeof(char));
+	temp = ft_calloc (path_len + 1 + comm_len + 1, sizeof(char));
 	while (path[++index])
 		temp [index] = path[index];
 	temp [index] = '/';

@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 10:42:35 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 14:02:21 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_comm	*create_command(char **parameters);
 t_comm	*parse_parameters(char *string, t_env *env);
 
 void	print_header(void);
-t_env	*ft_cd(char **path, t_env *env);
+t_env	*ft_cd(char **path, t_env *env, t_comm *comm);
 void	ft_putstr(char *str, int fd);
 void	ft_pwd(void);
 void	ft_env(t_env *env, char **str);
@@ -57,6 +57,7 @@ int		ft_output_redir(t_comm *comm, t_env *env);
 int		ft_output_redir_append(t_comm *comm, t_env *env);
 char	*ft_strncpy(char *source, int len);
 void	change_comm(char *path, t_comm *comm);
+void	ft_free_malloc_err(t_env *env, t_comm *comm);
 
 int		is_space(char chara);
 int		is_alpha(char chara);
@@ -78,6 +79,12 @@ int		input_delimiter(t_comm *comm, t_env *env);
 int		ft_delimiter_redir(t_comm *command, t_env *env);
 int		count_p_redi(char *string);
 void	*ft_calloc(size_t nmemb, size_t size);
+void	ft_free_all(t_env *env, t_comm *comm);
+void	comm_loop(t_comm *comm, t_env *env);
+void	header(void);
+void	check_rl(char *rl, t_env *env);
+void	sig2(void);
+void	init_var(void);
 
 int		get_quote_len(char *string);
 char	**read_line(char *string);

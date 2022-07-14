@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_final_len.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:36:36 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 11:25:34 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 13:06:28 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	get_final_len(char *string, t_env *env, int len)
 		final_len = len_loop(index, string, final_len, env);
 	return (index + final_len);
 }
-/*
-int	get_final_len(char *string, t_env *env, int len)
+
+/*int	get_final_len(char *string, t_env *env, int len)
 {
 	int		final_len;
 	int		index;

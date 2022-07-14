@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 02:28:33 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 11:30:33 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:47:52 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	get_path_len(char *path)
 	return (len);
 }
 
-
 int	parse_dir(DIR *dir, char *path, t_comm *comm)
 {
 	struct dirent	*directory;
@@ -35,7 +34,6 @@ int	parse_dir(DIR *dir, char *path, t_comm *comm)
 		directory = readdir(dir);
 		while (directory)
 		{
-			// ft_printf("dir: %s\n", directory->d_name);
 			if (ft_strcmp(comm->parameters[0], directory->d_name) == 0)
 			{
 				change_comm(path, comm);

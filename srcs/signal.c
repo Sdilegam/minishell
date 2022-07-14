@@ -66,3 +66,10 @@ void	sig(void)
 	signal(SIGQUIT, SIG_IGN);
 	return ;
 }
+
+void	sig2(void)
+{
+	signal(SIGINT, sig_handler_2);
+	signal(SIGQUIT, sig_handler_2);
+	return ;
+}

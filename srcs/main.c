@@ -6,7 +6,11 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/07/14 13:52:47 by sdi-lega         ###   ########.fr       */
+=======
+/*   Updated: 2022/07/14 13:47:19 by abkasmi          ###   ########.fr       */
+>>>>>>> 857cb59b7978b4fe1368e349e1efae63dfed79f4
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +21,7 @@ int	builtins_commands(t_comm *command, t_env *env)
 	if (ft_strcmp(command->parameters[0], "echo") == 0)
 		ft_echo(command->parameters);
 	else if (ft_strcmp(command->parameters[0], "cd") == 0)
-		env = ft_cd(command->parameters, env);
+		env = ft_cd(command->parameters, env, command);
 	else if (ft_strcmp(command->parameters[0], "pwd") == 0)
 	{
 		ft_putstr(getcwd(NULL, 0), 1);
@@ -91,11 +95,13 @@ int	main(int ac, char *av[], char *envp[])
 	t_comm	*comm;
 	t_env	*env;
 
-	(void)ac;
-	(void)av;
+	if (ac != 1)
+	{
+		ft_printf("bash: %s: No such file or directory\n", av[1]);
+		return (1);
+	}
 	print_header();
-	g_status.status = 0;
-	g_status.file = -1;
+	init_var();
 	env = set_env(envp);
 	check_shlvl(env);
 	while (1)
@@ -131,8 +137,13 @@ int	main(int ac, char *av[], char *envp[])
 		}
 		ft_free_comm(comm);
 		wait(NULL);
+		header();
+		rl = readline("minishell\033[0m$> ");
+		check_rl(rl, env);
+		comm = parse_parameters(rl, env);
+		free(rl);
+		sig2();
+		comm_loop(comm, env);
 	}
-	ft_free_env(env);
-	ft_free_comm(comm);
-	rl_clear_history();
+	ft_free_all(env, comm);
 }
