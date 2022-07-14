@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 13:17:37 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 13:47:19 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	builtins_commands(t_comm *command, t_env *env)
 	if (ft_strcmp(command->parameters[0], "echo") == 0)
 		ft_echo(command->parameters);
 	else if (ft_strcmp(command->parameters[0], "cd") == 0)
-		env = ft_cd(command->parameters, env);
+		env = ft_cd(command->parameters, env, command);
 	else if (ft_strcmp(command->parameters[0], "pwd") == 0)
 	{
 		ft_putstr(getcwd(NULL, 0), 1);
