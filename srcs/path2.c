@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:31:33 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 18:32:13 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 01:37:53 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strncpy(char *source, int len)
 	if (!source)
 		return (NULL);
 	index = -1;
-	copy = calloc(len, sizeof(char));
+	copy = calloc(len + 1, sizeof(char));
 	while (++index != len)
 	{
 		copy[index] = source[index];

@@ -20,24 +20,28 @@ void	ft_free_comm(t_comm *comm)
 	while (comm)
 	{
 		i = -1;
-		tmp = comm;
-		while (tmp->parameters[++i])
-			free(tmp->parameters[i]);
-		free(tmp->parameters);
-		free(tmp);
-		comm = comm->next;
+		tmp = comm->next;
+		while (comm->parameters[++i])
+			free(comm->parameters[i]);
+		free(comm->parameters);
+		free(comm);
+		comm = tmp;
 	}
 }
 
 void	ft_free_env(t_env *env)
 {
+	t_env *temp;
+
+
 	while (env)
 	{
+		temp = env->next;
 		if (env->content)
 			free(env->content);
 		if (env->var)
 			free(env->var);
-		env = env->next;
+		free (env);
+		env = temp;
 	}
-	free(env);
 }

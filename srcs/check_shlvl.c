@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_shlvl.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:25:14 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 15:10:50 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 02:19:25 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_shlvl(t_env *env)
 			lvl += 1;
 			free(env->content);
 			lvl2 = ft_itoa(lvl);
-			env->content = malloc(sizeof(char) * ft_strlen(lvl2) + 1);
+			// env->content = malloc(sizeof(char) * ft_strlen(lvl2) + 1);
 			if (!env->content)
 			{
 				free(env->var);

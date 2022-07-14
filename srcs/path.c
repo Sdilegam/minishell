@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 02:28:33 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/13 18:32:22 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 02:48:26 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	parse_dir(DIR *dir, char *path, t_comm *comm)
 		directory = readdir(dir);
 		while (directory)
 		{
+			// ft_printf("dir: %s\n", directory->d_name);
 			if (ft_strcmp(comm->parameters[0], directory->d_name) == 0)
 			{
 				change_comm(path, comm);
@@ -60,12 +61,20 @@ void	parse_path(t_comm *comm, char *path)
 		if (dirpath)
 		{
 			file_des = opendir(dirpath);
-			if (parse_dir(file_des, dirpath, comm) == 0)
-				return ;
+			if (parse_dir(file_des, dirpath, comm) == 1)
+			{
+				path += len;
+				if (*path)
+					path += 1;
+			}
+			else
+			{
+				break ;
+			}
+			if (file_des)
+				closedir(file_des);
+			free(dirpath);
 		}
-		path += len + 1;
-		if (file_des)
-			closedir(file_des);
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/13 18:11:21 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 02:11:41 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*duplicate_word(char *string, int len)
 
 	index_to = 0;
 	index_from = 0;
-	word = calloc(sizeof(char), len - count_quotes(string, len));
+	word = calloc(sizeof(char), len - count_quotes(string, len) + 1);
 	while (index_from < len)
 	{
 		if ((string [index_from] == '\'' || string [index_from] == '"'))
@@ -35,7 +35,6 @@ char	*duplicate_word(char *string, int len)
 		else if (index_from < len)
 			word[index_to++] = string[index_from++];
 	}
-	word[index_to] = 0;
 	return (word);
 }
 
@@ -140,12 +139,14 @@ t_comm	*parse_parameters(char *string, t_env *env)
 	while (string[i])
 	{
 		string += i + 2;
-		add_command(command, create_command(read_line(string)));
+		i = where_is_pipe(string);
+		temp = replace_dollars(string, env, i);
+		add_command(command, create_command(read_line(temp)));
+		free (temp);
 		if (!*(cursor->next->parameters))
 			return (0);
 		cursor = cursor->next;
 		cursor->func = temp_func;
-		i = where_is_pipe(string);
 		temp_func = set_comm(string + i);
 	}
 	return (command);

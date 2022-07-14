@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 10:59:47 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/06/29 13:34:47 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 01:13:08 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int	ft_echo(char **str)
 		i = 0;
 	while (str[++i])
 	{
-		printf("%s", str[i]);
+		ft_printf("%s", str[i]);
 		if (str[i + 1])
-			printf(" ");
+			ft_printf(" ");
 	}
 	if (ft_strcmp(str[1], "-n"))
-		printf("\n");
+		ft_printf("\n");
 	g_status.status = 0;
 	return (0);
 }
