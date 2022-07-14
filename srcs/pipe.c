@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:44:43 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 14:18:28 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 13:53:42 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static void	pipe2(int fd[2], pid_t pid, t_comm *comm, t_env *env)
 		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[1]);
-		comm->previous->func(comm->previous, env);
+		if (comm->previous->func(comm->previous, env) == 1)
+			exit (1);
 		wait(&g_status.status);
 		exit (WEXITSTATUS(g_status.status));
 	}
@@ -68,6 +69,11 @@ int	ft_pipe(t_comm *command, t_env *env)
 	int		fd[2];
 	pid_t	pid[2];
 
+	if (!command->previous->parameters[0])
+	{
+		ft_putstr("minishell: syntax error near unexpected token `|'\n", 2);
+		return (1);
+	}
 	if (pipe(fd) == -1)
 		return (1);
 	pid[0] = fork();
@@ -78,13 +84,9 @@ int	ft_pipe(t_comm *command, t_env *env)
 	if (pid[1] == -1)
 		return (1);
 	pipe3(fd, pid[1], command, env);
-	// signal(SIGINT, sig_handler_2);
 	close(fd[1]);
 	close(fd[0]);
-	waitpid(pid[0], 0, 0);
 	waitpid(pid[1], &g_status.status, 0);
-	// cat | ldsa must return 127
-	// if (pid[0] == 0 || pid[1] == 0)
-	// 	exit (0);
+	waitpid(pid[0], 0, 0);
 	return (0);
 }

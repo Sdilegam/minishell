@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 03:17:53 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 13:07:46 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,8 +140,6 @@ t_comm	*parse_parameters(char *string, t_env *env)
 	temp = replace_dollars(string, env, i);
 	command = create_command(read_line(temp));
 	free (temp);
-	if (!*(command->parameters))
-		return (0);
 	temp_func = set_comm(string + i);
 	cursor = command;
 	while (string[i])
@@ -151,8 +149,6 @@ t_comm	*parse_parameters(char *string, t_env *env)
 		temp = replace_dollars(string, env, i);
 		add_command(command, create_command(read_line(temp)));
 		free (temp);
-		if (!*(cursor->next->parameters))
-			return (0);
 		cursor = cursor->next;
 		cursor->func = temp_func;
 		temp_func = set_comm(string + i);

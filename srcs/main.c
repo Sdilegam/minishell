@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 10:46:52 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 13:52:47 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	exec(t_comm *command, t_env *env)
 	int		index;
 
 	index = -1;
+	if (!command->parameters[0])
+		exit (0);
 	envp = list_to_array(env);
 	if (execve(command->parameters[0], command->parameters, envp) == -1)
 	{
@@ -77,7 +79,7 @@ int	function(t_comm *command, t_env *env)
 				signal(SIGQUIT, empty);
 				signal(SIGINT, empty);
 			}
-			wait(&g_status.status);
+			waitpid(pid, &g_status.status, 0);
 		}
 	}
 	return (g_status.status);
@@ -103,20 +105,20 @@ int	main(int ac, char *av[], char *envp[])
 		// ft_printf("%d\n", WEXITSTATUS(g_status.status));
 		if (WEXITSTATUS(g_status.status) == 0
 			|| WEXITSTATUS(g_status.status) == 130)
-			ft_printf("\033[1;92m");
+			ft_putstr("\033[1;92m", 2);
 		else
-			ft_printf("\033[1;91m");
+			ft_printf("\033[1;91m", 2);
 		rl = readline("minishell\033[0m$> ");
 		if (!rl)
 		{
 			ft_free_env(env);
 			rl_clear_history();
-			system("leaks minishell");
 			exit(0);
 		}
 		add_history(rl);
 		comm = parse_parameters(rl, env);
 		free(rl);
+		g_status.status = 0;
 		signal(SIGINT, sig_handler_2);
 		signal(SIGQUIT, sig_handler_2);
 		if (comm)
