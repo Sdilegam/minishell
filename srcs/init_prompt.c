@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:52:43 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 15:39:13 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 17:26:10 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	header(void)
 		ft_printf("\033[1;92m");
 	else
 		ft_printf("\033[1;91m");
-	// ft_printf("%d ", g_status.status);
-	// ft_printf("%d\n", WEXITSTATUS(g_status.status));
 }
 
 void	check_rl(char *rl, t_env *env)
@@ -29,6 +27,7 @@ void	check_rl(char *rl, t_env *env)
 	{
 		ft_free_env(env);
 		rl_clear_history();
+		system("leaks minishell");
 		exit(0);
 	}
 	add_history(rl);

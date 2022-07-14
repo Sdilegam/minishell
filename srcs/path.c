@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 02:28:33 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 14:47:52 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 17:14:00 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_path_len(char *path)
 	return (len);
 }
 
-int	parse_dir(DIR *dir, char *path, t_comm *comm)
+int	parse_dir(DIR *dir, char *path, t_comm *comm, t_env *env)
 {
 	struct dirent	*directory;
 
@@ -36,7 +36,7 @@ int	parse_dir(DIR *dir, char *path, t_comm *comm)
 		{
 			if (ft_strcmp(comm->parameters[0], directory->d_name) == 0)
 			{
-				change_comm(path, comm);
+				change_comm(path, comm, env);
 				closedir(dir);
 				return (0);
 			}
@@ -46,7 +46,7 @@ int	parse_dir(DIR *dir, char *path, t_comm *comm)
 	return (1);
 }
 
-void	parse_path(t_comm *comm, char *path)
+void	parse_path(t_comm *comm, char *path, t_env *env)
 {
 	char	*dirpath;
 	int		len;
@@ -55,11 +55,11 @@ void	parse_path(t_comm *comm, char *path)
 	while (*path)
 	{
 		len = get_path_len(path);
-		dirpath = ft_strncpy(path, len);
+		dirpath = ft_strncpy(path, len, env, comm);
 		if (dirpath)
 		{
 			file_des = opendir(dirpath);
-			if (parse_dir(file_des, dirpath, comm) == 1)
+			if (parse_dir(file_des, dirpath, comm, env) == 1)
 			{
 				path += len;
 				if (*path)
@@ -96,6 +96,6 @@ void	replace_comm(t_comm *comm, t_env *env)
 		path = search_variable(env, "PATH", 4);
 		if (!path)
 			return ;
-		parse_path(comm, path->content);
+		parse_path(comm, path->content, env);
 	}
 }
