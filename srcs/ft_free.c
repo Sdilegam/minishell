@@ -31,7 +31,7 @@ void	ft_free_comm(t_comm *comm)
 
 void	ft_free_env(t_env *env)
 {
-	t_env *temp;
+	t_env	*temp;
 
 
 	while (env)

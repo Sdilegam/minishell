@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 03:00:17 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 10:46:52 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	builtins_commands(t_comm *command, t_env *env)
 	else if (ft_strcmp(command->parameters[0], "unset") == 0)
 		ft_unset(env, command->parameters);
 	else if (ft_strcmp(command->parameters[0], "exit") == 0)
-		ft_exit(command);
+		ft_exit(command, env);
 	else
 		return (1);
 	return (0);
@@ -50,7 +50,7 @@ void	exec(t_comm *command, t_env *env)
 		free(envp);
 		ft_putstr("minishell: ", 2);
 		ft_putstr(command->parameters[0], 2);
-		perror(": ");	
+		perror(": ");
 		if (errno != 2)
 			exit(126);
 		exit (127);
@@ -111,6 +111,7 @@ int	main(int ac, char *av[], char *envp[])
 		{
 			ft_free_env(env);
 			rl_clear_history();
+			system("leaks minishell");
 			exit(0);
 		}
 		add_history(rl);
@@ -130,5 +131,6 @@ int	main(int ac, char *av[], char *envp[])
 		wait(NULL);
 	}
 	ft_free_env(env);
-	ft_printf("test\n\n\n");
+	ft_free_comm(comm);
+	rl_clear_history();
 }

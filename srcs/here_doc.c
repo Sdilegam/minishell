@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:30:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/13 16:30:57 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 10:44:22 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	rd_line_here_doc(char *string, int fd_temp, int fd[2], char *temp)
 	}
 	close(fd[1]);
 	close(fd_temp);
+	free(temp);
 	exit(g_status.status);
 	return (0);
 }
