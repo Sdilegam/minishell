@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:44:43 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 14:56:05 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 15:41:23 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,8 @@ int	ft_pipe(t_comm *command, t_env *env)
 {
 	int		fd[2];
 	pid_t	pid[2];
+	int		test;
 
-	if (!command->previous->parameters[0])
-	{
-		ft_putstr("minishell: syntax error near unexpected token `|'\n", 2);
-		return (1);
-	}
 	if (pipe(fd) == -1)
 		return (1);
 	pid[0] = fork();
@@ -86,7 +82,7 @@ int	ft_pipe(t_comm *command, t_env *env)
 	pipe3(fd, pid[1], command, env);
 	close(fd[1]);
 	close(fd[0]);
-	waitpid(pid[1], &g_status.status, 0);
+	waitpid(pid[1], &test, 0);
 	waitpid(pid[0], 0, 0);
 	return (0);
 }

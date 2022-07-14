@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 14:55:34 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 19:16:07 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,18 @@ int	builtins_commands(t_comm *command, t_env *env)
 	return (0);
 }
 
+int	can_launch(t_comm *command)
+{
+	int	index;
+
+	index = -1;
+	while (command->parameters[0][++index])
+		if (command->parameters[0][index] == '/')
+			return (1);
+	return (0);
+}
+
+
 void	exec(t_comm *command, t_env *env)
 {
 	char	**envp;
@@ -45,18 +57,23 @@ void	exec(t_comm *command, t_env *env)
 	if (!command->parameters[0])
 		exit (0);
 	envp = list_to_array(env);
-	if (execve(command->parameters[0], command->parameters, envp) == -1)
+	if (can_launch(command) == 1)
 	{
-		while (envp[++index])
-			free(envp[index]);
-		free(envp);
-		ft_putstr("minishell: ", 2);
-		ft_putstr(command->parameters[0], 2);
-		perror(": ");
-		if (errno != 2)
-			exit(126);
-		exit (127);
+		if (execve(command->parameters[0], command->parameters, envp) == -1)
+		{
+			while (envp[++index])
+				free(envp[index]);
+			free(envp);
+			ft_putstr("minishell: ", 2);
+			ft_putstr(command->parameters[0], 2);
+			perror(": ");
+			if (errno != 2)
+				exit(126);
+			exit (127);
+		}
 	}
+	else
+		exit (127);
 }
 
 int	function(t_comm *command, t_env *env)

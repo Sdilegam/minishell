@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 15:52:06 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 17:39:31 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 15:53:45 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int	input_redir(t_comm *comm, t_env *env)
 		comm->previous->func(comm->previous, env);
 		exit(0);
 	}
+	wait(&g_status.status);
 	return (0);
 }

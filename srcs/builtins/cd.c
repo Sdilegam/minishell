@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:44:52 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 14:02:50 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 15:27:24 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_env	*find_replace(t_env *env, t_comm *comm)
 		{
 			free(curr->content);
 			content = getcwd(NULL, 0);
-			curr->content = 0;
+			curr->content = content;
 			if (!curr->content)
 				ft_free_malloc_err(env, comm);
 			return (curr);

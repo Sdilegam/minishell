@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
+#    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/07/14 11:56:44 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/07/14 16:44:34 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS = 	srcs/main.c\
 		srcs/ft_calloc.c\
 		srcs/ft_free.c\
 		srcs/init_prompt.c\
+		srcs/string_checking.c
 
 OBJS = ${addprefix ${OBJS_DIR}, ${notdir ${SRCS:.c=.o}}}
 

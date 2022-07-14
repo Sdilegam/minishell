@@ -46,7 +46,7 @@ void	sig_handler_2(int sig)
 			ft_printf("Quit: 3\n");
 		}
 	}
-	if (g_status.status >> 8 != 127)
+	if (g_status.status >> 8 == -1)
 		g_status.status = (128 + sig) << 8;
 	return ;
 }

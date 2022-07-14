@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 14:47:47 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 17:48:07 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,16 @@ int	(*set_comm(char *chara))(t_comm *comm, t_env *env)
 		return (&function);
 }
 
-int	get_redi_len(int (*temp_func)(struct s_comm *first, struct s_env *env))
+int	get_redi_len(char *string)
 {
-	if (temp_func == &ft_pipe || temp_func == &ft_output_redir
-		|| temp_func == &input_redir)
+	if (*string == '<' && *(string + 1) == '<')
+		return (2);
+	if (*string == '>' && *(string + 1) == '>')
+		return (2);
+	if (*string == '>' && *(string + 1) == '|')
+		return (2);
+	else 
 		return (1);
-	return (2);
 }
 
 t_comm	*parse_parameters(char *string, t_env *env)
@@ -136,6 +140,11 @@ t_comm	*parse_parameters(char *string, t_env *env)
 	int		(*temp_func)(struct s_comm *first, struct s_env *env);
 	int		i;
 
+	if (check_string(string) == 0)
+	{
+		g_status.status = 2 << 8;
+		return (0);
+	}
 	i = where_is_pipe(string);
 	temp = replace_dollars(string, env, i);
 	command = create_command(read_line(temp));
@@ -144,7 +153,7 @@ t_comm	*parse_parameters(char *string, t_env *env)
 	cursor = command;
 	while (string[i])
 	{
-		string += i + get_redi_len(temp_func);
+		string += i + get_redi_len(string + i);
 		i = where_is_pipe(string);
 		temp = replace_dollars(string, env, i);
 		add_command(command, create_command(read_line(temp)));
