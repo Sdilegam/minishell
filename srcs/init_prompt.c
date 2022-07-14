@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_prompt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:52:43 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 13:21:15 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 14:55:39 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	check_rl(char *rl, t_env *env)
 
 void	comm_loop(t_comm *comm, t_env *env)
 {
+	g_status.status = 0;
+	sig2();
 	if (comm)
 	{
 		while (comm->next)

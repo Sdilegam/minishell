@@ -6,11 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/07/14 13:52:47 by sdi-lega         ###   ########.fr       */
-=======
-/*   Updated: 2022/07/14 13:47:19 by abkasmi          ###   ########.fr       */
->>>>>>> 857cb59b7978b4fe1368e349e1efae63dfed79f4
+/*   Updated: 2022/07/14 14:55:34 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,42 +103,11 @@ int	main(int ac, char *av[], char *envp[])
 	while (1)
 	{
 		sig();
-		// ft_printf("%d ", g_status.status);
-		// ft_printf("%d\n", WEXITSTATUS(g_status.status));
-		if (WEXITSTATUS(g_status.status) == 0
-			|| WEXITSTATUS(g_status.status) == 130)
-			ft_putstr("\033[1;92m", 2);
-		else
-			ft_printf("\033[1;91m", 2);
-		rl = readline("minishell\033[0m$> ");
-		if (!rl)
-		{
-			ft_free_env(env);
-			rl_clear_history();
-			exit(0);
-		}
-		add_history(rl);
-		comm = parse_parameters(rl, env);
-		free(rl);
-		g_status.status = 0;
-		signal(SIGINT, sig_handler_2);
-		signal(SIGQUIT, sig_handler_2);
-		if (comm)
-		{
-			while (comm->next)
-				comm = comm->next;
-			comm->func(comm, env);
-			while (comm->previous)
-				comm = comm->previous;
-		}
-		ft_free_comm(comm);
-		wait(NULL);
 		header();
 		rl = readline("minishell\033[0m$> ");
 		check_rl(rl, env);
 		comm = parse_parameters(rl, env);
 		free(rl);
-		sig2();
 		comm_loop(comm, env);
 	}
 	ft_free_all(env, comm);
