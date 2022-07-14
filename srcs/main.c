@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 19:16:07 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 19:18:54 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	builtins_commands(t_comm *command, t_env *env)
 		env = ft_cd(command->parameters, env, command);
 	else if (ft_strcmp(command->parameters[0], "pwd") == 0)
 	{
+		g_status.status = 0;
 		ft_putstr(getcwd(NULL, 0), 1);
 		ft_putstr("\n", 1);
 	}
@@ -56,7 +57,7 @@ void	exec(t_comm *command, t_env *env)
 	index = -1;
 	if (!command->parameters[0])
 		exit (0);
-	envp = list_to_array(env);
+	envp = list_to_array(env, command);
 	if (can_launch(command) == 1)
 	{
 		if (execve(command->parameters[0], command->parameters, envp) == -1)

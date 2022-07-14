@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:10:06 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 18:17:29 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 16:37:07 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	open_file(t_comm *comm)
 	if (g_status.file == -1)
 	{
 		ft_putstr("minishell: ", 2);
-		ft_putstr(comm->next->parameters[0], 2);
+		ft_putstr(comm->parameters[1], 2);
 		ft_putstr(": ", 2);
 		perror("");
 		exit(1);
@@ -68,10 +68,6 @@ int	ft_output_redir_append(t_comm *comm, t_env *env)
 	if (pid[0] == -1)
 		return (1);
 	pipe2(fd, pid[0], comm);
-	g_status.status = 0;
-	wait(0);
-	if (g_status.status == 130 << 8)
-		return (1);
 	pid[1] = fork();
 	if (pid[1] == -1)
 		return (1);

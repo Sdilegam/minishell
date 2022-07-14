@@ -19,7 +19,7 @@ int	unset_error(char *str)
 	index = 0;
 	if (('0' <= str[0] && str[0] <= '9') || str[index] == '=')
 	{
-		g_status.status = 1;
+		g_status.status = 1 << 8;
 		ft_putstr("unset: ", 2);
 		ft_putstr(str, 2);
 		ft_putstr(": not a valid identifier\n", 2);
@@ -29,7 +29,7 @@ int	unset_error(char *str)
 	{
 		if (!is_ok(str[index]) || str[index] == '=')
 		{
-			g_status.status = 1;
+			g_status.status = 1 << 8;
 			ft_putstr("unset: ", 2);
 			ft_putstr(str, 2);
 			ft_putstr(": not a valid identifier\n", 2);
@@ -95,11 +95,11 @@ int	ft_unset(t_env *env, char **str)
 	curr = env;
 	if (ft_strcmp("PWD", str[1]) == 0)
 	{
-		g_status.status = 0;
+		g_status.status = 0 << 8;
 		return (0);
 	}
 	if (ft_unset_loop(str, curr, env) == 1)
 		return (1);
-	g_status.status = 0;
+	g_status.status = 0 << 8;
 	return (0);
 }

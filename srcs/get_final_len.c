@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:36:36 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 13:06:28 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 17:39:50 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	len_loop(int index, char *string, int final_len, t_env *env)
 		var = search_variable(env, string + index + 1, temp - 1);
 		if (ft_strncmp(string + index + 1, "?", temp - 1) == 0)
 			final_len += ft_strlen(ft_itoa(g_status.status)) - 2;
+		//separer le itoa pour pouvoir free
 		else if (var)
 			final_len += get_variable_len(*var) - 1
 				+ count_p_redi(var->content);
@@ -52,11 +53,9 @@ int	get_final_len(char *string, t_env *env, int len)
 {
 	int		final_len;
 	int		index;
-	char	quote;
 
 	index = -1;
 	final_len = 0;
-	quote = 0;
 	while (++index < len)
 		final_len = len_loop(index, string, final_len, env);
 	return (index + final_len);

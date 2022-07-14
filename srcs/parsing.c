@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 17:48:07 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 19:19:07 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	count_words(char *string)
 	return (count);
 }
 
-char	**read_line(char *string)
+char	**read_line(char *string, t_env *env, t_comm *comm)
 {
 	int		i;
 	int		temp;
@@ -80,6 +80,8 @@ char	**read_line(char *string)
 	index = -1;
 	count = count_words(string);
 	line = malloc((count + 1) * sizeof(char *));
+	if (!line)
+		ft_free_malloc_err(env, comm);
 	line[count] = 0;
 	while (++index < count)
 	{	
@@ -146,17 +148,19 @@ t_comm	*parse_parameters(char *string, t_env *env)
 		return (0);
 	}
 	i = where_is_pipe(string);
-	temp = replace_dollars(string, env, i);
-	command = create_command(read_line(temp));
-	free (temp);
+	temp = replace_dollars(string, env, i, NULL);
+	command = create_command(read_line(temp, env, NULL));
+	if (!command)
+		ft_free_malloc_err(env, command);
+	free(temp);
 	temp_func = set_comm(string + i);
 	cursor = command;
 	while (string[i])
 	{
 		string += i + get_redi_len(string + i);
 		i = where_is_pipe(string);
-		temp = replace_dollars(string, env, i);
-		add_command(command, create_command(read_line(temp)));
+		temp = replace_dollars(string, env, i, command);
+		add_command(command, create_command(read_line(temp, env, command)));
 		free (temp);
 		cursor = cursor->next;
 		cursor->func = temp_func;

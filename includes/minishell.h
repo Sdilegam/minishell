@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 16:44:21 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 19:17:36 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int		ft_atoi(const char *str);
 int		check_shlvl(t_env *env);
 int		ft_output_redir(t_comm *comm, t_env *env);
 int		ft_output_redir_append(t_comm *comm, t_env *env);
-char	*ft_strncpy(char *source, int len);
-void	change_comm(char *path, t_comm *comm);
+char	*ft_strncpy(char *source, int len, t_env *env, t_comm *comm);
+void	change_comm(char *path, t_comm *comm, t_env *env);
 void	ft_free_malloc_err(t_env *env, t_comm *comm);
 
 int		is_space(char chara);
@@ -87,7 +87,7 @@ void	sig2(void);
 void	init_var(void);
 
 int		get_quote_len(char *string);
-char	**read_line(char *string);
+char	**read_line(char *string, t_env *env, t_comm *comm);
 int		builtins_commands(t_comm *command, t_env *env);
 
 char	*ft_cpy_content(char *str);
@@ -99,8 +99,8 @@ void	duplicate_quotes(char *str_to, char *str_from);
 int		get_final_len(char *string, t_env *env, int len);
 int		ft_strncmp(char *s1, char *s2, int len);
 int		duplicate_var(char *str_to, char *str_from, t_env *env);
-char	**list_to_array(t_env *list);
-char	*replace_dollars(char *base_str, t_env *env, int len);
+char	**list_to_array(t_env *list, t_comm *comm);
+char	*replace_dollars(char *base_str, t_env *env, int len, t_comm *comm);
 int		get_variable_len(t_env var);
 void	replace_comm(t_comm *comm, t_env *env);
 int		is_p_redi(char *c);

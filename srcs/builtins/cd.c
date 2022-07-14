@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:44:52 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 15:27:24 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 19:19:15 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ t_env	*ft_cd(char **path, t_env *env, t_comm *comm)
 	if (ft_strcmp(path[1], "") == -1 || ft_strcmp(path[1], "~") == 0)
 	{
 		chdir(getenv("HOME"));
-		g_status.status = 0;
+		g_status.status = 0 << 8;
 	}
 	else if (chdir(path[1]) != 0)
 	{
-		g_status.status = 1;
+		g_status.status = 1 << 8;
 		ft_putstr("cd: ", 2);
 		ft_putstr(path[1], 2);
 		ft_putstr(": ", 2);

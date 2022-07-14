@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 10:59:47 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 01:13:08 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 15:23:43 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ int	ft_echo(char **str)
 	}
 	if (ft_strcmp(str[1], "-n"))
 		ft_printf("\n");
-	g_status.status = 0;
+	g_status.status = 0 << 8;
 	return (0);
 }

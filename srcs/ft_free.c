@@ -54,8 +54,10 @@ void	ft_free_all(t_env *env, t_comm *comm)
 
 void	ft_free_malloc_err(t_env *env, t_comm *comm)
 {
-	ft_free_env(env);
-	ft_free_comm(comm);
+	if (env)
+		ft_free_env(env);
+	if (comm)
+		ft_free_comm(comm);
 	rl_clear_history();
 	ft_putstr("Malloc error\n", 2);
 	exit(1);

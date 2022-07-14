@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:04:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 14:43:07 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 17:35:03 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	duplicate_var(char *str_to, char *str_from, t_env *env)
 	if (ft_strncmp("?", str_from, temp) == 0)
 	{
 		errcode = ft_itoa(g_status.status >> 8);
+		if (!errcode)
+			ft_free_malloc_err(env, NULL);
 		while (errcode[++index_from])
 			str_to [index_from] = errcode [index_from];
 		free(errcode);
@@ -72,20 +74,22 @@ int	count_p_redi(char *string)
 	return (count * 2);
 }
 
-int	get_errcode(char *string)
-{
-	int		index;
-	char	*errcode;
+// int	get_errcode(char *string, t_env *env)
+// {
+// 	int		index;
+// 	char	*errcode;
 
-	index = -1;
-	errcode = ft_itoa(g_status.status << 8);
-	while (errcode[++index])
-		string [index] = errcode [index];
-	free(errcode);
-	return (index);
-}
+// 	index = -1;
+// 	errcode = ft_itoa(g_status.status << 8);
+// 	if (!errcode)
+// 		ft_free_malloc_err(env, NULL);
+// 	while (errcode[++index])
+// 		string [index] = errcode [index];
+// 	free(errcode);
+// 	return (index);
+// }
 
-char	*replace_dollars(char *base_str, t_env *env, int len)
+char	*replace_dollars(char *base_str, t_env *env, int len, t_comm *comm)
 {
 	int		index_to;
 	int		index_from;
@@ -98,6 +102,8 @@ char	*replace_dollars(char *base_str, t_env *env, int len)
 	new_len = get_final_len(base_str, env, len);
 	index_from = -1;
 	str_to = ft_calloc(new_len + 1, sizeof(char));
+	if (!str_to)
+		ft_free_malloc_err(env, comm);
 	while (++index_from < len)
 	{
 		if (base_str[index_from] == '\'' && quote % 2 == 0)
