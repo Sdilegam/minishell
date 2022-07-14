@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 19:32:50 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 02:58:07 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,7 @@ int		is_p_redi(char *c);
 void	empty(int sig);
 int		outp_redir(t_comm *comm, t_env *env);
 int		here_doc(t_comm *comm, t_env *env, int fd[2]);
+void	ft_free_comm(t_comm *comm);
+void	ft_free_env(t_env *env);
+
 #endif

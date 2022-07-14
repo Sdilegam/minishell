@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:34:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/13 12:07:59 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 03:05:19 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_strncmp(char *s1, char *s2, int n)
 	int	index;
 
 	index = 0;
-	if (s1[n])
+	if (n != ft_strlen(s1))
 		return (1);
 	while (s1[index] && s2[index])
 	{

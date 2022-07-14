@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 02:11:41 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 03:17:53 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,14 @@ int	(*set_comm(char *chara))(t_comm *comm, t_env *env)
 		return (&function);
 }
 
+int	get_redi_len(int (*temp_func)(struct s_comm *first, struct s_env *env))
+{
+	if (temp_func == &ft_pipe || temp_func == &ft_output_redir || temp_func == &input_redir)
+		return (1);
+	return (2);
+}
+
+
 t_comm	*parse_parameters(char *string, t_env *env)
 {
 	t_comm	*command;
@@ -138,7 +146,7 @@ t_comm	*parse_parameters(char *string, t_env *env)
 	cursor = command;
 	while (string[i])
 	{
-		string += i + 2;
+		string += i + get_redi_len(temp_func);
 		i = where_is_pipe(string);
 		temp = replace_dollars(string, env, i);
 		add_command(command, create_command(read_line(temp)));

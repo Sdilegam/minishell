@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 02:38:56 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 03:00:17 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,9 @@ int	main(int ac, char *av[], char *envp[])
 			while (comm->next)
 				comm = comm->next;
 			comm->func(comm, env);
+			while (comm->previous)
+				comm = comm->previous;
 		}
-		while (comm->previous)
-			comm = comm->previous;
 		ft_free_comm(comm);
 		wait(NULL);
 	}

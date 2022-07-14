@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:04:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 02:52:19 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 03:07:11 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	duplicate_var(char *str_to, char *str_from, t_env *env)
 		&& str_from[temp] != '"' && str_from[temp] != '\'')
 		temp++;
 	var = search_variable(env, str_from, temp);
-	if (ft_strncmp(str_from, "?", temp) == 0)
+	if (ft_strncmp("?", str_from, temp) == 0)
 	{
 		errcode = ft_itoa(g_status.status >> 8);
 		while (errcode[++index_from])
