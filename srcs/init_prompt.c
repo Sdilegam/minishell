@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:52:43 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 12:59:29 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 13:21:15 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	check_rl(char *rl, t_env *env)
 	{
 		ft_free_env(env);
 		rl_clear_history();
-		//system("leaks minishell");
 		exit(0);
 	}
+	add_history(rl);
 }
 
 void	comm_loop(t_comm *comm, t_env *env)

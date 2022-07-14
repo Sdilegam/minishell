@@ -24,7 +24,7 @@ void	sig_handler_c(int sig)
 			ft_printf("\033[1;91m");
 		rl_replace_line("", 0);
 		rl_on_new_line();
-		ft_putstr("minishell\033[0m$> ", 2);
+		rl_redisplay();
 	}
 	return ;
 }

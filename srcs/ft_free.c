@@ -33,7 +33,6 @@ void	ft_free_env(t_env *env)
 {
 	t_env	*temp;
 
-
 	while (env)
 	{
 		temp = env->next;

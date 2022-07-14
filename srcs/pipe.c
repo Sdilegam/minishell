@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:44:43 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 14:18:28 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 13:14:35 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,9 @@ int	ft_pipe(t_comm *command, t_env *env)
 	if (pid[1] == -1)
 		return (1);
 	pipe3(fd, pid[1], command, env);
-	// signal(SIGINT, sig_handler_2);
 	close(fd[1]);
 	close(fd[0]);
 	waitpid(pid[0], 0, 0);
 	waitpid(pid[1], &g_status.status, 0);
-	// cat | ldsa must return 127
-	// if (pid[0] == 0 || pid[1] == 0)
-	// 	exit (0);
 	return (0);
 }

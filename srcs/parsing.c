@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 10:55:31 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 13:14:08 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ int	get_redi_len(int (*temp_func)(struct s_comm *first, struct s_env *env))
 		return (1);
 	return (2);
 }
-
 
 t_comm	*parse_parameters(char *string, t_env *env)
 {

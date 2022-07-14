@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 11:12:25 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 10:43:07 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 13:15:21 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_exit(t_comm *comm, t_env *env)
 {
 	if (comm->parameters[1])
 	{
-		system("leaks minishell");
 		ft_free_comm(comm);
 		ft_free_env(env);
 		rl_clear_history();
@@ -29,7 +28,6 @@ void	ft_exit(t_comm *comm, t_env *env)
 	}
 	else
 	{
-		system("leaks minishell");
 		ft_free_comm(comm);
 		ft_free_env(env);
 		rl_clear_history();

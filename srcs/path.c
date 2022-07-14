@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 02:28:33 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 02:48:26 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 13:15:06 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	get_path_len(char *path)
 	return (len);
 }
 
-
 int	parse_dir(DIR *dir, char *path, t_comm *comm)
 {
 	struct dirent	*directory;
@@ -35,7 +34,6 @@ int	parse_dir(DIR *dir, char *path, t_comm *comm)
 		directory = readdir(dir);
 		while (directory)
 		{
-			// ft_printf("dir: %s\n", directory->d_name);
 			if (ft_strcmp(comm->parameters[0], directory->d_name) == 0)
 			{
 				change_comm(path, comm);
@@ -68,9 +66,7 @@ void	parse_path(t_comm *comm, char *path)
 					path += 1;
 			}
 			else
-			{
 				break ;
-			}
 			if (file_des)
 				closedir(file_des);
 			free(dirpath);
