@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:30:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 13:00:25 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 16:30:55 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	rd_line_here_doc(char *string, int fd_temp, int fd[2], char *temp)
 	temp = readline(">");
 	if (!temp)
 	{
-		g_status.status = 0;
+		g_status.status = 0 << 8;
 		return (1);
 	}
 	while (ft_strcmp(string, temp) != 0)
@@ -30,7 +30,7 @@ int	rd_line_here_doc(char *string, int fd_temp, int fd[2], char *temp)
 		temp = readline(">");
 		if (!temp)
 		{
-			g_status.status = 0;
+			g_status.status = 0 << 8;
 			return (1);
 		}
 	}
@@ -105,10 +105,13 @@ int	ft_delimiter_redir(t_comm *command, t_env *env)
 	if (pid[0] == -1)
 		return (1);
 	pipe2(fd, pid[0], command, env);
-	g_status.status = 0;
+	g_status.status = -1;
 	wait(0);
 	if (g_status.status == 130 << 8)
+	{
+		g_status.status = 1 << 8;
 		return (1);
+	}
 	pid[1] = fork();
 	if (pid[1] == -1)
 		return (1);

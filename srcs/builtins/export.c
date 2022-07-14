@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 01:11:30 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 13:31:54 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 15:25:40 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ft_export(t_env *env, char **str)
 		var.content = ft_cpy_content(str[j]);
 		if (export_error(str[j]))
 		{
-			g_status.status = 1;
+			g_status.status = 1 << 8;
 			return ;
 		}
 		export2(env, curr, var);
@@ -98,5 +98,5 @@ void	ft_export(t_env *env, char **str)
 	}
 	if (!str[1])
 		ft_print(curr);
-	g_status.status = 0;
+	g_status.status = 0 << 8;
 }

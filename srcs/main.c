@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 14:55:34 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 16:22:20 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	exec(t_comm *command, t_env *env)
 		ft_putstr("minishell: ", 2);
 		ft_putstr(command->parameters[0], 2);
 		perror(": ");
-		if (errno != 2)
+		if (errno != 2 && errno != 8)
 			exit(126);
 		exit (127);
 	}

@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 15:52:06 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/13 17:39:31 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 15:53:44 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ int	input_redir(t_comm *comm, t_env *env)
 		file = open(comm->parameters[0], O_RDONLY);
 		if (file == -1)
 		{
+			g_status.status = 1 << 8;
 			write(2, "Bash: ", 7);
-			ft_putstr(comm->next->parameters[1], 2);
+			ft_putstr(comm->parameters[1], 2);
 			write(2, ": No such file or directory\n", 29);
 			return (1);
 		}
@@ -35,5 +36,6 @@ int	input_redir(t_comm *comm, t_env *env)
 		comm->previous->func(comm->previous, env);
 		exit(0);
 	}
+	wait(&g_status.status);
 	return (0);
 }
