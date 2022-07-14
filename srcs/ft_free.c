@@ -45,3 +45,10 @@ void	ft_free_env(t_env *env)
 		env = temp;
 	}
 }
+
+void	ft_free_all(t_env *env, t_comm *comm)
+{
+	ft_free_env(env);
+	ft_free_comm(comm);
+	rl_clear_history();
+}

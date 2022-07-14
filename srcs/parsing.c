@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 03:17:53 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 10:55:31 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,8 @@ int	(*set_comm(char *chara))(t_comm *comm, t_env *env)
 
 int	get_redi_len(int (*temp_func)(struct s_comm *first, struct s_env *env))
 {
-	if (temp_func == &ft_pipe || temp_func == &ft_output_redir || temp_func == &input_redir)
+	if (temp_func == &ft_pipe || temp_func == &ft_output_redir
+		|| temp_func == &input_redir)
 		return (1);
 	return (2);
 }

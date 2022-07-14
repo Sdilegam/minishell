@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abkasmi <abkasmi@student.s19.be>           +#+  +:+       +#+         #
+#    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/07/13 22:37:16 by abkasmi          ###   ########.fr        #
+#    Updated: 2022/07/14 11:56:44 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCS = 	srcs/main.c\
 		srcs/get_final_len.c\
 		srcs/ft_calloc.c\
 		srcs/ft_free.c\
+		srcs/init_prompt.c\
 
 OBJS = ${addprefix ${OBJS_DIR}, ${notdir ${SRCS:.c=.o}}}
 

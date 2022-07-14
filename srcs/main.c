@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 10:46:52 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 12:56:12 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,48 +89,25 @@ int	main(int ac, char *av[], char *envp[])
 	t_comm	*comm;
 	t_env	*env;
 
-	(void)ac;
-	(void)av;
+	if (ac != 1)
+	{
+		ft_printf("bash: %s: No such file or directory\n", av[1]);
+		return (1);
+	}
 	print_header();
-	g_status.status = 0;
-	g_status.file = -1;
+	init_var();
 	env = set_env(envp);
 	check_shlvl(env);
 	while (1)
 	{
 		sig();
-		// ft_printf("%d ", g_status.status);
-		// ft_printf("%d\n", WEXITSTATUS(g_status.status));
-		if (WEXITSTATUS(g_status.status) == 0
-			|| WEXITSTATUS(g_status.status) == 130)
-			ft_printf("\033[1;92m");
-		else
-			ft_printf("\033[1;91m");
+		header();
 		rl = readline("minishell\033[0m$> ");
-		if (!rl)
-		{
-			ft_free_env(env);
-			rl_clear_history();
-			system("leaks minishell");
-			exit(0);
-		}
-		add_history(rl);
+		check_rl(rl, env);
 		comm = parse_parameters(rl, env);
 		free(rl);
-		signal(SIGINT, sig_handler_2);
-		signal(SIGQUIT, sig_handler_2);
-		if (comm)
-		{
-			while (comm->next)
-				comm = comm->next;
-			comm->func(comm, env);
-			while (comm->previous)
-				comm = comm->previous;
-		}
-		ft_free_comm(comm);
-		wait(NULL);
+		sig2();
+		comm_loop(comm, env);
 	}
-	ft_free_env(env);
-	ft_free_comm(comm);
-	rl_clear_history();
+	ft_free_all(env, comm);
 }

@@ -24,7 +24,7 @@ void	sig_handler_c(int sig)
 			ft_printf("\033[1;91m");
 		rl_replace_line("", 0);
 		rl_on_new_line();
-		rl_redisplay();
+		ft_putstr("minishell\033[0m$> ", 2);
 	}
 	return ;
 }
@@ -58,5 +58,12 @@ void	sig(void)
 {
 	signal(SIGINT, sig_handler_c);
 	signal(SIGQUIT, SIG_IGN);
+	return ;
+}
+
+void	sig2(void)
+{
+	signal(SIGINT, sig_handler_2);
+	signal(SIGQUIT, sig_handler_2);
 	return ;
 }
