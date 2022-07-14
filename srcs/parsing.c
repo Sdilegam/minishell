@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 13:14:08 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 14:44:28 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*duplicate_word(char *string, int len)
 
 	index_to = 0;
 	index_from = 0;
-	word = calloc(sizeof(char), len - count_quotes(string, len) + 1);
+	word = ft_calloc(sizeof(char), len - count_quotes(string, len) + 1);
 	while (index_from < len)
 	{
 		if ((string [index_from] == '\'' || string [index_from] == '"'))

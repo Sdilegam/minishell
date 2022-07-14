@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_variables.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:04:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 03:07:11 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:43:07 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*replace_dollars(char *base_str, t_env *env, int len)
 	quote = 0;
 	new_len = get_final_len(base_str, env, len);
 	index_from = -1;
-	str_to = calloc(new_len + 1, sizeof(char));
+	str_to = ft_calloc(new_len + 1, sizeof(char));
 	while (++index_from < len)
 	{
 		if (base_str[index_from] == '\'' && quote % 2 == 0)
