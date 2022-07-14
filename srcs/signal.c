@@ -34,14 +34,20 @@ void	sig_handler_2(int sig)
 	if (sig == SIGINT)
 	{
 		if (wait(NULL) != -1)
+		{
 			ft_printf("\n");
+			// g_status.status = (128 + sig) << 8;
+		}
 	}
 	if (sig == SIGQUIT)
 	{
 		if (wait(NULL) != -1)
+		{
 			ft_printf("Quit: 3\n");
+		}
 	}
-	g_status.status = (128 + sig) << 8;
+	if (g_status.status >> 8 != 127)
+		g_status.status = (128 + sig) << 8;
 	return ;
 }
 

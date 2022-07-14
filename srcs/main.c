@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 13:47:19 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 14:55:34 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	exec(t_comm *command, t_env *env)
 	int		index;
 
 	index = -1;
+	if (!command->parameters[0])
+		exit (0);
 	envp = list_to_array(env);
 	if (execve(command->parameters[0], command->parameters, envp) == -1)
 	{
@@ -77,7 +79,7 @@ int	function(t_comm *command, t_env *env)
 				signal(SIGQUIT, empty);
 				signal(SIGINT, empty);
 			}
-			wait(&g_status.status);
+			waitpid(pid, &g_status.status, 0);
 		}
 	}
 	return (g_status.status);
@@ -106,7 +108,6 @@ int	main(int ac, char *av[], char *envp[])
 		check_rl(rl, env);
 		comm = parse_parameters(rl, env);
 		free(rl);
-		sig2();
 		comm_loop(comm, env);
 	}
 	ft_free_all(env, comm);

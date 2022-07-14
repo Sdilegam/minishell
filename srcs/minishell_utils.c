@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:34:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 13:51:39 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/14 14:47:42 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	ft_putstr(char *str, int fd)
 	int	i;
 
 	i = -1;
+	if (!str)
+		return ;
 	while (str[++i])
 		write(fd, &str[i], 1);
 }
