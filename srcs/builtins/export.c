@@ -6,7 +6,7 @@
 /*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 01:11:30 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 15:25:40 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/15 14:28:17 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	export2(t_env *env, t_env *curr, t_var var)
 	{	
 		if (ft_strcmp(curr->var, var.name) == 0)
 		{	
+			free(curr->content);
+			free(var.name);
 			curr->content = var.content;
 			exist = 1;
 			break ;
