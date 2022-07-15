@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/15 01:29:12 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/15 02:25:27 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	main(int ac, char *av[], char *envp[])
 	{
 		sig();
 		header();
-		rl = readline("minishell\033[0m$> ");
+		rl = readline("\033[1;92mminishell\033[0m$> ");
 		check_rl(rl, env);
 		comm = parse_parameters(rl, env);
 		free(rl);

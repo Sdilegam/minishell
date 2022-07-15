@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/15 02:20:14 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/15 02:25:44 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int		count_p_redi(char *string);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_free_all(t_env *env, t_comm *comm);
 void	comm_loop(t_comm *comm, t_env *env);
-void	header(void);
 void	check_rl(char *rl, t_env *env);
 void	sig2(void);
 void	init_var(void);

@@ -6,20 +6,11 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:52:43 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/15 02:13:31 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/15 02:25:22 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	header(void)
-{
-	if (WEXITSTATUS(g_status.status) == 0
-		|| WEXITSTATUS(g_status.status) == 130)
-		ft_printf("\033[1;92m");
-	else
-		ft_printf("\033[1;91m");
-}
 
 void	check_rl(char *rl, t_env *env)
 {
