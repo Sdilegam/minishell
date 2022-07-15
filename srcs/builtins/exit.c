@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 11:12:25 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/15 14:25:41 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/15 15:04:51 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_exit(t_comm *co, t_env *env)
 			ret = 1;
 		}
 	}
-	if (ret == 0)
+	if (ret == 0 && co->parameters[1])
 		ret = ft_atoi(co->parameters[1]) % 255;
 	ft_free_comm(co);
 	ft_free_env(env);
