@@ -3,76 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/15 10:20:16 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/15 13:41:27 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*duplicate_word(char *string, int len)
+char	*duplicate_word(char *str, int len, int *quotes)
 {
-	int		index_to;
-	int		index_from;
-	int		temp;
+	int		i_to;
+	int		i_from;
 	char	*word;
 
-	index_to = 0;
-	index_from = 0;
-	word = ft_calloc(sizeof(char), len - count_quotes(string, len) + 1);
-	while (index_from < len)
+	i_to = 0;
+	i_from = 0;
+	word = ft_calloc(sizeof(char), len - count_quotes(str, len) + 1);
+	while (i_from < len)
 	{
-		if ((string [index_from] == '\'' || string [index_from] == '"'))
+		if ((str [i_from] == '\'' || str [i_from] == '"') && *quotes % 2 == 0)
 		{
-			temp = get_quote_len(string + index_from);
-			duplicate_quotes(word + index_to, string + index_from);
-			index_from += temp + 1;
-			while (word[index_to])
-				index_to ++;
+			duplicate_quotes(word + i_to, str + i_from);
+			i_from += get_quote_len(str + i_from) + 1;
+			while (word[i_to])
+				i_to ++;
 		}
-		else if (index_from < len)
+		else if (i_from < len)
 		{
-			if (string[index_from] == '(' || string[index_from] == ')')
-				index_from ++;
+			if (str[i_from] == -5)
+				*quotes += (++i_from * 0) + 1;
 			else
-				word[index_to++] = string[index_from++];
+				word[i_to++] = str[i_from++];
 		}
 	}
 	return (word);
 }
 
-int	count_words(char *string)
+int	count_words(char *string, int *quotes)
 {
 	int	count;
 	int	i;
-	int	temp;
 
 	i = 0;
 	count = 0;
-	while (string[i] && is_p_redi(string + i) == 0)
+	while (string[i])
 	{
 		if (!is_space(string[i]))
 			count++;
-		while (!is_space(string[i]) && string[i] && is_p_redi(string + i) == 0)
+		while (!is_space(string[i]) && string[i])
 		{
-			if (string[i] == '\'' || string[i] == '"')
-			{
-				temp = get_quote_len(string + i);
-				if (temp == -1)
-					return (0);
-				i += temp;
-			}
+			if ((string[i] == '\'' || string[i] == '"') && *quotes % 2 == 0)
+				i += get_quote_len(string + i);
+			if (string[i] == -5)
+				*quotes += 1;
 			i++;
 		}
 		while (is_space(string[i]) && string[i])
 			i++;
 	}
+	*quotes = 0;
 	return (count);
 }
 
-char	*parse_word(char *str, int	*index)
+char	*parse_word(char *str, int	*index, int *quotes)
 {
 	int		tmp;
 	int		i;
@@ -80,13 +75,16 @@ char	*parse_word(char *str, int	*index)
 
 	tmp = 0;
 	i = *index;
-	while (!is_space(str[i + tmp]) && str[i + tmp] && is_p_redi(str + i) == 0)
+	while (!is_space(str[i + tmp]) && str[i + tmp])
 	{
-		if (str[i + tmp] == '\'' || str[i + tmp] == '"')
+		if ((str[i + tmp] == '\'' || str[i + tmp] == '"') && *quotes % 2 == 0)
 			tmp += get_quote_len(str + i + tmp);
+		if (str[i + tmp] == -5)
+			*quotes += 1;
 		tmp++;
 	}
-	word = duplicate_word(str + i, tmp);
+	*quotes = 0;
+	word = duplicate_word(str + i, tmp, quotes);
 	*index += tmp;
 	return (word);
 }
@@ -97,18 +95,20 @@ char	**read_line(char *string, t_env *env, t_comm *comm)
 	int		count;
 	char	**line;
 	int		index;
+	int		quotes;
 
 	i = 0;
 	index = -1;
-	count = count_words(string);
+	quotes = 0;
+	count = count_words(string, &quotes);
 	line = ft_calloc((count + 1), sizeof(char *));
 	if (!line)
 		ft_free_malloc_err(env, comm);
 	while (++index < count)
 	{	
-		while (is_space(string[i]) && string[i] && is_p_redi(string + i) == 0)
+		while (is_space(string[i]) && string[i])
 			i++;
-		line[index] = parse_word(string, &i);
+		line[index] = parse_word(string, &i, &quotes);
 	}
 	return (line);
 }

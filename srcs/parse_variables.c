@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_variables.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:04:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/15 10:20:01 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/15 11:51:02 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ int	duplicate_var(char *str_to, char *str_from, t_env *env)
 		return (get_errcode(str_to, env));
 	else if (var)
 	{
-		str_to[++index] = '(';
+		str_to[++index] = -5;
 		while (var->content[++index - 1])
 			str_to[index] = var->content[index - 1];
-		str_to[index] = ')';
+		str_to[index] = -5;
 	}
 	return (index + 1);
 }
