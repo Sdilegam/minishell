@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/15 11:10:38 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/15 13:31:13 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	change_comm(char *path, t_comm *comm, t_env *env);
 void	ft_free_malloc_err(t_env *env, t_comm *comm);
 
 int		is_space(char chara);
-int		count_words(char *string);
+int		count_words(char *string, int *quotes);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_echo(char **str);
 int		ft_unset(t_env *env, char **str);
