@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 11:12:25 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 17:25:51 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/15 02:12:01 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_exit(t_comm *comm, t_env *env)
 		ft_free_comm(comm);
 		ft_free_env(env);
 		rl_clear_history();
-		system("leaks minishell");
 		g_status.status = 255;
 		exit(g_status.status);
 	}
@@ -32,7 +31,6 @@ void	ft_exit(t_comm *comm, t_env *env)
 		ft_free_comm(comm);
 		ft_free_env(env);
 		rl_clear_history();
-		system("leaks minishell");
 		write(1, "exit\n", 6);
 		g_status.status = 127;
 		exit(g_status.status);

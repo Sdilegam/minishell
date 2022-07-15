@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 19:19:07 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/15 02:08:48 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,12 @@ char	*duplicate_word(char *string, int len)
 				index_to ++;
 		}
 		else if (index_from < len)
-			word[index_to++] = string[index_from++];
+		{
+			if (string[index_from] == '(' || string[index_from] == ')')
+				index_from ++;
+			else
+				word[index_to++] = string[index_from++];
+		}
 	}
 	return (word);
 }
@@ -67,38 +72,43 @@ int	count_words(char *string)
 	return (count);
 }
 
+char	*parse_word(char *str, int	*index)
+{
+	int		tmp;
+	int		i;
+	char	*word;
+
+	tmp = 0;
+	i = *index;
+	while (!is_space(str[i + tmp]) && str[i + tmp] && is_p_redi(str + i) == 0)
+	{
+		if (str[i + tmp] == '\'' || str[i + tmp] == '"')
+			tmp += get_quote_len(str + i + tmp);
+		tmp++;
+	}
+	word = duplicate_word(str + i, tmp);
+	*index += tmp;
+	return (word);
+}
+
 char	**read_line(char *string, t_env *env, t_comm *comm)
 {
 	int		i;
-	int		temp;
 	int		count;
 	char	**line;
 	int		index;
 
 	i = 0;
-	temp = 0;
 	index = -1;
 	count = count_words(string);
-	line = malloc((count + 1) * sizeof(char *));
+	line = ft_calloc((count + 1), sizeof(char *));
 	if (!line)
 		ft_free_malloc_err(env, comm);
-	line[count] = 0;
 	while (++index < count)
 	{	
 		while (is_space(string[i]) && string[i] && is_p_redi(string + i) == 0)
 			i++;
-		while (!is_space(string[i + temp]) && string[i + temp]
-			&& is_p_redi(string + i) == 0)
-		{
-			if (string[i + temp] == '\'' || string[i + temp] == '"')
-			{
-				temp += get_quote_len(string + i + temp);
-			}
-			temp++;
-		}
-		line[index] = duplicate_word(string + i, temp);
-		i += temp;
-		temp = 0;
+		line[index] = parse_word(string, &i);
 	}
 	return (line);
 }
@@ -130,16 +140,37 @@ int	get_redi_len(char *string)
 		return (2);
 	if (*string == '>' && *(string + 1) == '|')
 		return (2);
-	else 
+	else
 		return (1);
+}
+
+void	parse_new_coms(char *string, int i, t_comm *first_com, t_env *env)
+{
+	int		(*temp_func)(struct s_comm *first, struct s_env *env);
+	char	*temp;
+	t_comm	*cursor;
+
+	cursor = first_com;
+	while (string[i])
+	{
+		temp_func = set_comm(string + i);
+		string += i + get_redi_len(string + i);
+		i = where_is_pipe(string);
+		temp = replace_dollars(string, env, i, first_com);
+		add_command(first_com, create_command(read_line(temp, env, first_com)));
+		free (temp);
+		cursor = cursor->next;
+		if (!cursor)
+			ft_free_malloc_err(env, cursor);
+		cursor->func = temp_func;
+	}
+	return ;
 }
 
 t_comm	*parse_parameters(char *string, t_env *env)
 {
-	t_comm	*command;
-	t_comm	*cursor;
+	t_comm	*first_com;
 	char	*temp;
-	int		(*temp_func)(struct s_comm *first, struct s_env *env);
 	int		i;
 
 	if (check_string(string) == 0)
@@ -149,22 +180,10 @@ t_comm	*parse_parameters(char *string, t_env *env)
 	}
 	i = where_is_pipe(string);
 	temp = replace_dollars(string, env, i, NULL);
-	command = create_command(read_line(temp, env, NULL));
-	if (!command)
-		ft_free_malloc_err(env, command);
+	first_com = create_command(read_line(temp, env, NULL));
 	free(temp);
-	temp_func = set_comm(string + i);
-	cursor = command;
-	while (string[i])
-	{
-		string += i + get_redi_len(string + i);
-		i = where_is_pipe(string);
-		temp = replace_dollars(string, env, i, command);
-		add_command(command, create_command(read_line(temp, env, command)));
-		free (temp);
-		cursor = cursor->next;
-		cursor->func = temp_func;
-		temp_func = set_comm(string + i);
-	}
-	return (command);
+	if (!first_com)
+		ft_free_malloc_err(env, first_com);
+	parse_new_coms(string, i, first_com, env);
+	return (first_com);
 }

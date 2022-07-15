@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_variables.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:04:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 17:35:03 by abkasmi          ###   ########.fr       */
+/*   Updated: 2022/07/15 01:41:28 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,107 +26,82 @@ t_env	*search_variable(t_env *env, char *string, int len)
 	return (NULL);
 }
 
-int	get_variable_len(t_env var)
+int	get_errcode(char *string, t_env *env)
 {
-	return (ft_strlen(var.content) - ft_strlen(var.var));
+	int		index;
+	char	*errcode;
+
+	index = -1;
+	errcode = ft_itoa(g_status.status >> 8);
+	if (!errcode)
+		ft_free_malloc_err(env, NULL);
+	while (errcode[++index])
+		string [index] = errcode [index];
+	free(errcode);
+	return (index);
 }
 
 int	duplicate_var(char *str_to, char *str_from, t_env *env)
 {
-	int		index_from;
-	int		temp;
+	int		index;
+	int		var_len;
 	t_env	*var;
-	char	*errcode;
-
-	index_from = -1;
-	temp = 0;
-	while (str_from[temp] && !is_space(str_from[temp])
-		&& str_from[temp] != '"' && str_from[temp] != '\'')
-		temp++;
-	var = search_variable(env, str_from, temp);
-	if (ft_strncmp("?", str_from, temp) == 0)
-	{
-		errcode = ft_itoa(g_status.status >> 8);
-		if (!errcode)
-			ft_free_malloc_err(env, NULL);
-		while (errcode[++index_from])
-			str_to [index_from] = errcode [index_from];
-		free(errcode);
-	}
-	if (var)
-	{
-		while (var->content[++index_from])
-			str_to[index_from] = var->content[index_from];
-	}
-	return (index_from);
-}
-
-int	count_p_redi(char *string)
-{
-	int	index;
-	int	count;
 
 	index = -1;
-	count = 0;
-	while (string[++index])
-		if (is_p_redi(&string[index]) != 0)
-			count++;
-	return (count * 2);
+	var_len = var_id_len(str_from);
+	var = search_variable(env, str_from, var_len);
+	if (ft_strncmp("?", str_from, var_len) == 0)
+		return (get_errcode(str_to, env));
+	else if (var)
+	{
+		str_to[++index] = '(';
+		while (var->content[++index - 1])
+			str_to[index] = var->content[index - 1];
+		str_to[index] = ')';
+	}
+	return (index + 1);
 }
 
-// int	get_errcode(char *string, t_env *env)
-// {
-// 	int		index;
-// 	char	*errcode;
+void	rewrite_squotes(char *str_to, char *base_str, int index[2])
+{
+	int	temp;
 
-// 	index = -1;
-// 	errcode = ft_itoa(g_status.status << 8);
-// 	if (!errcode)
-// 		ft_free_malloc_err(env, NULL);
-// 	while (errcode[++index])
-// 		string [index] = errcode [index];
-// 	free(errcode);
-// 	return (index);
-// }
+	temp = 0;
+	base_str += index[0];
+	str_to += index[1] + 1;
+	str_to[temp] = '\'';
+	while (base_str[++temp] != '\'')
+				str_to [temp] = base_str[temp];
+	str_to[temp] = '\'';
+	index[1] += temp + 1;
+	index[0] += temp;
+}
 
 char	*replace_dollars(char *base_str, t_env *env, int len, t_comm *comm)
 {
-	int		index_to;
-	int		index_from;
+	int		i[2];
 	char	*str_to;
-	int		new_len;
 	int		quote;
 
-	index_to = -1;
+	i[1] = -1;
 	quote = 0;
-	new_len = get_final_len(base_str, env, len);
-	index_from = -1;
-	str_to = ft_calloc(new_len + 1, sizeof(char));
+	i[0] = -1;
+	str_to = ft_calloc(get_final_len(base_str, env, len) + 1, sizeof(char));
 	if (!str_to)
 		ft_free_malloc_err(env, comm);
-	while (++index_from < len)
+	while (++i[0] < len)
 	{
-		if (base_str[index_from] == '\'' && quote % 2 == 0)
+		if (base_str[i[0]] == '\'' && quote % 2 == 0)
+			rewrite_squotes(str_to, base_str, i);
+		else if (base_str [i[0]] == '$')
 		{
-			str_to[++index_to] = '\'';
-			duplicate_quotes(str_to + index_to +1, base_str + index_from);
-			index_to += get_quote_len(base_str + index_from) - 1;
-			str_to[++index_to] = '\'';
-			index_from += get_quote_len(base_str + index_from) + 1;
+			i[1] += duplicate_var(str_to + i[1] + 1, base_str + i[0] + 1, env);
+			i[0] += var_id_len(base_str + i[0] + 1);
 		}
-		if (base_str[index_from] == '"')
+		else if (i[0] < len)
+			str_to [++i[1]] = base_str[i[0]];
+		if (base_str[i[0]] == '"')
 			quote ++;
-		if (base_str [index_from] == '$')
-		{
-			index_to += duplicate_var(str_to + index_to + 1,
-					base_str + index_from + 1, env);
-			while (!is_space(base_str[index_from]) && base_str[index_from]
-				&& base_str[index_from] != '"' && base_str[index_from] != '\'')
-				index_from++;
-		}
-		if (base_str[index_from])
-			str_to [++index_to] = base_str[index_from];
 	}
-	str_to[++index_to] = '\0';
 	return (str_to);
 }

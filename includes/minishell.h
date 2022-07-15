@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 19:17:36 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/15 02:20:14 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,8 @@ void	ft_env(t_env *env, char **str);
 void	print_env(t_env *env, int p);
 void	insertnewnode(t_env *env, char *data, char *data2);
 void	ft_export(t_env *env, char **str);
-void	ft_name_varr(t_env *env);
-void	free_list(t_env *pHead);
 void	sig(void);
 void	sig_handler_c(int sig);
-void	sig_handler_backslash(int sig);
 void	add_command(t_comm *first, t_comm *command);
 void	ft_exit(t_comm *comm, t_env *env);
 void	sig_handler_2(int sig);
@@ -60,7 +57,6 @@ void	change_comm(char *path, t_comm *comm, t_env *env);
 void	ft_free_malloc_err(t_env *env, t_comm *comm);
 
 int		is_space(char chara);
-int		is_alpha(char chara);
 int		count_words(char *string);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_echo(char **str);
@@ -85,7 +81,7 @@ void	header(void);
 void	check_rl(char *rl, t_env *env);
 void	sig2(void);
 void	init_var(void);
-
+int		len_int(int n);
 int		get_quote_len(char *string);
 char	**read_line(char *string, t_env *env, t_comm *comm);
 int		builtins_commands(t_comm *command, t_env *env);
@@ -110,5 +106,6 @@ int		here_doc(t_comm *comm, t_env *env, int fd[2]);
 void	ft_free_comm(t_comm *comm);
 void	ft_free_env(t_env *env);
 int		check_string(char *string);
+int		var_id_len(char *string);
 
 #endif

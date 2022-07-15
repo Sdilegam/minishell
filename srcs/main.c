@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 19:18:54 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/15 01:29:12 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	can_launch(t_comm *command)
 			return (1);
 	return (0);
 }
-
 
 void	exec(t_comm *command, t_env *env)
 {

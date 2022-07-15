@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 14:59:51 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/14 17:53:02 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/15 01:30:16 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int	check_quotes(char *string)
 	}
 	return (1);
 }
-
 
 int	not_allowed_char(char chara)
 {

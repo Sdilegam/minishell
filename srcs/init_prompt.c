@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:52:43 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/14 19:17:58 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/15 02:13:31 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_rl(char *rl, t_env *env)
 	{
 		ft_free_env(env);
 		rl_clear_history();
-		system("leaks minishell");
+		write(1, "exit\n", 6);
 		exit(0);
 	}
 	add_history(rl);
