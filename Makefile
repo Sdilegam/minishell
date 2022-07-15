@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
+#    By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 13:27:32 by abkasmi           #+#    #+#              #
-#    Updated: 2022/07/14 16:44:34 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/07/15 10:45:36 by abkasmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS = 	srcs/main.c\
 		srcs/builtins/export.c\
 		srcs/builtins/unset.c\
 		srcs/builtins/exit.c\
+		srcs/builtins/pwd.c\
 		srcs/check_shlvl.c\
 		srcs/atoi.c\
 		srcs/path2.c\
@@ -44,7 +45,8 @@ SRCS = 	srcs/main.c\
 		srcs/ft_calloc.c\
 		srcs/ft_free.c\
 		srcs/init_prompt.c\
-		srcs/string_checking.c
+		srcs/string_checking.c\
+		srcs/parsing2.c
 
 OBJS = ${addprefix ${OBJS_DIR}, ${notdir ${SRCS:.c=.o}}}
 

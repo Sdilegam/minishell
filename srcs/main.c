@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:59:38 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/15 02:25:27 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/15 11:10:47 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@ int	builtins_commands(t_comm *command, t_env *env)
 	else if (ft_strcmp(command->parameters[0], "cd") == 0)
 		env = ft_cd(command->parameters, env, command);
 	else if (ft_strcmp(command->parameters[0], "pwd") == 0)
-	{
-		g_status.status = 0;
-		ft_putstr(getcwd(NULL, 0), 1);
-		ft_putstr("\n", 1);
-	}
+		ft_pwd();
 	else if (ft_strcmp(command->parameters[0], "env") == 0)
 		ft_env(env, command->parameters);
 	else if (ft_strcmp(command->parameters[0], "export") == 0)
@@ -66,14 +62,14 @@ void	exec(t_comm *command, t_env *env)
 			free(envp);
 			ft_putstr("minishell: ", 2);
 			ft_putstr(command->parameters[0], 2);
-			perror(": ");
+			ft_putstr(": command not found\n", 2);
 			if (errno != 2)
 				exit(126);
 			exit (127);
 		}
 	}
 	else
-		exit (127);
+		ft_error_command(envp, command);
 }
 
 int	function(t_comm *command, t_env *env)
@@ -120,7 +116,6 @@ int	main(int ac, char *av[], char *envp[])
 	while (1)
 	{
 		sig();
-		header();
 		rl = readline("\033[1;92mminishell\033[0m$> ");
 		check_rl(rl, env);
 		comm = parse_parameters(rl, env);

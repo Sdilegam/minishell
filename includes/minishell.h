@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:19:45 by abkasmi           #+#    #+#             */
-/*   Updated: 2022/07/15 02:25:44 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/15 11:10:38 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,19 @@ int		builtins_commands(t_comm *command, t_env *env);
 
 char	*ft_cpy_content(char *str);
 char	*ft_cpy_name(char *str);
+int		get_redi_len(char *string);
+void	parse_new_coms(char *string, int i, t_comm *first_com, t_env *env);
+t_comm	*parse_parameters(char *string, t_env *env);
+int		check_string(char *string);
+int		not_allowed_char(char chara);
+int		check_quotes(char *string);
+int		err_redi(char *string, int offset, int which_redi);
+int		check_redi(char *string, int index);
+int		get_offset(char *string, int index);
+int		check_pipe(char *string, int index);
+int		(*set_comm(char *chara))(t_comm *comm, t_env *env);
+void	ft_pwd(void);
+void	ft_error_command(char **envp, t_comm *command);
 
 int		count_quotes(char *string, int len);
 t_env	*search_variable(t_env *env, char *string, int len);

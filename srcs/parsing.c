@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:37:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/15 02:08:48 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/15 10:20:16 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,60 +130,4 @@ int	(*set_comm(char *chara))(t_comm *comm, t_env *env)
 		return (&ft_output_redir_append);
 	else
 		return (&function);
-}
-
-int	get_redi_len(char *string)
-{
-	if (*string == '<' && *(string + 1) == '<')
-		return (2);
-	if (*string == '>' && *(string + 1) == '>')
-		return (2);
-	if (*string == '>' && *(string + 1) == '|')
-		return (2);
-	else
-		return (1);
-}
-
-void	parse_new_coms(char *string, int i, t_comm *first_com, t_env *env)
-{
-	int		(*temp_func)(struct s_comm *first, struct s_env *env);
-	char	*temp;
-	t_comm	*cursor;
-
-	cursor = first_com;
-	while (string[i])
-	{
-		temp_func = set_comm(string + i);
-		string += i + get_redi_len(string + i);
-		i = where_is_pipe(string);
-		temp = replace_dollars(string, env, i, first_com);
-		add_command(first_com, create_command(read_line(temp, env, first_com)));
-		free (temp);
-		cursor = cursor->next;
-		if (!cursor)
-			ft_free_malloc_err(env, cursor);
-		cursor->func = temp_func;
-	}
-	return ;
-}
-
-t_comm	*parse_parameters(char *string, t_env *env)
-{
-	t_comm	*first_com;
-	char	*temp;
-	int		i;
-
-	if (check_string(string) == 0)
-	{
-		g_status.status = 2 << 8;
-		return (0);
-	}
-	i = where_is_pipe(string);
-	temp = replace_dollars(string, env, i, NULL);
-	first_com = create_command(read_line(temp, env, NULL));
-	free(temp);
-	if (!first_com)
-		ft_free_malloc_err(env, first_com);
-	parse_new_coms(string, i, first_com, env);
-	return (first_com);
 }

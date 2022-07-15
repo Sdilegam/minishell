@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string_checking.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abkasmi <abkasmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 14:59:51 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/07/15 01:30:16 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/07/15 10:24:14 by abkasmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	check_pipe(char *string, int index)
 
 	offset = 0;
 	count = 0;
-	while (index - ++offset > -1 && string[index - offset] && is_p_redi(&string[index - offset]) == 0)
+	while (index - ++offset > -1 && string[index - offset]
+		&& is_p_redi(&string[index - offset]) == 0)
 		if (!is_space(string[index - offset]))
 			count++;
 	if (count == 0)
@@ -34,7 +35,7 @@ int	check_pipe(char *string, int index)
 	return (0);
 }
 
-static int	get_offset(char *string, int index)
+int	get_offset(char *string, int index)
 {
 	int	redi;
 
@@ -89,55 +90,16 @@ int	check_quotes(char *string)
 			temp = get_quote_len(string + i);
 			if (temp == -1)
 			{
-				ft_putstr("minishell: unexpected EOF while looking for matching `", 2);
+				ft_putstr("minishell: unexpected EOF while\
+					looking for matching `", 2);
 				ft_putstr(string + i, 2);
-				ft_putstr("'\nminishell: syntax error: unexpected end of file\n", 2);
+				ft_putstr("'\nminishell: syntax error:\
+					unexpected end of file\n", 2);
 				return (0);
 			}
 			i += temp;
 		}
 		i++;
 	}
-	return (1);
-}
-
-int	not_allowed_char(char chara)
-{
-	if (chara == '\\' || chara == '(' || chara == ')' || chara == ';' \
-	|| chara == '&' || chara == '*')
-	{
-		ft_putstr("'", 2);
-		ft_putstr(&chara, 2);
-		ft_putstr("' not allowed in this minishell.\n", 2);
-		return (1);
-	}
-	return (0);
-}
-
-int	check_string(char *string)
-{
-	int	index;
-	int	is_redi;
-	int	offset;
-
-	index = 0;
-	while (string[index])
-	{
-		is_redi = is_p_redi(&string[index]);
-		if (is_redi == 1)
-			if (check_pipe(string, index) != 0)
-				return (err_redi(string + index, 0, is_redi));
-		if (is_redi > 1)
-		{
-			offset = check_redi(string, index);
-			if (offset > 0)
-				return (err_redi(string + index, offset, is_redi));
-		}
-		if (not_allowed_char(string[index]) == 1)
-			return (0);
-		index += get_offset(string, index);
-	}
-	if (check_quotes(string) == 0)
-		return (0);
 	return (1);
 }

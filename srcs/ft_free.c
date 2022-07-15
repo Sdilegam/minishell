@@ -62,3 +62,17 @@ void	ft_free_malloc_err(t_env *env, t_comm *comm)
 	ft_putstr("Malloc error\n", 2);
 	exit(1);
 }
+
+void	ft_error_command(char **envp, t_comm *command)
+{
+	int	index;
+
+	index = -1;
+	while (envp[++index])
+		free(envp[index]);
+	free(envp);
+	ft_putstr("minishell: ", 2);
+	ft_putstr(command->parameters[0], 2);
+	ft_putstr(": command not found\n", 2);
+	exit (127);
+}
